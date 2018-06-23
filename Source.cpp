@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 		//Menu Page Loader
 		switch (gameState)
 		{
-		case MENU://start page is what Menu::Menu loads when constructed
+		case MENU:
 			menu.Draw(&clock, &controls, &chunkStruct, font, &player, &tmap, window);
 			break;
 		}

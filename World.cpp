@@ -29,11 +29,6 @@ World::World(Player *player, PlayerTextureMap *tmap, std::string string)
 	rect.setOrigin(32, 160);
 	rect.setPosition(playerX, playerY);
 
-	/*NOTE: consider doing the initilization of the struct vector
-	with no back or front block value so the algorithm for making tunnels and
-	shit can know where everything is first*/
-
-
 	//struct vector initialization
 	for (int y = 0; y < height; y++)
 	{

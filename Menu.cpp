@@ -47,12 +47,6 @@ void Menu::Update(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf
 		loadedPage = Interface::Menu::NAMEWORLD;
 	}
 
-	if (chosenPage == Interface::Menu::LOADGAME)
-	{
-		Menu::LoadWorld(font);
-		loadedPage = Interface::Menu::LOADGAME;
-	}
-
 	if (chosenPage == Interface::Menu::INGAME)
 	{
 		Menu::InGame(clock, controls, chunkStruct, window, font, player, tmap);
@@ -83,8 +77,16 @@ void Menu::Update(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf
 	}
 }
 
-void Menu::Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::Font& font, 
-	Player *player, PlayerTextureMap *tmap, sf::RenderWindow& window)
+void Generate(int count, Menu* menu, Player* player, PlayerTextureMap* tmap, sf::RenderWindow* window)
+{
+	World world(player, tmap, menu->UI[count].string);
+	world.windowX = window->getSize().x;
+	world.windowY = window->getSize().y;
+	menu->worlds.push_back(world);
+}
+
+void Menu::Draw(Clock* clock, Controls* controls, ChunkStruct* chunkStruct, sf::Font& font, 
+	Player* player, PlayerTextureMap* tmap, sf::RenderWindow& window)
 {
 	Menu::Update(clock, controls, chunkStruct, window, font, player, tmap);
 
@@ -116,19 +118,17 @@ void Menu::Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::
 			UI[count].recorded = true;
 
 			//lambda of world generation for thread
-			auto generate = [](int count,  Player* player, std::vector<World>& worlds, 
-				PlayerTextureMap* tmap, std::vector<Interface>& UI, sf::RenderWindow& window)
-			{
-				World world(player, tmap, UI[count].string);
-				world.windowX = window.getSize().x;
-				world.windowY = window.getSize().y;
-				worlds.push_back(world);
-			};
+			//Generate(count, player, worlds, tmap, UI, window);
 
 			//world generation thread
-			std::thread worldGenerator(generate);
+			std::thread worldGenerator(Generate, count, this, player, tmap, &window);
+			//Menu::GenerateWorld(font);
 
+			//if (worldGenerator.joinable() == true)
+			//{
 			worldGenerator.join();
+			chosenPage == Interface::Menu::STARTGAME;
+			//}
 
 			worldNum = worlds.size() - 1;
 			worlds[worldNum].worldNum = worldNum;
