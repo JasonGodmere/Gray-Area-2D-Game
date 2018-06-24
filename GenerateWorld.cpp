@@ -31,7 +31,5 @@ void Menu::GenerateWorld(sf::Font &font)
 		}
 	}
 
-
-
 	chosenPage = Interface::Menu::STARTGAME;
 }

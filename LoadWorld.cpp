@@ -17,7 +17,7 @@ void Menu::LoadWorld(sf::Font &font)
 			{
 				//title
 				interface.type = Interface::Type::TEXT;
-				interface.string = "Loading " + worlds[worldSelected].worldName;
+				interface.string = "Loading - " + worlds[worldSelected].worldName;
 				interface.characterSize = 120;
 				interface.posX = 960;
 				interface.posY = 100;

@@ -75,14 +75,19 @@ void Menu::Update(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf
 	{
 		window.close();
 	}
-}
 
-void Generate(int count, Menu* menu, Player* player, PlayerTextureMap* tmap, sf::RenderWindow* window)
-{
-	World world(player, tmap, menu->UI[count].string);
-	world.windowX = window->getSize().x;
-	world.windowY = window->getSize().y;
-	menu->worlds.push_back(world);
+	// load some shit here
+	if (chosenPage == Interface::Menu::LOADGAME)
+	{
+		Menu::LoadWorld(font);
+		loadedPage = Interface::Menu::LOADGAME;
+	}
+
+	if (chosenPage == Interface::Menu::GENERATEWORLD)
+	{
+		Menu::GenerateWorld(font);
+		loadedPage = Interface::Menu::GENERATEWORLD;
+	}
 }
 
 void Menu::Draw(Clock* clock, Controls* controls, ChunkStruct* chunkStruct, sf::Font& font, 
@@ -117,18 +122,10 @@ void Menu::Draw(Clock* clock, Controls* controls, ChunkStruct* chunkStruct, sf::
 		{
 			UI[count].recorded = true;
 
-			//lambda of world generation for thread
-			//Generate(count, player, worlds, tmap, UI, window);
-
-			//world generation thread
-			std::thread worldGenerator(Generate, count, this, player, tmap, &window);
-			//Menu::GenerateWorld(font);
-
-			//if (worldGenerator.joinable() == true)
-			//{
-			worldGenerator.join();
-			chosenPage == Interface::Menu::STARTGAME;
-			//}
+			World world(player, tmap, UI[count].string);
+			world.windowX = window.getSize().x;
+			world.windowY = window.getSize().y;
+			worlds.push_back(world);
 
 			worldNum = worlds.size() - 1;
 			worlds[worldNum].worldNum = worldNum;
@@ -138,6 +135,7 @@ void Menu::Draw(Clock* clock, Controls* controls, ChunkStruct* chunkStruct, sf::
 			UI[count].menu == Interface::Menu::LOADGAME)
 		{
 			worldSelected = UI[count].worldNum;
+			chosenPage = Interface::Menu::LOADGAME;
 		}
 		++count;
 	}
