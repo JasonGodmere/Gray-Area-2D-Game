@@ -6,6 +6,8 @@
 class Menu : public Arrays
 {
 public:
+	bool generating; //generating world bool
+
 	int maxWorlds;
 	int worldNum;
 	int worldSelected;
@@ -25,7 +27,7 @@ public:
 
 	void StartGame(sf::Font& font);
 	void NameWorld(sf::Font& font);
-	void GenerateWorld(sf::Font &font);
+	void GenerateWorld(sf::Font& font);
 	void LoadWorld(sf::Font &font);
 
 	void InGame(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::RenderWindow& window, sf::Font &font, 

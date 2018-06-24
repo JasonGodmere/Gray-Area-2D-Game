@@ -5,6 +5,7 @@ Menu::Menu()
 {
 	maxWorlds = 4;
 	count = 0;
+	generating = false;
 
 	chosenPage = Interface::Menu::STARTPAGE;
 	loadedPage = Interface::Menu::NONE;
@@ -90,6 +91,22 @@ void Menu::Update(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf
 	}
 }
 
+void Generate(int count, Menu* menu, Player* player, PlayerTextureMap* tmap, sf::RenderWindow* window)
+{
+	menu->generating = true;
+	World world(player, tmap, menu->UI[count].string);
+	world.windowX = window->getSize().x;
+	world.windowY = window->getSize().y;
+	menu->worlds.push_back(world);
+
+	menu->worldNum = menu->worlds.size() - 1;
+	menu->worlds[menu->worldNum].worldNum = menu->worldNum;
+
+	menu->chosenPage = Interface::Menu::STARTGAME;
+
+	menu->generating = false;
+}
+
 void Menu::Draw(Clock* clock, Controls* controls, ChunkStruct* chunkStruct, sf::Font& font, 
 	Player* player, PlayerTextureMap* tmap, sf::RenderWindow& window)
 {
@@ -117,18 +134,16 @@ void Menu::Draw(Clock* clock, Controls* controls, ChunkStruct* chunkStruct, sf::
 			chosenPage = UI[count].menu;
 		}
 
-		if (UI[count].type == Interface::Type::TEXTINPUT && UI[count].pressed == true &&
-			UI[count].menu == Interface::Menu::GENERATEWORLD && UI[count].recorded == false)
+		if ((UI[count].type == Interface::Type::TEXTINPUT && UI[count].pressed == true &&
+			UI[count].menu == Interface::Menu::GENERATEWORLD && UI[count].recorded == false) || generating == true)
 		{
 			UI[count].recorded = true;
 
-			World world(player, tmap, UI[count].string);
-			world.windowX = window.getSize().x;
-			world.windowY = window.getSize().y;
-			worlds.push_back(world);
-
-			worldNum = worlds.size() - 1;
-			worlds[worldNum].worldNum = worldNum;
+			std::thread WorldGenerator(Generate, count, this, player, tmap, &window);
+			if (WorldGenerator.joinable() == false)
+			{
+				WorldGenerator.join();
+			}
 		}
 
 		if (UI[count].type == Interface::Type::WORLDSELECT && UI[count].pressed == true &&

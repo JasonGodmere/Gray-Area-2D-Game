@@ -1,7 +1,7 @@
 
 #include "Menu.h"
 
-void Menu::GenerateWorld(sf::Font &font)
+void Menu::GenerateWorld(sf::Font& font)
 {
 	UI.clear();
 	elements = 1;
@@ -30,6 +30,4 @@ void Menu::GenerateWorld(sf::Font &font)
 			UI.push_back(interface);
 		}
 	}
-
-	chosenPage = Interface::Menu::STARTGAME;
 }

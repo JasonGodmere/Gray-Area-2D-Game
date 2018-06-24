@@ -1,6 +1,11 @@
 
 #include "Menu.h"
 
+void LoadingScreen(Menu* menu)
+{
+
+}
+
 void Menu::LoadWorld(sf::Font &font)
 {
 	if (chosenPage == Interface::Menu::LOADGAME &&
@@ -34,6 +39,8 @@ void Menu::LoadWorld(sf::Font &font)
 			}
 		}
 	}
+
+	//std::thread LoadingThread(LoadingScreen, this);
 
 	//after loading sequence
 	chosenPage = Interface::Menu::INGAME;
