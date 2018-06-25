@@ -6,12 +6,13 @@
 class Menu : public Arrays
 {
 public:
-	bool generating; //generating world bool
+	bool threading;
 
 	int maxWorlds;
 	int worldNum;
 	int worldSelected;
 	int count;
+	int count2;
 	int elements;
 
 	Interface::Menu chosenPage;
@@ -41,4 +42,7 @@ public:
 		Player *player, PlayerTextureMap *tmap);
 	void Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::Font& font, 
 		Player *player, PlayerTextureMap *tmap, sf::RenderWindow& window);
+
+	void ThreadDraw(Menu* menu, Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::Font& font,
+		Player *player, PlayerTextureMap *tmap, sf::RenderWindow& window); //draws while thread in use for world generation and loading
 };
