@@ -83,8 +83,8 @@ void Player::PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector
 	}*/
 
 	//bottom
-	if ((rectLeftEdge > leftEdge && rectLeftEdge < rightEdge) ||
-		(leftEdge > rectLeftEdge && leftEdge < rectRightEdge))
+	if (((rectLeftEdge > leftEdge && rectLeftEdge < rightEdge) ||
+		(leftEdge > rectLeftEdge && leftEdge < rectRightEdge)) && speedY <= 0)
 	{
 		if (rectBottomEdge <= topEdge && rectBottomEdge >= topEdge - rectInfluenceMargin && grounded == false)// && bottomCollision == false)
 		{
@@ -95,4 +95,6 @@ void Player::PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector
 			//cout << "working" << endl;
 		}
 	}
+
+	/*For some reason, the block is constantly being activated and is evident when going from positive to negative speedY while jumping*/
 }

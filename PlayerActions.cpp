@@ -236,7 +236,7 @@ void Player::Jump(Controls *controls)
 {
 	if (controls->space == true && grounded == true)
 	{
-		speedY = 10000;
+		speedY = fallSpeed;
 		grounded = false;
 	}
 }

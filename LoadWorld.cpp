@@ -1,11 +1,6 @@
 
 #include "Menu.h"
 
-void LoadingScreen(Menu* menu)
-{
-
-}
-
 void Menu::LoadWorld(sf::Font &font)
 {
 	if (chosenPage == Interface::Menu::LOADGAME &&

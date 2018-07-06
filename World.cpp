@@ -112,7 +112,7 @@ void World::Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf:
 		topX = width;
 	}
 
-	//World::Collision(clock, player);
+	World::Collision(clock, player);
 
 	
 	for (int y = botY; y < topY; y++)

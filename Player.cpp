@@ -28,6 +28,7 @@ Player::Player(PlayerTextureMap *tmap)
 	footSpeed = 0;
 	footVelocity = 0;
 	topSpeed = 260;
+	fallSpeed = topSpeed * 4;
 	speedX = 0;
 	speedY = 0;
 	velocityX = 0;

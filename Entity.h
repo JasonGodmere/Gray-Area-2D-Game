@@ -34,6 +34,7 @@ public:
 
 	double sum;
 	double topSpeed;
+	double fallSpeed;
 
 	double posX;
 	double posY;

@@ -10,16 +10,16 @@ void Player::Update(Clock *clock, Controls *controls, sf::RenderWindow &window)
 
 	time = clock->time;
 
-	gravity = -1560;
+	gravity = -5160;
 
 	//Y axis movement
-	if (grounded == false && speedY > (topSpeed * 2.5))
+	if (grounded == false && speedY > (fallSpeed))
 	{
-		speedY = topSpeed * 2.5;
+		speedY = fallSpeed;
 	}
-	else if (grounded == false && speedY < -(topSpeed * 2.5))
+	else if (grounded == false && speedY < -fallSpeed)
 	{
-		speedY = -topSpeed * 2.5;
+		speedY = -fallSpeed;
 	}
 
 	if (controls->d == true && controls->a == false)
@@ -27,34 +27,13 @@ void Player::Update(Clock *clock, Controls *controls, sf::RenderWindow &window)
 		//accelerationX = topSpeed * 8;
 		speedX = topSpeed;
 	}
-	else if (controls->a == true)
+	else if (controls->d == false && controls->a == true)
 	{
 		//accelerationX = -topSpeed * 8;
 		speedX = -topSpeed;
 	}
 	else
 	{
-		if (speedX > 1)
-		{
-			accelerationX = -topSpeed * 8;
-			if (speedX + accelerationX < 1)
-			{
-				accelerationX = 0;
-			}
-		}
-		else if (speedX < -1)
-		{
-			accelerationX = topSpeed * 8;
-			if (speedX + accelerationX > -1)
-			{
-				accelerationX = 0;
-			}
-		}
-		else
-		{
-			speedX = 0;
-			accelerationX = 0;
-		}
 		speedX = 0;
 	}
 	
