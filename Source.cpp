@@ -1,10 +1,10 @@
 
 #include "Define.h"
 #include "json.hpp"
-#include "Clock.h"
-#include "Physics.h"
-#include "Menu.h"
-#include "Player.h"
+#include "21_Clock.h"
+#include "20_Physics.h"
+#include "10_Menu.h"
+#include "03_Player.h"
 
 namespace json = nlohmann;
 
@@ -50,8 +50,6 @@ int main(int argc, char *argv[])
 	Menu menu;
 
 	Player player(&tmap);
-
-	Item item;
 
 	Physics physics;
 
