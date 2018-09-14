@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 		std::cout << tfile << "\nBasic Block.png Load Error" << std::endl;
 	}
 
-	ChunkStruct chunkStruct;
+	Chunk chunk;
 
 	Controls controls;
 
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
 		switch (gameState)
 		{
 		case MENU:
-			menu.Draw(&clock, &controls, &chunkStruct, font, &player, &tmap, window);
+			menu.Draw(&clock, &controls, &chunk, font, &player, &tmap, window);
 			break;
 		}
 

@@ -1,10 +1,8 @@
 #pragma once
 
-#include "00_Entity.h"
-#include "32_ChunkStruct.h"
-#include "03_Player.h"
+#include "Define.h"
 
-class Chunk : public Entity
+class Chunk
 {
 public:
 	bool rightBlock;
@@ -12,12 +10,29 @@ public:
 	bool topBlock;
 	bool bottomBlock;
 
+	int spriteFrame;
+
+	int chunkSize = 1;
+	float chunkRatio = 1;
+
+	int originX = 0;
+	int originY = 0;
+
+	float posX = 0;
+	float posY = 0;
+
+	bool collision = false;
+
 	sf::Sprite frontSprite;
-	sf::Sprite backSprite;
+
+	sf::Texture tFront;
+
+	enum Front { F_NONE, F_GRAVEL };
+	Front front = F_NONE;
 
 	Chunk();
 	~Chunk();
 
-	void Update(int x, int y, std::vector<std::vector<ChunkStruct>> &chunkStructs, Player *player, PlayerTextureMap *tmap);
-	void Draw(int x, int y, std::vector<std::vector<ChunkStruct>> &chunkStructs, Player *player, PlayerTextureMap *tmap, sf::RenderWindow &window);
+	void Update(PlayerTextureMap *tmap);
+	void Draw(PlayerTextureMap *tmap, sf::RenderWindow &window);
 };

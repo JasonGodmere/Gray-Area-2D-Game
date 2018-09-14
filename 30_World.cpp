@@ -21,9 +21,6 @@ World::World(Player *player, PlayerTextureMap *tmap, std::string string)
 	player->bottomCollision = false;
 	player->topCollision = false;
 
-	posX = 0;
-	posY = 0;
-
 	rect.setSize(sf::Vector2f(64, 160));//player foot position
 	rect.setFillColor(sf::Color::Red);
 	rect.setOrigin(32, 160);
@@ -32,32 +29,32 @@ World::World(Player *player, PlayerTextureMap *tmap, std::string string)
 	//struct vector initialization
 	for (int y = 0; y < height; y++)
 	{
-		std::vector<ChunkStruct> chunkStructsI;
+		std::vector<Chunk> chunksI;
 		for (int x = 0; x < width; x++)
 		{
-			ChunkStruct chunkStruct;
-			chunkStruct.chunkSize = chunkSize;
-			chunkStruct.chunkRatio = chunkRatio;
-			chunkStruct.originX = -((x - width / 2) * chunkSize); //+ chunkSize;
-			chunkStruct.originY = -((y - height / 4) * chunkSize);
+			Chunk chunk;
+			chunk.chunkSize = chunkSize;
+			chunk.chunkRatio = chunkRatio;
+			chunk.originX = -((x - width / 2) * chunkSize); //+ chunkSize;
+			chunk.originY = -((y - height / 4) * chunkSize);
 			//chunkStruct.originY = -y * chunkSize;
 			//cout << chunkStruct.originX << " : " << chunkStruct.originY << " | ";
-			chunkStructsI.push_back(chunkStruct);
+			chunksI.push_back(chunk);
 		}
-		chunkStructs.push_back(chunkStructsI);
+		chunks.push_back(chunksI);
 
 		for (int x = 0; x < width; x++)
 		{
-			if (chunkStructs[y][x].originY > 0)
+			if (chunks[y][x].originY > 0)
 			{
-				chunkStructs[y][x].front = ChunkStruct::Front::F_NONE;
-				chunkStructs[y][x].collision = false;
+				chunks[y][x].front = Chunk::Front::F_NONE;
+				chunks[y][x].collision = false;
 			}
 			else
 			{
-				chunkStructs[y][x].front = ChunkStruct::Front::F_GRAVEL;
-				chunkStructs[y][x].tFront = tmap->basicBlock;
-				chunkStructs[y][x].collision = true;
+				chunks[y][x].front = Chunk::Front::F_GRAVEL;
+				chunks[y][x].tFront = tmap->basicBlock;
+				chunks[y][x].collision = true;
 			}
 		}
 	}
@@ -73,7 +70,7 @@ void World::Update(Clock *clock, Controls *controls, sf::Font &font)
 	time = clock->time;
 }
 
-void World::Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::RenderWindow& window, sf::Font &font, 
+void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window, sf::Font &font, 
 	Player *player, PlayerTextureMap *tmap)
 {
 	World::Update(clock, controls, font);
@@ -83,10 +80,6 @@ void World::Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf:
 	player->Update(clock, controls, window);
 	posX = -player->posX + playerX;
 	posY = -player->posY + playerY;
-	
-	Chunk chunk;
-	chunk.width = width;
-	chunk.height = height;
 
 	//values used to determine the region of world needed for entitiesso it doesn't load entire world. 
 	//Only what we need for collisions with objects
@@ -113,20 +106,19 @@ void World::Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf:
 	}
 
 	World::Collision(clock, player);
-
 	
 	for (int y = botY; y < topY; y++)
 	{
 		for (int x = botX; x < topX; x++)
 		{
-			chunkStructs[y][x].posX = posX;
-			chunkStructs[y][x].posY = posY;
-			if (player->posX + chunkStructs[y][x].originX >= -windowX + playerX &&
-				player->posX + chunkStructs[y][x].originX <= 32 + windowX - (windowX - playerX) //&& 
+			chunks[y][x].posX = posX;
+			chunks[y][x].posY = posY;
+			if (player->posX + chunks[y][x].originX >= -windowX + playerX &&
+				player->posX + chunks[y][x].originX <= 32 + windowX - (windowX - playerX) //&& 
 				/*player->posY + chunkStructs[y][x].originY >= windowY - (windowX - playerY) &&
 				player->posY + chunkStructs[y][x].originX <=  - (windowY - playerY)*/)
 			{
-				chunk.Draw(x, y, chunkStructs, player, tmap, window);
+				chunks[y][x].Draw(tmap, window);
 			}
 		}
 	}

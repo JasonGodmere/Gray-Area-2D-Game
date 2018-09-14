@@ -5,7 +5,7 @@ void ParticleSource::FireSource()
 {
 	Particle particle;
 	
-	if (justSpawned == true) //vector filling of all needed particles
+	if (justSpawned == true) //loop creates all needed particles
 	{
 		rect.setSize(sf::Vector2f(spawnWidth, 5));
 		rect.setOrigin(spawnWidth/2,0);

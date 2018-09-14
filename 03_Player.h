@@ -1,7 +1,7 @@
 #pragma once
 
 #include "00_Entity.h"
-#include "32_ChunkStruct.h"
+#include "31_Chunk.h"
 
 class Player : public Entity
 {
@@ -87,7 +87,7 @@ public:
 	void Running(sf::RenderWindow &window);
 	void Jump(Controls *controls);
 	void Idle();
-	void PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector<ChunkStruct>> &chunkStructs);
+	void PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector<Chunk>> &chunks);
 
 	void Aiming(sf::RenderWindow &window);
 

@@ -8,9 +8,9 @@ void Particle::Menu()
 	}
 	else
 	{
-		colorR = 50 * (1 - (timeSinceSpawn / duration));
-		colorG = 50 * (1 - (timeSinceSpawn / duration));
-		colorB = 50 * (1 - (timeSinceSpawn / duration));
+		colorR = 60 * (1 - (timeSinceSpawn / duration));
+		colorG = 60 * (1 - (timeSinceSpawn / duration));
+		colorB = 60 * (1 - (timeSinceSpawn / duration));
 	}
 
 	rect.setFillColor(sf::Color(colorR, colorG, colorB, colorA));

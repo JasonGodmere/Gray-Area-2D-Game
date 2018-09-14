@@ -1,7 +1,7 @@
 
 #include "10_Menu.h"
 
-void Menu::InGame(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::RenderWindow& window, sf::Font &font, 
+void Menu::InGame(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow& window, sf::Font &font, 
 	Player *player, PlayerTextureMap *tmap)
 {
 	if (chosenPage == Interface::Menu::INGAME &&
@@ -77,5 +77,5 @@ void Menu::InGame(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf
 		}
 	}
 
-	worlds[worldSelected].Draw(clock, controls, chunkStruct, window, font, player, tmap);
+	worlds[worldSelected].Draw(clock, controls, chunk, window, font, player, tmap);
 }

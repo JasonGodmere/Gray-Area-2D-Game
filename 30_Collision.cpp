@@ -12,23 +12,23 @@ void World::Collision(Clock *clock, Player *player)
 	{
 		for (int x = botX; x < topX; x++)
 		{
-			if (chunkStructs[y][x].collision == true)
+			if (chunks[y][x].collision == true)
 			{
-				player->PlayerCollision(x, y, clock, chunkStructs);
+				player->PlayerCollision(x, y, clock, chunks);
 			}
 		}
 	}
 
-	if (player->posX + chunkStructs[0][0].originX - windowX / 2 < 0)
+	if (player->posX + chunks[0][0].originX - windowX / 2 < 0)
 	{
-		playerX = player->posX + chunkStructs[0][0].originX;
+		playerX = player->posX + chunks[0][0].originX;
 		if (playerX < player->rect.getOrigin().x)
 		{
 			playerX = player->rect.getOrigin().x;
 		}
-		if (player->posX < player->rect.getOrigin().x - chunkStructs[0][0].originX)
+		if (player->posX < player->rect.getOrigin().x - chunks[0][0].originX)
 		{
-			player->posX = player->rect.getOrigin().x - chunkStructs[0][0].originX;
+			player->posX = player->rect.getOrigin().x - chunks[0][0].originX;
 		}
 	}
 

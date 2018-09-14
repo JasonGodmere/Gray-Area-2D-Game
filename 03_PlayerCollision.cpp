@@ -1,17 +1,17 @@
 
 #include "03_Player.h"
 
-void Player::PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector<ChunkStruct>> &chunkStructs)
+void Player::PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector<Chunk>> &chunks)
 {
 	rectLeftEdge = posX - rect.getOrigin().x;
 	rectRightEdge = posX + rect.getSize().x - rect.getOrigin().x;
 	rectTopEdge = posY - rect.getOrigin().y;
 	rectBottomEdge = posY + rect.getSize().y - rect.getOrigin().y;
 
-	leftEdge = posX + chunkStructs[y][x].originX;
-	rightEdge = posX + chunkStructs[y][x].chunkSize + chunkStructs[y][x].originX;
-	topEdge = posY + chunkStructs[y][x].originY;
-	bottomEdge = posY + chunkStructs[y][x].chunkSize + chunkStructs[y][x].originY;
+	leftEdge = posX + chunks[y][x].originX;
+	rightEdge = posX + chunks[y][x].chunkSize + chunks[y][x].originX;
+	topEdge = posY + chunks[y][x].originY;
+	bottomEdge = posY + chunks[y][x].chunkSize + chunks[y][x].originY;
 
 	//top
 	/*if ((rectLeftEdge > leftEdge && rectLeftEdge < rightEdge) ||
@@ -90,7 +90,7 @@ void Player::PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector
 		{
 			speedY = 0;
 			velocityY = 0;
-			posY = chunkStructs[y][x].originY;
+			posY = chunks[y][x].originY;
 			grounded = true;
 			//cout << "working" << endl;
 		}

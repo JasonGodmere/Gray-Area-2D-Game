@@ -1,9 +1,10 @@
 #pragma once
 
 #include "31_Chunk.h"
+#include "00_Entity.h"
 #include "03_Player.h"
 
-class World : public Chunk
+class World : public Entity
 {
 public:
 	int windowX = 0;
@@ -34,8 +35,8 @@ public:
 	int countX;
 	int countY;
 
-	std::vector<std::vector<ChunkStruct>> chunkStructs;
-	std::vector<ChunkStruct> chunkStructsI;
+	std::vector<std::vector<Chunk>> chunks;
+	std::vector<Chunk> chunksI;
 
 	World(Player *player, PlayerTextureMap *tmap, std::string string);
 	~World();
@@ -43,6 +44,6 @@ public:
 	void Collision(Clock *clock, Player *player);
 
 	void Update(Clock *clock, Controls *controls, sf::Font &font);
-	void Draw(Clock *clock, Controls *controls, ChunkStruct *chunkStruct, sf::RenderWindow& window, sf::Font &font, 
+	void Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window, sf::Font &font, 
 		Player *player, PlayerTextureMap *tmap);
 };
