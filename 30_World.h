@@ -38,12 +38,12 @@ public:
 	std::vector<std::vector<Chunk>> chunks;
 	std::vector<Chunk> chunksI;
 
-	World(Player *player, PlayerTextureMap *tmap, std::string string);
+	World(Player* player, Textures* textures, std::string string);
 	~World();
 
-	void Collision(Clock *clock, Player *player);
+	void Collision(Clock* clock, Player* player);
 
-	void Update(Clock *clock, Controls *controls, sf::Font &font);
-	void Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window, sf::Font &font, 
-		Player *player, PlayerTextureMap *tmap);
+	void Update(Clock *clock, Controls *controls, Textures& textures);
+	void Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window,
+		Player *player, Textures* textures);
 };

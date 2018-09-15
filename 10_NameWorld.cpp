@@ -1,7 +1,7 @@
 
 #include "10_Menu.h"
 
-void Menu::NameWorld(sf::Font& font)
+void Menu::NameWorld(Textures& textures)
 {
 	if (chosenPage == Interface::Menu::NAMEWORLD &&
 		loadedPage != Interface::Menu::NAMEWORLD)
@@ -11,7 +11,7 @@ void Menu::NameWorld(sf::Font& font)
 		for (int i = 0; i < elements; i++)
 		{
 			//INTERFACE
-			Interface interface(font);
+			Interface interface(textures);
 
 			if (i == 0)
 			{

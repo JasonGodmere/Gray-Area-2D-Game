@@ -1,7 +1,7 @@
 
 #include "01_Interface.h"
 
-Interface::Interface(sf::Font& font)
+Interface::Interface(Textures& textures)
 {
 	recorded = false;
 	maxChar = 12;
@@ -10,8 +10,8 @@ Interface::Interface(sf::Font& font)
 	rect.setOutlineThickness(0);
 	rect.setOutlineColor(sf::Color::White);
 	rect.setFillColor(sf::Color(0,0,0,0));
-	text.setFont(font);
-	text1.setFont(font);
+	text.setFont(textures.font->sansation);
+	text1.setFont(textures.font->sansation);
 	textColorR = 255;
 	textColorG = 255;
 	textColorB = 255;

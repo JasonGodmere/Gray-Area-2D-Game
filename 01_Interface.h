@@ -49,7 +49,7 @@ public:
 	enum ButtonType { SIZE, COLOR, TOGGLE }; //infers what changes about button when clicked or hovered over
 	ButtonType buttonType;
 
-	Interface(sf::Font& font);
+	Interface(Textures& textures);
 	~Interface();
 
 	void Text();

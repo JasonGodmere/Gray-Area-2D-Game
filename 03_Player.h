@@ -81,9 +81,9 @@ public:
 		int invRectSize;
 	};
 
-	Player(PlayerTextureMap *tmap);
-	~Player();
-	void LoadTextures(PlayerTextureMap *tmap);
+	Player(Textures* textures);
+	
+	void LoadTextures(Textures* textures);
 	void Running(sf::RenderWindow &window);
 	void Jump(Controls *controls);
 	void Idle();

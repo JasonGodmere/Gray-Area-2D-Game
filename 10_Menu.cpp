@@ -24,50 +24,50 @@ Menu::~Menu()
 	//thingy
 }
 
-void Menu::Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow &window, sf::Font& font, 
-	Player *player, PlayerTextureMap *tmap)
+void Menu::Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow &window, 
+	Player *player, Textures *textures)
 {
 	controls->typing = false;
 
 	if (chosenPage == Interface::Menu::STARTPAGE)
 	{
-		Menu::StartPage(font);
+		Menu::StartPage(*textures);
 		loadedPage = Interface::Menu::STARTPAGE;
 	}
 
 	if (chosenPage == Interface::Menu::STARTGAME)
 	{
-		Menu::StartGame(font);
+		Menu::StartGame(*textures);
 		loadedPage = Interface::Menu::STARTGAME;
 	}
 
 	if (chosenPage == Interface::Menu::NAMEWORLD)
 	{
-		Menu::NameWorld(font);
+		Menu::NameWorld(*textures);
 		loadedPage = Interface::Menu::NAMEWORLD;
 	}
 
 	if (chosenPage == Interface::Menu::INGAME)
 	{
-		Menu::InGame(clock, controls, chunk, window, font, player, tmap);
+		Menu::InGame(clock, controls, chunk, window, player, textures);
 		loadedPage = Interface::Menu::INGAME;
 	}
 
 	if (chosenPage == Interface::Menu::GENERATEWORLD)
 	{
-		Menu::GenerateWorld(font);
+		Menu::GenerateWorld(*textures);
 		loadedPage = Interface::Menu::GENERATEWORLD;
 	}
 
 	if (chosenPage == Interface::Menu::ACHIEVEMENTS)
 	{
-		Menu::Achievements(font);
+		Menu::Achievements(*textures);
 		loadedPage = Interface::Menu::ACHIEVEMENTS;
 	}
 
 	if (chosenPage == Interface::Menu::SETTINGS)
 	{
-		Menu::Settings(font);
+		Menu::Settings(*textures);
 		loadedPage = Interface::Menu::SETTINGS;
 	}
 
@@ -79,21 +79,21 @@ void Menu::Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWind
 	// load some shit here
 	if (chosenPage == Interface::Menu::LOADGAME)
 	{
-		Menu::LoadWorld(font);
+		Menu::LoadWorld(*textures);
 		loadedPage = Interface::Menu::LOADGAME;
 	}
 
 	if (chosenPage == Interface::Menu::GENERATEWORLD)
 	{
-		Menu::GenerateWorld(font);
+		Menu::GenerateWorld(*textures);
 		loadedPage = Interface::Menu::GENERATEWORLD;
 	}
 }
 
-void Generate(int count, Menu* menu, Player* player, PlayerTextureMap* tmap, sf::RenderWindow* window)
+void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::RenderWindow* window)
 {
 	menu->threading = true;
-	World world(player, tmap, menu->UI[count].string);
+	World world(player, textures, menu->UI[count].string);
 	world.windowX = window->getSize().x;
 	world.windowY = window->getSize().y;
 	menu->worlds.push_back(world);
@@ -107,10 +107,10 @@ void Generate(int count, Menu* menu, Player* player, PlayerTextureMap* tmap, sf:
 	menu->threading = false;
 }
 
-void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, sf::Font& font, 
-	Player* player, PlayerTextureMap* tmap, sf::RenderWindow& window)
+void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, Player* player, 
+	Textures* textures, sf::RenderWindow& window)
 {
-	Menu::Update(clock, controls, chunk, window, font, player, tmap);
+	Menu::Update(clock, controls, chunk, window, player, textures);
 
 	//particle sources array
 	count = 0;
@@ -139,8 +139,8 @@ void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, sf::Font& font,
 		{
 			UI[count].recorded = true;
 
-			std::thread WorldGenerator(Generate, count, this, player, tmap, &window);
-			Menu::ThreadDraw(this, clock, controls, chunk, font, player, tmap, window);
+			std::thread WorldGenerator(Generate, count, this, player, textures, &window);
+			Menu::ThreadDraw(this, clock, controls, chunk, player, textures, window);
 			WorldGenerator.join();
 			chosenPage = Interface::Menu::STARTGAME;
 			break;
@@ -156,16 +156,16 @@ void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, sf::Font& font,
 	}
 }
 
-void Menu::ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk, sf::Font& font,
-	Player *player, PlayerTextureMap *tmap, sf::RenderWindow& window)
+void Menu::ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk,
+	Player *player, Textures *textures, sf::RenderWindow& window)
 {
 	while (window.isOpen() && threading == true) {
 		window.clear();
 
-		clock->Update(font);
+		clock->Update(*textures);
 		
 		//DRAW - START
-		Menu::Update(clock, controls, chunk, window, font, player, tmap);
+		Menu::Update(clock, controls, chunk, window, player, textures);
 
 		//particle sources array
 		count2 = 0;
@@ -186,7 +186,7 @@ void Menu::ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk
 		}
 		//DRAW - END
 
-		clock->Draw(font, window);
+		clock->Draw(window);
 
 		window.display();
 	}

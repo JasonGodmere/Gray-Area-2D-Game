@@ -9,7 +9,10 @@ the file names. The first digit is for parent classes and the
 second is for the different sub-classes within them. The primary
 reason is because I don't have the files in separate folders and
 this is faster than manually looking at code to see what belongs 
-where.
+where. 
+
+ps: "controls.h/.cpp" is separate from this system and has no class file number
+.json folders are in "Resource Files" with their corresponding textures
 
 --- Entity 00 ---
 Interface - 01
@@ -17,11 +20,15 @@ particle - 02
 player - 03
 
 --- Menu 10 ---
+Menu - 10
 
 --- Physics 20 ---
-Clock 21
+Clock - 21
 
 --- World 30 ---
 World - 30
 Chunk - 31
 ChunkStruct - 32
+
+--- Textures 40 ---
+Textures - 40

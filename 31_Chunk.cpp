@@ -11,7 +11,7 @@ Chunk::~Chunk()
 	//thingy
 }
 
-void Chunk::Update(PlayerTextureMap *tmap)
+void Chunk::Update(Textures *textures)
 {
 	
 	/*topBlock = false;
@@ -49,9 +49,9 @@ void Chunk::Update(PlayerTextureMap *tmap)
 	frontSprite.setPosition(sf::Vector2f(posX, posY));
 }
 
-void Chunk::Draw(PlayerTextureMap *tmap, sf::RenderWindow &window)
+void Chunk::Draw(Textures *textures, sf::RenderWindow &window)
 {
-	Chunk::Update(tmap);
+	Chunk::Update(textures);
 
 	if (front != Chunk::Front::F_NONE)
 	{

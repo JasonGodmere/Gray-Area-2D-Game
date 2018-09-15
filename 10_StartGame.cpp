@@ -1,7 +1,7 @@
 
 #include "10_Menu.h"
 
-void Menu::StartGame(sf::Font& font)
+void Menu::StartGame(Textures& textures)
 {
 	if (worlds.size() == NULL)
 	{
@@ -16,7 +16,7 @@ void Menu::StartGame(sf::Font& font)
 		while (true)
 		{
 			//INTERFACE
-			Interface interface(font);
+			Interface interface(textures);
 
 			if (count == 0)
 			{

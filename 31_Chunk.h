@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Define.h"
+#include "40_Textures.h"
 
 class Chunk
 {
@@ -33,6 +34,6 @@ public:
 	Chunk();
 	~Chunk();
 
-	void Update(PlayerTextureMap *tmap);
-	void Draw(PlayerTextureMap *tmap, sf::RenderWindow &window);
+	void Update(Textures* textures);
+	void Draw(Textures* tmap, sf::RenderWindow &window);
 };

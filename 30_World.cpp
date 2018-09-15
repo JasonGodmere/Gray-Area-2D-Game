@@ -1,7 +1,7 @@
 
 #include "30_World.h"
 
-World::World(Player *player, PlayerTextureMap *tmap, std::string string)
+World::World(Player* player, Textures* textures, std::string string)
 {
 	worldName = string;
 	width = 200; // make it even so units are between chunks
@@ -53,7 +53,7 @@ World::World(Player *player, PlayerTextureMap *tmap, std::string string)
 			else
 			{
 				chunks[y][x].front = Chunk::Front::F_GRAVEL;
-				chunks[y][x].tFront = tmap->basicBlock;
+				chunks[y][x].tFront = textures->block->gravel;
 				chunks[y][x].collision = true;
 			}
 		}
@@ -65,15 +65,15 @@ World::~World()
 	//thingy
 }
 
-void World::Update(Clock *clock, Controls *controls, sf::Font &font)
+void World::Update(Clock *clock, Controls *controls, Textures& textures)
 {
 	time = clock->time;
 }
 
-void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window, sf::Font &font, 
-	Player *player, PlayerTextureMap *tmap)
+void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window,
+	Player *player, Textures* textures)
 {
-	World::Update(clock, controls, font);
+	World::Update(clock, controls, *textures);
 
 	player->bottomCollision = false;
 
@@ -118,7 +118,7 @@ void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindo
 				/*player->posY + chunkStructs[y][x].originY >= windowY - (windowX - playerY) &&
 				player->posY + chunkStructs[y][x].originX <=  - (windowY - playerY)*/)
 			{
-				chunks[y][x].Draw(tmap, window);
+				chunks[y][x].Draw(textures, window);
 			}
 		}
 	}

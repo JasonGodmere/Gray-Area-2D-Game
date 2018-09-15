@@ -26,7 +26,7 @@ Clock::~Clock()
 	chrono::steady_clock::duration deltaTime = currentTime - previousTime;*/
 }
 
-void Clock::Update(sf::Font &font)
+void Clock::Update(Textures& textures)
 {
 	previousTime = currentTime;
 	currentTime = std::chrono::steady_clock::now();
@@ -57,12 +57,12 @@ void Clock::Update(sf::Font &font)
 		timeCount = 0;
 		fpsCounter = 0;
 		fpsInt = (int)averageFps;
-		text.setFont(font);
+		text.setFont(textures.font->sansation);
 		text.setString("Fps: " + std::to_string((int)averageFps));
 	}
 }
 
-void Clock::Draw(sf::Font &font, sf::RenderWindow &window)
+void Clock::Draw(sf::RenderWindow &window)
 {
 	window.draw(text);
 }

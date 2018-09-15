@@ -24,25 +24,25 @@ public:
 	Menu();
 	~Menu();
 
-	void StartPage(sf::Font& font);
+	void StartPage(Textures& textures);
 
-	void StartGame(sf::Font& font);
-	void NameWorld(sf::Font& font);
-	void GenerateWorld(sf::Font& font);
-	void LoadWorld(sf::Font &font);
+	void StartGame(Textures& textures);
+	void NameWorld(Textures& textures);
+	void GenerateWorld(Textures& textures);
+	void LoadWorld(Textures& textures);
 
-	void InGame(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow& window, sf::Font &font, 
-		Player *player, PlayerTextureMap *tmap);
+	void InGame(Clock* clock, Controls* controls, Chunk* chunk, sf::RenderWindow& window, 
+		Player *player, Textures* textures);
 
-	void Achievements(sf::Font& font);
+	void Achievements(Textures& textures);
 
-	void Settings(sf::Font& font);
+	void Settings(Textures& textures);
 
-	void Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow &window, sf::Font& font, 
-		Player *player, PlayerTextureMap *tmap);
-	void Draw(Clock *clock, Controls *controls, Chunk *chunk, sf::Font& font, 
-		Player *player, PlayerTextureMap *tmap, sf::RenderWindow& window);
+	void Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow &window,
+		Player *player, Textures* textures);
+	void Draw(Clock *clock, Controls *controls, Chunk *chunk, Player *player, 
+		Textures* textures, sf::RenderWindow& window);
 
-	void ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk, sf::Font& font,
-		Player *player, PlayerTextureMap *tmap, sf::RenderWindow& window); //draws while thread in use for world generation and loading
+	void ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk, Player *player, 
+		Textures *textures, sf::RenderWindow& window); //draws while thread in use for world generation and loading
 };

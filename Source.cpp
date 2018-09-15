@@ -5,8 +5,7 @@
 #include "20_Physics.h"
 #include "10_Menu.h"
 #include "03_Player.h"
-
-namespace json = nlohmann;
+#include "40_Textures.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,28 +19,10 @@ int main(int argc, char *argv[])
 	sf::RenderWindow window(sf::VideoMode(1920, 1080, 32), "Gray Area", sf::Style::Fullscreen, sf::ContextSettings(24,8,4));
 	//-->1920/1080 ratio is 16/9
 
-	sf::Font font;
-	
-	if (!font.loadFromFile("Code Files/Resource Files/sansation.ttf")) {
-		std::cout << "sansation.ttf Load Error" << std::endl;
-		return EXIT_FAILURE;
-	}
-
 	// event handler
 	sf::Event event;
 
-	std::string tfile = "Code Files/Resource Files/textures.json";
-	std::ifstream fp(tfile);
-	json::json json;
-	fp >> json;
-	json::json jblock = json["textures"]["block"];
-
-	// load Textures
-	PlayerTextureMap tmap;
-
-	if (!tmap.basicBlock.loadFromFile(jblock["gravel"])) {
-		std::cout << tfile << "\nBasic Block.png Load Error" << std::endl;
-	}
+	Textures textures;
 
 	Chunk chunk;
 
@@ -49,7 +30,7 @@ int main(int argc, char *argv[])
 
 	Menu menu;
 
-	Player player(&tmap);
+	Player player(&textures);
 
 	Physics physics;
 
@@ -59,7 +40,7 @@ int main(int argc, char *argv[])
 	while (window.isOpen()) {
 		window.clear();
 
-		clock.Update(font);
+		clock.Update(textures);
 
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 		controls.mousePosX = mousePos.x;
@@ -99,12 +80,12 @@ int main(int argc, char *argv[])
 		switch (gameState)
 		{
 		case MENU:
-			menu.Draw(&clock, &controls, &chunk, font, &player, &tmap, window);
+			menu.Draw(&clock, &controls, &chunk, &player, &textures, window);
 			break;
 		}
 
 		//FPS COUNTER
-		clock.Draw(font, window);
+		clock.Draw(window);
 		
 		window.display();
 

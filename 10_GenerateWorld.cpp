@@ -1,14 +1,14 @@
 
 #include "10_Menu.h"
 
-void Menu::GenerateWorld(sf::Font& font)
+void Menu::GenerateWorld(Textures& textures)
 {
 	UI.clear();
 	elements = 1;
 	for (int i = 0; i < elements; i++)
 	{
 		//INTERFACE
-		Interface interface(font);
+		Interface interface(textures);
 
 		if (i == 0)
 		{

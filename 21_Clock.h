@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Define.h"
+#include "40_Textures.h"
 
 class Clock
 { // in milliseconds
@@ -21,6 +22,6 @@ public:
 
 	Clock();
 	~Clock();
-	void Update(sf::Font &font);
-	void Draw(sf::Font &font, sf::RenderWindow &window);
+	void Update(Textures& textures);
+	void Draw(sf::RenderWindow &window);
 };

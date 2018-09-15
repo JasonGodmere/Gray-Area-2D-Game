@@ -1,9 +1,9 @@
 
 #include "03_Player.h"
 
-Player::Player(PlayerTextureMap *tmap)
+Player::Player(Textures* textures)
 {
-	LoadTextures(tmap);
+	LoadTextures(textures);
 	legToggle = 0;
 	footPos = 25;
 	footHeight = 0;
@@ -48,13 +48,7 @@ Player::Player(PlayerTextureMap *tmap)
 	rect.setPosition(posX, posY);
 }
 
-Player::~Player()
-{
-	damage = 0;
-	dead = true;
-}
-
-void Player::LoadTextures(PlayerTextureMap *tmap)
+void Player::LoadTextures(Textures* textures)
 {
 	//head, red green blue for teams and player distinctions (head color)
 	head.setRadius(16);

@@ -18,18 +18,7 @@
 #include <functional>
 #include "json.hpp"
 
+namespace json = nlohmann;
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
-class PlayerTextureMap
-{
-public:
-	/*sf::Texture headTex;
-	sf::Texture torsoTex;
-	sf::Texture armLTex;
-	sf::Texture armRTex;
-	sf::Texture legsLTex;
-	sf::Texture legsRTex;*/
-
-	sf::Texture basicBlock;
-};

@@ -1,8 +1,8 @@
 
 #include "10_Menu.h"
 
-void Menu::InGame(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow& window, sf::Font &font, 
-	Player *player, PlayerTextureMap *tmap)
+void Menu::InGame(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow& window, 
+	Player *player, Textures *textures)
 {
 	if (chosenPage == Interface::Menu::INGAME &&
 		loadedPage != Interface::Menu::INGAME)
@@ -12,7 +12,7 @@ void Menu::InGame(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWind
 		while (true)
 		{
 			//INTERFACE
-			Interface interface(font);
+			Interface interface(*textures);
 
 			//after pressing escape | for settings etc. in game
 			/*if (count == 0)
@@ -77,5 +77,5 @@ void Menu::InGame(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWind
 		}
 	}
 
-	worlds[worldSelected].Draw(clock, controls, chunk, window, font, player, tmap);
+	worlds[worldSelected].Draw(clock, controls, chunk, window, player, textures);
 }
