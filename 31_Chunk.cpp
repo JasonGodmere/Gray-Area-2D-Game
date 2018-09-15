@@ -41,7 +41,7 @@ void Chunk::Update(Textures *textures)
 	}
 
 	//load texture to chunk
-	//frontSprite.setTexture(chunkStructs[y][x].tFront);
+	frontSprite.setTexture(tFront);
 
 	frontSprite.setTextureRect(sf::IntRect(spriteFrame * chunkSize, 0, chunkSize, chunkSize));
 
