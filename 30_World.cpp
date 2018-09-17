@@ -26,7 +26,7 @@ World::World(Player* player, Textures* textures, std::string string)
 	rect.setOrigin(32, 160);
 	rect.setPosition(playerX, playerY);
 
-	//struct vector initialization
+	//2D chunk "map" initialization into vector
 	for (int y = 0; y < height; y++)
 	{
 		std::vector<Chunk> chunksI;
@@ -35,10 +35,8 @@ World::World(Player* player, Textures* textures, std::string string)
 			Chunk chunk;
 			chunk.chunkSize = chunkSize;
 			chunk.chunkRatio = chunkRatio;
-			chunk.originX = -((x - width / 2) * chunkSize); //+ chunkSize;
+			chunk.originX = -((x - width / 2) * chunkSize);
 			chunk.originY = -((y - height / 4) * chunkSize);
-			//chunkStruct.originY = -y * chunkSize;
-			//cout << chunkStruct.originX << " : " << chunkStruct.originY << " | ";
 			chunksI.push_back(chunk);
 		}
 		chunks.push_back(chunksI);
@@ -65,19 +63,19 @@ World::~World()
 	//thingy
 }
 
-void World::Update(Clock *clock, Controls *controls, Textures& textures)
+void World::Update(Physics& physics, Controls *controls, Textures& textures)
 {
-	time = clock->time;
+	time = physics.time;
 }
 
-void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindow& window,
+void World::Draw(Physics& physics, Controls *controls, Chunk* chunk, sf::RenderWindow& window,
 	Player *player, Textures* textures)
 {
-	World::Update(clock, controls, *textures);
+	World::Update(physics, controls, *textures);
 
 	player->bottomCollision = false;
 
-	player->Update(clock, controls, window);
+	player->Update(physics, controls, window);
 	posX = -player->posX + playerX;
 	posY = -player->posY + playerY;
 
@@ -105,7 +103,7 @@ void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindo
 		topX = width;
 	}
 
-	World::Collision(clock, player);
+	World::Collision(physics, player);
 	
 	for (int y = botY; y < topY; y++)
 	{
@@ -124,5 +122,5 @@ void World::Draw(Clock *clock, Controls *controls, Chunk* chunk, sf::RenderWindo
 	}
 
 	//window.draw(rect);
-	player->Draw(clock, window);
+	player->Draw(physics, window);
 }

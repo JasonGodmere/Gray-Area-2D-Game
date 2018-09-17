@@ -38,6 +38,6 @@ public:
 	//types
 	void FireSource();
 
-	void Update(Clock *clock);
-	void Draw(Clock *clock, sf::RenderWindow& window);
+	void Update(Physics& physics);
+	void Draw(Physics& physics, sf::RenderWindow& window);
 };

@@ -1,7 +1,7 @@
 
 #include "03_Player.h"
 
-void Player::PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector<Chunk>> &chunks)
+void Player::PlayerCollision(int x, int y, Physics& physics, std::vector<std::vector<Chunk>> &chunks)
 {
 	rectLeftEdge = posX - rect.getOrigin().x;
 	rectRightEdge = posX + rect.getSize().x - rect.getOrigin().x;

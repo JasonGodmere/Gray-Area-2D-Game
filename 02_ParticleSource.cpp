@@ -21,9 +21,9 @@ ParticleSource::~ParticleSource()
 	//thingy
 }
 
-void ParticleSource::Update(Clock *clock)
+void ParticleSource::Update(Physics& physics)
 {
-	time = clock->time;
+	time = physics.time;
 
 	if (type == FIRE)
 	{
@@ -39,14 +39,14 @@ void ParticleSource::Update(Clock *clock)
 	}
 }
 
-void ParticleSource::Draw(Clock *clock, sf::RenderWindow& window)
+void ParticleSource::Draw(Physics& physics, sf::RenderWindow& window)
 {
-	ParticleSource::Update(clock);
+	ParticleSource::Update(physics);
 
 	count = 0;
 	for (particlesIter = particles.begin(); particlesIter != particles.end(); particlesIter++)
 	{
-		particles[count].Draw(clock, window);
+		particles[count].Draw(physics, window);
 		++count;
 	}
 

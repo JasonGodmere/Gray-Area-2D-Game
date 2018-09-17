@@ -31,18 +31,18 @@ public:
 	void GenerateWorld(Textures& textures);
 	void LoadWorld(Textures& textures);
 
-	void InGame(Clock* clock, Controls* controls, Chunk* chunk, sf::RenderWindow& window, 
+	void InGame(Physics& physics, Controls* controls, Chunk* chunk, sf::RenderWindow& window, 
 		Player *player, Textures* textures);
 
 	void Achievements(Textures& textures);
 
 	void Settings(Textures& textures);
 
-	void Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow &window,
+	void Update(Physics& physics, Controls *controls, Chunk *chunk, sf::RenderWindow &window,
 		Player *player, Textures* textures);
-	void Draw(Clock *clock, Controls *controls, Chunk *chunk, Player *player, 
+	void Draw(Physics& physics, Controls *controls, Chunk *chunk, Player *player, 
 		Textures* textures, sf::RenderWindow& window);
 
-	void ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk, Player *player, 
+	void ThreadDraw(Menu* menu, Physics& physics, Controls *controls, Chunk *chunk, Player *player, 
 		Textures *textures, sf::RenderWindow& window); //draws while thread in use for world generation and loading
 };

@@ -1,16 +1,14 @@
 
 #include "03_Player.h"
 
-void Player::Update(Clock *clock, Controls *controls, sf::RenderWindow &window)
+void Player::Update(Physics& physics, Controls *controls, sf::RenderWindow &window)
 {
 	mousePosX = controls->mousePosX;
 	mousePosY = controls->mousePosY;
 
 	Player::Aiming(window);
 
-	time = clock->time;
-
-	gravity = -5160;
+	time = physics.time;
 
 	//Y axis movement
 	if (grounded == false && speedY > (fallSpeed))
@@ -38,7 +36,7 @@ void Player::Update(Clock *clock, Controls *controls, sf::RenderWindow &window)
 	}
 	
 	accelerationX = accelerationX * time;
-	accelerationY = (accelerationY + gravity) * time;
+	accelerationY = (accelerationY + physics.gravity) * time;
 
 	speedX = speedX + accelerationX;
 	speedY = speedY + accelerationY;

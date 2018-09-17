@@ -24,7 +24,7 @@ Menu::~Menu()
 	//thingy
 }
 
-void Menu::Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWindow &window, 
+void Menu::Update(Physics& physics, Controls *controls, Chunk *chunk, sf::RenderWindow &window, 
 	Player *player, Textures *textures)
 {
 	controls->typing = false;
@@ -49,7 +49,7 @@ void Menu::Update(Clock *clock, Controls *controls, Chunk *chunk, sf::RenderWind
 
 	if (chosenPage == Interface::Menu::INGAME)
 	{
-		Menu::InGame(clock, controls, chunk, window, player, textures);
+		Menu::InGame(physics, controls, chunk, window, player, textures);
 		loadedPage = Interface::Menu::INGAME;
 	}
 
@@ -107,10 +107,10 @@ void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::Ren
 	menu->threading = false;
 }
 
-void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, Player* player, 
+void Menu::Draw(Physics& physics, Controls* controls, Chunk* chunk, Player* player, 
 	Textures* textures, sf::RenderWindow& window)
 {
-	Menu::Update(clock, controls, chunk, window, player, textures);
+	Menu::Update(physics, controls, chunk, window, player, textures);
 
 	//particle sources array
 	count = 0;
@@ -118,7 +118,7 @@ void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, Player* player,
 	{
 		for (particleSourcesIter = particleSources.begin(); particleSourcesIter != particleSources.end(); particleSourcesIter++)
 		{
-			particleSources[count].Draw(clock, window);
+			particleSources[count].Draw(physics, window);
 			++count;
 		}
 	}
@@ -140,7 +140,7 @@ void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, Player* player,
 			UI[count].recorded = true;
 
 			std::thread WorldGenerator(Generate, count, this, player, textures, &window);
-			Menu::ThreadDraw(this, clock, controls, chunk, player, textures, window);
+			Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
 			WorldGenerator.join();
 			chosenPage = Interface::Menu::STARTGAME;
 			break;
@@ -156,16 +156,16 @@ void Menu::Draw(Clock* clock, Controls* controls, Chunk* chunk, Player* player,
 	}
 }
 
-void Menu::ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk,
+void Menu::ThreadDraw(Menu* menu, Physics& physics, Controls *controls, Chunk *chunk,
 	Player *player, Textures *textures, sf::RenderWindow& window)
 {
 	while (window.isOpen() && threading == true) {
 		window.clear();
 
-		clock->Update(*textures);
+		physics.Update(*textures);
 		
 		//DRAW - START
-		Menu::Update(clock, controls, chunk, window, player, textures);
+		Menu::Update(physics, controls, chunk, window, player, textures);
 
 		//particle sources array
 		count2 = 0;
@@ -173,7 +173,7 @@ void Menu::ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk
 		{
 			for (particleSourcesIter = particleSources.begin(); particleSourcesIter != particleSources.end(); particleSourcesIter++)
 			{
-				particleSources[count2].Draw(clock, window);
+				particleSources[count2].Draw(physics, window);
 				++count2;
 			}
 		}
@@ -186,7 +186,7 @@ void Menu::ThreadDraw(Menu* menu, Clock *clock, Controls *controls, Chunk *chunk
 		}
 		//DRAW - END
 
-		clock->Draw(window);
+		physics.Draw(window);
 
 		window.display();
 	}

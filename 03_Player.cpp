@@ -35,8 +35,6 @@ Player::Player(Textures* textures)
 	velocityY = 0;
 	accelerationX = 0; //pixels per millisecond squared
 	accelerationY = 0;
-	accelTimeX = 0;
-	accelTimeY = 0;
 
 	//colliosin variable
 	rectInfluenceMargin = 0;
@@ -97,7 +95,7 @@ void Player::LoadTextures(Textures* textures)
 	legB2.setOrigin(5, 0);
 }
 
-void Player::Draw(Clock *clock, sf::RenderWindow &window)
+void Player::Draw(Physics& physics, sf::RenderWindow &window)
 {
 	rect.setPosition(playerX, playerY);
 

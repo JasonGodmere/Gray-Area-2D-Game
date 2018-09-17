@@ -23,7 +23,6 @@ player - 03
 Menu - 10
 
 --- Physics 20 ---
-Clock - 21
 
 --- World 30 ---
 World - 30

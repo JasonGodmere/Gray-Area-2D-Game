@@ -1,7 +1,6 @@
 
 #include "Define.h"
 #include "json.hpp"
-#include "21_Clock.h"
 #include "20_Physics.h"
 #include "10_Menu.h"
 #include "03_Player.h"
@@ -34,13 +33,11 @@ int main(int argc, char *argv[])
 
 	Physics physics;
 
-	Clock clock;
-
 	//Game Loop
 	while (window.isOpen()) {
 		window.clear();
 
-		clock.Update(textures);
+		physics.Update(textures);
 
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 		controls.mousePosX = mousePos.x;
@@ -80,12 +77,12 @@ int main(int argc, char *argv[])
 		switch (gameState)
 		{
 		case MENU:
-			menu.Draw(&clock, &controls, &chunk, &player, &textures, window);
+			menu.Draw(physics, &controls, &chunk, &player, &textures, window);
 			break;
 		}
 
 		//FPS COUNTER
-		clock.Draw(window);
+		physics.Draw(window);
 		
 		window.display();
 

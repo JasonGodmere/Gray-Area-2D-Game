@@ -1,7 +1,7 @@
 
 #include "30_World.h"
 
-void World::Collision(Clock *clock, Player *player)
+void World::Collision(Physics& physics, Player *player)
 {
 	player->grounded = false;
 
@@ -14,7 +14,7 @@ void World::Collision(Clock *clock, Player *player)
 		{
 			if (chunks[y][x].collision == true)
 			{
-				player->PlayerCollision(x, y, clock, chunks);
+				player->PlayerCollision(x, y, physics, chunks);
 			}
 		}
 	}

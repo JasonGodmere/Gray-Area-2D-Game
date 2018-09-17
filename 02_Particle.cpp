@@ -14,9 +14,9 @@ Particle::~Particle()
 	//thingy
 }
 
-void Particle::Update(Clock *clock)
+void Particle::Update(Physics& physics)
 {
-	time = clock->time;
+	time = physics.time;
 
 	if (type = FIRE)
 	{
@@ -42,9 +42,9 @@ void Particle::Update(Clock *clock)
 	rect.setPosition(posX, posY);
 }
 
-void Particle::Draw(Clock *clock, sf::RenderWindow& window)
+void Particle::Draw(Physics& physics, sf::RenderWindow& window)
 {
-	Particle::Update(clock);
+	Particle::Update(physics);
 
 	window.draw(rect);
 	//window->draw(circle);

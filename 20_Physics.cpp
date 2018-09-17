@@ -1,32 +1,16 @@
 
-#include "21_Clock.h"
+#include "20_Physics.h"
 
-Clock::Clock()
+Physics::Physics()
+	: gravity(-1560), count(0), fps(0), fpsCounter(0), averageFps(0), timeCount(0)
 {
-	std::chrono::steady_clock::time_point previousTime = currentTime;
-	std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
-	std::chrono::steady_clock::duration deltaTime = currentTime - previousTime;
-
 	text.setCharacterSize(40);
 	text.setFillColor(sf::Color(200,200,10));
 	text.setOutlineThickness(2);
 	text.setOutlineColor(sf::Color::Black);
-
-	count = 0;
-	fps = 0;
-	fpsCounter = 0;
-	averageFps = 0;
-	timeCount = 0;
 }
 
-Clock::~Clock()
-{
-	/*chrono::steady_clock::time_point previousTime = currentTime;
-	chrono::steady_clock::time_point currentTime = chrono::steady_clock::now();
-	chrono::steady_clock::duration deltaTime = currentTime - previousTime;*/
-}
-
-void Clock::Update(Textures& textures)
+void Physics::Update(Textures& textures)
 {
 	previousTime = currentTime;
 	currentTime = std::chrono::steady_clock::now();
@@ -62,7 +46,7 @@ void Clock::Update(Textures& textures)
 	}
 }
 
-void Clock::Draw(sf::RenderWindow &window)
+void Physics::Draw(sf::RenderWindow& window)
 {
 	window.draw(text);
 }

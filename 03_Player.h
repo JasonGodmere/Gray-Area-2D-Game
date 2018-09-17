@@ -6,9 +6,6 @@
 class Player : public Entity
 {
 private:
-	int mousePosX;
-	int mousePosY;
-
 	//Running Animation Variables
 	double totalLegLength;
 	double contactWidth; //the width of ground contact relative to player on each step
@@ -87,13 +84,13 @@ public:
 	void Running(sf::RenderWindow &window);
 	void Jump(Controls *controls);
 	void Idle();
-	void PlayerCollision(int x, int y, Clock *clock, std::vector<std::vector<Chunk>> &chunks);
+	void PlayerCollision(int x, int y, Physics& physics, std::vector<std::vector<Chunk>> &chunks);
 
 	void Aiming(sf::RenderWindow &window);
 
-	void Update(Clock *clock, Controls *controls, sf::RenderWindow &window);
+	void Update(Physics& physics, Controls *controls, sf::RenderWindow &window);
 
-	void Draw(Clock *clock, sf::RenderWindow &window);
+	void Draw(Physics& physics, sf::RenderWindow &window);
 
 	//inventory
 	sf::RectangleShape invRect;
