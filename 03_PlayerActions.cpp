@@ -44,52 +44,9 @@ void Player::Aiming(sf::RenderWindow &window)
 		armT1.setRotation(angle + 20);
 		armB1.setRotation(angle + 20);
 	}
-
-	//Shooting
-	/*if (userInputM == LEFTCLICK)
-	{
-		Projectile projectile(armT1.getPosition().x, armT1.getPosition().y);
-
-		projectile.speed = 1200;
-
-		sum = abs(legX) + abs(legY);
-
-		ratioX = (abs(legX) / sum) * projectile.speed; // proArray->size();
-		ratioY = (abs(legY) / sum) * projectile.speed; // proArray->size();
-
-		if (legX > 0 && legY < 0)
-		{
-			//Quadrant 1
-			ratioX = ratioX;
-			ratioY = -ratioY;
-		}
-		else if (legX < 0 && legY < 0)
-		{
-			//Quadrant 2
-			ratioX = -ratioX;
-			ratioY = -ratioY;
-		}
-		else if (legX < 0 && legY > 0)
-		{
-			//Quadrant 3
-			ratioX = -ratioX;
-			ratioY = ratioY;
-		}
-		else if (legX > 0 && legY > 0)
-		{
-			//Quadrant 4
-			ratioX = ratioX; 
-			ratioY = ratioY;
-		}
-		
-		projectile.ratioX = ratioX;
-		projectile.ratioY = ratioY;
-
-		proArray->push_back(projectile);
-	}*/
 }
 
-void Player::Running(sf::RenderWindow &window)
+void Player::Running(Controls& controls, sf::RenderWindow &window)
 {
 	if (footHeight < 0)
 	{
@@ -194,20 +151,20 @@ void Player::Running(sf::RenderWindow &window)
 
 	//torso angle
 	torso.setRotation(15);
-	if (userInputK == RIGHT && facing == RIGHT)
+	if (controls.d == true && facing == RIGHT)
 	{
 		torso.setRotation(20);
 	}
-	if (userInputK == LEFT && facing == RIGHT)
+	else if (controls.d == false && facing == RIGHT)
 	{
 		torso.setRotation(10);
 	}
 
-	if (userInputK == RIGHT && facing == LEFT)
+	if (controls.a == false && facing == LEFT)
 	{
 		torso.setRotation(10);
 	}
-	if (userInputK == LEFT && facing == LEFT)
+	else if (controls.a == true && facing == LEFT)
 	{
 		torso.setRotation(20);
 	}
@@ -239,29 +196,4 @@ void Player::Jump(Controls *controls)
 		speedY = fallSpeed;
 		grounded = false;
 	}
-}
-
-void Player::Idle()
-{
-	/*if (speedX == 0 && idleToggle == 0 && torsoHeight >= baseTorsoHeight - 10)
-	{
-	if (footPos >= baseTorsoHeight + 9 && footPos <= baseTorsoHeight + 11)
-	{
-	idleToggle = 1;
-	}
-	torsoHeight = torsoHeight - (50/time);
-	}
-	else if (speedX == 0 && idleToggle == 1 && torsoHeight <= baseTorsoHeight + 10)
-	{
-	if (torsoHeight <= baseTorsoHeight - 9 && torsoHeight >= baseTorsoHeight - 11)
-	{
-	idleToggle = 0;
-	}
-	torsoHeight = torsoHeight + (50/time);
-	}
-
-	if (speedX != 0 || grounded == false)
-	{
-	torsoHeight = baseTorsoHeight;
-	}*/
 }

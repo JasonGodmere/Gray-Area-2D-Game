@@ -73,23 +73,5 @@ void Player::Update(Physics& physics, Controls *controls, sf::RenderWindow &wind
 	posX = posX + velocityX;
 	posY = posY - velocityY;
 
-	//temporary collision simulation
-	/*if (posY >= 0 && controls->space == false)
-	{
-		speedY = 0;
-		velocityY = 0;
-		posY = 0;
-		grounded = true;
-		canJump = true;
-	}
-	else
-	{
-		canJump = false;
-		grounded = false;
-	}*/
-
-	//for platforms
-
-	Player::Running(window);
-	Player::Idle();
+	Player::Running(*controls, window);
 }

@@ -30,11 +30,6 @@ private:
 	double limbLegX;
 	double limbLegY;
 
-	int idleToggle;
-
-	//shooting variables
-	double fireTimer;
-
 	//rect collision variables
 	double rectLeftEdge;
 	double rectRightEdge;
@@ -52,13 +47,7 @@ public:
 	bool topCollision;
 	bool bottomCollision;
 
-	float moveX;
-	float moveY;
-
 	double legLength; //total length of leg
-	int userInputK;
-	bool userInputJ;
-	int userInputM;
 
 	double mapPosX;
 	double mapPosY;
@@ -71,19 +60,11 @@ public:
 
 	int facing;
 
-	struct Inventory
-	{
-		const int invX = 8;
-		const int invY = 5;
-		int invRectSize;
-	};
-
 	Player(Textures* textures);
 	
 	void LoadTextures(Textures* textures);
-	void Running(sf::RenderWindow &window);
+	void Running(Controls& controls, sf::RenderWindow &window);
 	void Jump(Controls *controls);
-	void Idle();
 	void PlayerCollision(int x, int y, Physics& physics, std::vector<std::vector<Chunk>> &chunks);
 
 	void Aiming(sf::RenderWindow &window);

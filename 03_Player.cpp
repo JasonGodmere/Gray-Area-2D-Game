@@ -19,11 +19,6 @@ Player::Player(Textures* textures)
 	respawn = true;
 	fullHealth = 100;
 	health = fullHealth;
-	//damage with no weapon
-	damage = 0;
-	fireTimer = 0;
-
-	idleToggle = 0;
 
 	footSpeed = 0;
 	footVelocity = 0;
