@@ -3,10 +3,9 @@
 
 Player::Player(Textures* textures)
 {
-	LoadTextures(textures);
+	LoadFrame(textures);
 	legToggle = 0;
 	footPos = 25;
-	footHeight = 0;
 	torsoHeight = 72;
 	baseTorsoHeight = 72;
 	legLength = 90;
@@ -41,11 +40,11 @@ Player::Player(Textures* textures)
 	rect.setPosition(posX, posY);
 }
 
-void Player::LoadTextures(Textures* textures)
+void Player::LoadFrame(Textures* textures)
 {
 	//head, red green blue for teams and player distinctions (head color)
 	head.setRadius(16);
-	head.setFillColor(sf::Color(40,40,220));
+	head.setFillColor(sf::Color(150,150,150));
 	head.setOrigin(16,16);
 
 	//torso

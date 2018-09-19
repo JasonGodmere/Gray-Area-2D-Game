@@ -12,8 +12,6 @@ private:
 	double footPos; //farthest left of ground contact
 	double footSpeed;
 	double footVelocity;
-	double footHeight;
-	double footContactPos; // where on ground contact is
 	double footHyp; //foot hypothenuse length with torso origin
 	double angleA;
 	double angleB;
@@ -49,9 +47,6 @@ public:
 
 	double legLength; //total length of leg
 
-	double mapPosX;
-	double mapPosY;
-
 	int playerX;
 	int playerY;
 
@@ -62,7 +57,8 @@ public:
 
 	Player(Textures* textures);
 	
-	void LoadTextures(Textures* textures);
+	void LoadFrame(Textures* textures); //the character body skeleton
+	
 	void Running(Controls& controls, sf::RenderWindow &window);
 	void Jump(Controls *controls);
 	void PlayerCollision(int x, int y, Physics& physics, std::vector<std::vector<Chunk>> &chunks);

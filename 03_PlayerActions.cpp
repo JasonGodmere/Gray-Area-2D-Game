@@ -48,10 +48,6 @@ void Player::Aiming(sf::RenderWindow &window)
 
 void Player::Running(Controls& controls, sf::RenderWindow &window)
 {
-	if (footHeight < 0)
-	{
-		footHeight = 0;
-	}
 	if ((grounded == true || canJump == true) && speedX != 0)
 	{
 		footSpeed = speedX;
@@ -110,8 +106,8 @@ void Player::Running(Controls& controls, sf::RenderWindow &window)
 	}
 
 	// from here, calculates angle of legs
-	footHyp = sqrt(pow(torsoHeight - footHeight, 2) + pow(footPos, 2));
-	angleA = acos((torsoHeight - footHeight) / footHyp) * 180 / 3.1415;
+	footHyp = sqrt(pow(torsoHeight, 2) + pow(footPos, 2));
+	angleA = acos((torsoHeight) / footHyp) * 180 / 3.1415;
 	angle2 = (pow(legLength / 2, 2) + pow(legLength / 2, 2) - pow(footHyp, 2)) / (2 * (legLength / 2)*(legLength / 2)); //a^2 + b^2 - c^2 / 2ab, sss triangle equation
 	angle2 = acos(angle2) * 180 / 3.1415;
 	angleC = (180 - angle2) / 2;
@@ -130,8 +126,8 @@ void Player::Running(Controls& controls, sf::RenderWindow &window)
 		legT2.setRotation(legT1.getRotation() + (180 - angle2));
 	}
 
-	footHyp = sqrt(pow(torsoHeight - footHeight, 2) + pow(footPos, 2));
-	angleA = acos((torsoHeight - footHeight) / footHyp) * 180 / 3.1415;
+	footHyp = sqrt(pow(torsoHeight, 2) + pow(footPos, 2));
+	angleA = acos((torsoHeight) / footHyp) * 180 / 3.1415;
 	angle2 = (pow(legLength / 2, 2) + pow(legLength / 2, 2) - pow(footHyp, 2)) / (2 * (legLength / 2)*(legLength / 2)); //a^2 + b^2 - c^2 / 2ab, sss triangle equation
 	angle2 = acos(angle2) * 180 / 3.1415;
 	angleC = (180 - angle2) / 2;
