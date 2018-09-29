@@ -3,18 +3,18 @@
 
 void World::Collision(Physics& physics, Player *player)
 {
-	player->grounded = false;
+	/*player->grounded = false;
 
 	/*world.Collision() also handles player not stepping off world. If 
 	player reaches edge, they stop at edge of screen like in terraria*/
 
-	for (int y = botY; y < topY; y++)
+	/*for (int y = botY; y < topY; y++)
 	{
 		for (int x = botX; x < topX; x++)
 		{
 			if (chunks[y][x].collision == true)
 			{
-				player->PlayerCollision(x, y, physics, chunks);
+				player->PlayerCollision(physics, chunks[y][x]);
 			}
 		}
 	}

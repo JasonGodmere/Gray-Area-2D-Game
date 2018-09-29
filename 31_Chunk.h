@@ -6,25 +6,26 @@
 class Chunk
 {
 public:
-	bool rightBlock;
+	bool rightBlock;//is the block adjacent to the right the same block as this one? if so true etc.
 	bool leftBlock;
 	bool topBlock;
 	bool bottomBlock;
 
-	int spriteFrame;
+	int spriteFrame;//which frame of the sprite sheet are we using
 
-	int chunkSize = 1;
-	float chunkRatio = 1;
+	int chunkSize;
+	float chunkRatio;
 
-	int originX = 0;
-	int originY = 0;
+	int originX;
+	int originY;
 
-	float posX = 0;
-	float posY = 0;
+	float posX;
+	float posY;
 
 	bool collision = false;
 
 	sf::Sprite frontSprite;
+	sf::Text text;
 
 	sf::Texture tFront;
 
@@ -34,6 +35,6 @@ public:
 	Chunk();
 	~Chunk();
 
-	void Update(Textures* textures);
-	void Draw(Textures* tmap, sf::RenderWindow &window);
+	void Update();
+	void Draw(sf::RenderWindow &window);
 };

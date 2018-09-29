@@ -11,7 +11,7 @@ Chunk::~Chunk()
 	//thingy
 }
 
-void Chunk::Update(Textures *textures)
+void Chunk::Update()
 {
 	
 	/*topBlock = false;
@@ -49,12 +49,13 @@ void Chunk::Update(Textures *textures)
 	frontSprite.setPosition(sf::Vector2f(posX, posY));
 }
 
-void Chunk::Draw(Textures *textures, sf::RenderWindow &window)
+void Chunk::Draw(sf::RenderWindow &window)
 {
-	Chunk::Update(textures);
+	Chunk::Update();
 
 	if (front != Chunk::Front::F_NONE)
 	{
 		window.draw(frontSprite);
+		window.draw(text);
 	}
 }

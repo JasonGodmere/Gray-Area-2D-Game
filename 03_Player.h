@@ -28,23 +28,35 @@ private:
 	double limbLegX;
 	double limbLegY;
 
-	//rect collision variables
-	double rectLeftEdge;
-	double rectRightEdge;
-	double rectTopEdge;
-	double rectBottomEdge;
-	int rectInfluenceMargin;
-	double rightEdge;
-	double leftEdge;
-	double topEdge;
-	double bottomEdge;
+	//this is a 2d vector holding all the corner point values of player collision box
+	float playerCollisionPoints[2][4];//4 points, 2 values (x and y) for each point
+	//the order of points doesn't matter as long as it is in sequence around the parimeter
+
+	//the same is done for the chunk box
+	float chunkCollisionPoints[2][4];
+
+	float lastPosX;
+	float lastPosY;
+
+	/*
+	COLLISION CONCEPT
+	
+	Problem
+	since the player falling can travel as much as 1040 pixels per second falling, at 5 fps (lowest framerate program allows)
+	the player will travel 208 pixels every frame. If I were to only detect collisions when the player is
+	inside a block (currently 32 pixels), a falling player could fall through as many as 6 blocks before detection.
+
+	Solution
+	My idea is to have the player track its previous location (the location of its last frame) and "draw" a 
+	line through them. if the line of the last frame and current frame cross a barrier, the player can back
+	track along that line until the barrier is not within the collision box (bottom collision has priority
+
+	Note
+	We only need to check the collisions of things that are in the (influence box) drawn from the players last position
+	to its current position.
+	*/
 
 public:
-	bool leftCollision;
-	bool rightCollision;
-	bool topCollision;
-	bool bottomCollision;
-
 	double legLength; //total length of leg
 
 	int playerX;
@@ -61,7 +73,7 @@ public:
 	
 	void Running(Controls& controls, sf::RenderWindow &window);
 	void Jump(Controls *controls);
-	void PlayerCollision(int x, int y, Physics& physics, std::vector<std::vector<Chunk>> &chunks);
+	void PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks);
 
 	void Aiming(sf::RenderWindow &window);
 

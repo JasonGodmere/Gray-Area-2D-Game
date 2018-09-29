@@ -4,7 +4,7 @@
 World::World(Player* player, Textures* textures, std::string string)
 {
 	worldName = string;
-	width = 200; // make it even so units are between chunks
+	width = 50; // make it even so units are between chunks
 	height = 20;//divisible by 4 because origin is 3/4 from bottom of world
 	renderRadius = 20;
 	chunkSize = 32; //pixels
@@ -16,10 +16,6 @@ World::World(Player* player, Textures* textures, std::string string)
 
 	player->playerX = playerX;
 	player->playerY = playerY;
-	player->leftCollision = false;
-	player->rightCollision = false;
-	player->bottomCollision = false;
-	player->topCollision = false;
 
 	rect.setSize(sf::Vector2f(64, 160));//player foot position
 	rect.setFillColor(sf::Color::Red);
@@ -37,6 +33,14 @@ World::World(Player* player, Textures* textures, std::string string)
 			chunk.chunkRatio = chunkRatio;
 			chunk.originX = -((x - width / 2) * chunkSize);
 			chunk.originY = -((y - height / 4) * chunkSize);
+			if (chunk.originX > 0)
+			{
+				chunk.frontSprite.setColor(sf::Color::Green);
+			}
+			else if (chunk.originX < 0)
+			{
+				chunk.frontSprite.setColor(sf::Color::Red);
+			}
 			chunksI.push_back(chunk);
 		}
 		chunks.push_back(chunksI);
@@ -72,8 +76,6 @@ void World::Draw(Physics& physics, Controls *controls, Chunk* chunk, sf::RenderW
 	Player *player, Textures* textures)
 {
 	World::Update(physics, controls, *textures);
-
-	player->bottomCollision = false;
 
 	player->Update(physics, controls, window);
 	posX = -player->posX + playerX;
@@ -116,7 +118,7 @@ void World::Draw(Physics& physics, Controls *controls, Chunk* chunk, sf::RenderW
 				/*player->posY + chunkStructs[y][x].originY >= windowY - (windowX - playerY) &&
 				player->posY + chunkStructs[y][x].originX <=  - (windowY - playerY)*/)
 			{
-				chunks[y][x].Draw(textures, window);
+				chunks[y][x].Draw(window);
 			}
 		}
 	}
