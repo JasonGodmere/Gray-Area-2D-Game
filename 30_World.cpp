@@ -4,8 +4,8 @@
 World::World(Player* player, Textures* textures, std::string string)
 {
 	worldName = string;
-	width = 50; // make it even so units are between chunks
-	height = 20;//divisible by 4 because origin is 3/4 from bottom of world
+	width = 100; // make it even so units are between chunks
+	height = 100;//divisible by 4 because origin is 3/4 from bottom of world
 	renderRadius = 20;
 	chunkSize = 32; //pixels
 	chunkRatio = 1; //doubles size of sprite
@@ -33,14 +33,6 @@ World::World(Player* player, Textures* textures, std::string string)
 			chunk.chunkRatio = chunkRatio;
 			chunk.originX = -((x - width / 2) * chunkSize);
 			chunk.originY = -((y - height / 4) * chunkSize);
-			if (chunk.originX > 0)
-			{
-				chunk.frontSprite.setColor(sf::Color::Green);
-			}
-			else if (chunk.originX < 0)
-			{
-				chunk.frontSprite.setColor(sf::Color::Red);
-			}
 			chunksI.push_back(chunk);
 		}
 		chunks.push_back(chunksI);
@@ -106,6 +98,8 @@ void World::Draw(Physics& physics, Controls *controls, Chunk* chunk, sf::RenderW
 	}
 
 	World::Collision(physics, player);
+	posX = -player->posX + playerX;
+	posY = -player->posY + playerY;
 	
 	for (int y = botY; y < topY; y++)
 	{

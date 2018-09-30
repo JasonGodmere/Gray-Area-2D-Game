@@ -3,6 +3,7 @@
 
 Player::Player(Textures* textures)
 {
+
 	LoadFrame(textures);
 	legToggle = 0;
 	footPos = 25;
@@ -29,9 +30,6 @@ Player::Player(Textures* textures)
 	velocityY = 0;
 	accelerationX = 0; //pixels per millisecond squared
 	accelerationY = 0;
-
-	//colliosin variable
-	rectInfluenceMargin = 0;
 
 	//everything align with hitbox, hitbox origin is very bottom
 	rect.setSize(sf::Vector2f(40, 160));

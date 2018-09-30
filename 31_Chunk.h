@@ -22,6 +22,8 @@ public:
 	float posX;
 	float posY;
 
+	bool player;//temporary for collision
+
 	bool collision = false;
 
 	sf::Sprite frontSprite;

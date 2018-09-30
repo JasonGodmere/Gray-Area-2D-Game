@@ -1,58 +1,72 @@
 
 #include "03_Player.h"
 
-void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks)
+void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks, int width, int height)
 {
-	/*rectLeftEdge = posX - rect.getOrigin().x;
-	rectRightEdge = posX + rect.getSize().x - rect.getOrigin().x;
-	rectTopEdge = posY - rect.getOrigin().y;
-	rectBottomEdge = posY + rect.getSize().y - rect.getOrigin().y;
-
-	leftEdge = posX + chunks[y][x].originX;
-	rightEdge = posX + chunks[y][x].chunkSize + chunks[y][x].originX;
-	topEdge = posY + chunks[y][x].originY;
-	bottomEdge = posY + chunks[y][x].chunkSize + chunks[y][x].originY;
-
-	//bottom
-	if (((rectLeftEdge > leftEdge && rectLeftEdge < rightEdge) ||
-		(leftEdge > rectLeftEdge && leftEdge < rectRightEdge)) && speedY <= 0)
-	{
-		if (rectBottomEdge <= topEdge && rectBottomEdge >= topEdge - rectInfluenceMargin && grounded == false)// && bottomCollision == false)
-		{
-			speedY = 0;
-			velocityY = 0;
-			posY = chunks[y][x].originY;
-			grounded = true;
-			//cout << "working" << endl;
-		}
-	}*/
-	
 	//corners collisions
 
 	//chunk[0 for x, 1 for y][pointNumber]
-	chunkCollisionPoints[0][0] = posX - rect.getOrigin().x;//top left
-	chunkCollisionPoints[1][0] = posY - rect.getOrigin().y;//top left
-	chunkCollisionPoints[0][1] = posX - rect.getOrigin().x + rect.getSize().x;//top right
-	chunkCollisionPoints[1][1] = posY - rect.getOrigin().y;//top right
-	chunkCollisionPoints[0][2] = posX - rect.getOrigin().x + rect.getSize().x;//bottom right
-	chunkCollisionPoints[1][2] = posY - rect.getOrigin().y + rect.getSize().y;//bottom right
-	chunkCollisionPoints[0][3] = posX - rect.getOrigin().x;//bottom left
-	chunkCollisionPoints[1][3] = posY - rect.getOrigin().y + rect.getSize().y;//bottom left
+	playerCollisionPoints[0][0] = rect.getOrigin().x;//top left
+	playerCollisionPoints[1][0] = rect.getOrigin().y;//top left
+	playerCollisionPoints[0][1] = rect.getOrigin().x + rect.getSize().x;//top right
+	playerCollisionPoints[1][1] = rect.getOrigin().y;//top right
+	playerCollisionPoints[0][2] = rect.getOrigin().x + rect.getSize().x;//bottom right
+	playerCollisionPoints[1][2] = rect.getOrigin().y + rect.getSize().y;//bottom right
+	playerCollisionPoints[0][3] = rect.getOrigin().x;//bottom left
+	playerCollisionPoints[1][3] = rect.getOrigin().y + rect.getSize().y;//bottom left
 
 	//player[0 for x, 1 for y][pointNumber]
-	playerCollisionPoints[0][0] = posX - chunk.originX;//top left
-	playerCollisionPoints[1][0] = posY - chunk.originY;//top left
-	playerCollisionPoints[0][1] = posX - chunk.originX + chunk.chunkSize;//top right
-	playerCollisionPoints[1][1] = posY - chunk.originY;//top right
-	playerCollisionPoints[0][2] = posX - chunk.originX + chunk.chunkSize;//bottom right
-	playerCollisionPoints[1][2] = posY - chunk.originY + chunk.chunkSize;//bottom right
-	playerCollisionPoints[0][3] = posX - chunk.originX;//bottom left
-	playerCollisionPoints[1][3] = posY - chunk.originY + chunk.chunkSize;//bottom left
+	/*
+	chunkCollisionPoints[0][0] = posX + chunks[y][x].originX;//top left
+	chunkCollisionPoints[1][0] = posY + chunks[y][x].originY;//top left
+	chunkCollisionPoints[0][1] = posX + chunks[y][x].originX + chunks[y][x].chunkSize;//top right
+	chunkCollisionPoints[1][1] = posY + chunks[y][x].originY;//top right
+	chunkCollisionPoints[0][2] = posX + chunks[y][x].originX + chunks[y][x].chunkSize;//bottom right
+	chunkCollisionPoints[1][2] = posY + chunks[y][x].originY + chunks[y][x].chunkSize;//bottom right
+	chunkCollisionPoints[0][3] = posX + chunks[y][x].originX;//bottom left
+	chunkCollisionPoints[1][3] = posY + chunks[y][x].originY + chunks[y][x].chunkSize;//bottom left
+	*/
 
+	//blocks within player movement area between frames are calculated
+	if (velocityY >= 0) //leading edge is bottom
+	{
+		collisionZoneY[0] = height / 4 - (int)(lastPosY / chunks[0][0].chunkSize/*doesn't matter which chunk, all the same size*/);
+		collisionZoneY[1] = height / 4 - (int)(posY / chunks[0][0].chunkSize) + 1;//+ 1 to include chunks partially in the high part of range
+	}
+	else if (velocityY < 0)//leading edge is top (for y)
+	{
+		collisionZoneY[0] = height / 4 - (int)(posY / chunks[0][0].chunkSize);
+		collisionZoneY[1] = height / 4 - (int)(lastPosY / chunks[0][0].chunkSize) + 1;
+	}
 
-	//bottom collision (gets priorty over top collision)
-	
-	for 
+	if (velocityX >= 0)//leading edge is right
+	{
+		collisionZoneX[0] = width / 2 - (int)((-lastPosX + playerCollisionPoints[0][2]) / chunks[0][0].chunkSize);
+		collisionZoneX[1] = width / 2 - (int)((-posX - playerCollisionPoints[0][3]) / chunks[0][0].chunkSize) + 1;
+	}
+	else if (velocityX < 0)//leading edge if left
+	{
+		collisionZoneX[0] = width / 2 - (int)((-posX + playerCollisionPoints[0][2]) / chunks[0][0].chunkSize);
+		collisionZoneX[1] = width / 2 - (int)((-lastPosX - playerCollisionPoints[0][3]) / chunks[0][0].chunkSize) + 1;
+	}
+
+	//std::cout << collisionZoneX[0] << " : " << collisionZoneX[1] << std::endl;
+	//std::cout << collisionZoneY[0] << " : " << collisionZoneY[1] << std::endl;
+	//std::cout << "------------------------------------------------------" << std::endl;
+
+	//calculate if there is a block in path starting from lasPos and moving towards pos 
+	count = 0;
+	for (int y = collisionZoneY[0]; y < collisionZoneY[1]; y++)
+	{
+		for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
+		{
+			if (chunks[y][x].collision == true)
+			{
+				posY = -chunks[y][x].originY;
+				grounded == true;
+			}
+		}
+	}
 
 	//after collisions
 	lastPosX = posX;

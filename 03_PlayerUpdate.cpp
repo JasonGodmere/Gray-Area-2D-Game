@@ -71,7 +71,7 @@ void Player::Update(Physics& physics, Controls *controls, sf::RenderWindow &wind
 	}
 	
 	posX = posX + velocityX;
-	posY = posY - velocityY;
+	posY = posY - velocityY;//sfml has y axis increase top to bottom rather than bottom to top
 
 	Player::Running(*controls, window);
 }

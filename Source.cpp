@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	int count = 0;
 
 	// create window
-	sf::RenderWindow window(sf::VideoMode(1920, 1080, 32), "Gray Area", sf::Style::Fullscreen, sf::ContextSettings(24,8,4));
+	sf::RenderWindow window(sf::VideoMode(1920, 1080, 32), "Gray Area", sf::Style::Close, sf::ContextSettings(24,8,4));
 	//-->1920/1080 ratio is 16/9
 
 	// event handler

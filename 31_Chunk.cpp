@@ -4,6 +4,7 @@
 Chunk::Chunk()
 {
 	spriteFrame = 0;
+	player = false;
 }
 
 Chunk::~Chunk()

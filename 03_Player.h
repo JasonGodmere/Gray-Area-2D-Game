@@ -37,6 +37,9 @@ private:
 
 	float lastPosX;
 	float lastPosY;
+public:
+	int collisionZoneX[2];//index[0] refers to bottom end of range and index[1] is to top end of range
+	int collisionZoneY[2];
 
 	/*
 	COLLISION CONCEPT
@@ -44,19 +47,19 @@ private:
 	Problem
 	since the player falling can travel as much as 1040 pixels per second falling, at 5 fps (lowest framerate program allows)
 	the player will travel 208 pixels every frame. If I were to only detect collisions when the player is
-	inside a block (currently 32 pixels), a falling player could fall through as many as 6 blocks before detection.
+	inside a block (currently 32 pixels), a falling player could "move" through as many as 6 blocks before the next frame.
 
 	Solution
 	My idea is to have the player track its previous location (the location of its last frame) and "draw" a 
 	line through them. if the line of the last frame and current frame cross a barrier, the player can back
-	track along that line until the barrier is not within the collision box (bottom collision has priority
+	track along that line until the barrier is not within the collision box (bottom collision has priority.
 
 	Note
 	We only need to check the collisions of things that are in the (influence box) drawn from the players last position
 	to its current position.
 	*/
 
-public:
+
 	double legLength; //total length of leg
 
 	int playerX;
@@ -73,17 +76,13 @@ public:
 	
 	void Running(Controls& controls, sf::RenderWindow &window);
 	void Jump(Controls *controls);
-	void PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks);
+	void PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks, int width, int height);
 
 	void Aiming(sf::RenderWindow &window);
 
 	void Update(Physics& physics, Controls *controls, sf::RenderWindow &window);
 
 	void Draw(Physics& physics, sf::RenderWindow &window);
-
-	//inventory
-	sf::RectangleShape invRect;
-	sf::Sprite invSprite;
 
 	//player
 	sf::CircleShape head;

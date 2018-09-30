@@ -2,7 +2,7 @@
 #include "20_Physics.h"
 
 Physics::Physics()
-	: gravity(-1560), count(0), fps(0), fpsCounter(0), averageFps(0), timeCount(0)
+	: gravity(-156000), count(0), fps(0), fpsCounter(0), averageFps(0), timeCount(0)
 {
 	text.setCharacterSize(40);
 	text.setFillColor(sf::Color(200,200,10));
