@@ -54,19 +54,61 @@ void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& 
 	//std::cout << collisionZoneY[0] << " : " << collisionZoneY[1] << std::endl;
 	//std::cout << "------------------------------------------------------" << std::endl;
 
-	//calculate if there is a block in path starting from lasPos and moving towards pos 
-	count = 0;
-	for (int y = collisionZoneY[0]; y < collisionZoneY[1]; y++)
+	//vertical collisions
+	if (speedY <= 0)//leading edge is bottom
 	{
-		for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
+		for (int y = collisionZoneY[0]; y < collisionZoneY[1]; y++)
 		{
-			if (chunks[y][x].collision == true)
+			for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
 			{
-				posY = -chunks[y][x].originY;
-				grounded == true;
+				if (chunks[y][x].collision == true)
+				{
+					posY = -chunks[y][x].originY;
+				}
 			}
 		}
 	}
+	else if (speedY > 0)//leading edge is top
+	{
+		for (int y = collisionZoneY[1]; y > collisionZoneY[0]; y--)
+		{
+			for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
+			{
+				if (chunks[y][x].collision == true)
+				{
+					posY = -chunks[y][x].originY + rect.getSize().y;
+				}
+			}
+		}
+	}
+
+	//horizontal collisions
+	/*if (speedX > 0)//leading edge is right
+	{
+		for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
+		{
+			for (int y = collisionZoneY[0]; y < collisionZoneY[1]; y++)
+			{
+				if (chunks[y][x].collision == true)
+				{
+					posX = -chunks[y][x].originX - rect.getOrigin().x;
+				}
+			}
+		}
+	}
+	else if (speedX < 0)//leading edge is left
+	{
+		for (int x = collisionZoneX[0]; x > collisionZoneX[0]; x--)
+		{
+			for (int y = collisionZoneY[0]; y < collisionZoneY[1]; y++)
+			{
+				if (chunks[y][x].collision == true)
+				{
+					posX = -chunks[y][x].originX + chunks[y][x].chunkSize - rect.getOrigin().x;
+				}
+			}
+		}
+	}*/
 
 	//after collisions
 	lastPosX = posX;

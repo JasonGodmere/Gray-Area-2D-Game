@@ -4,8 +4,8 @@
 World::World(Player* player, Textures* textures, std::string string)
 {
 	worldName = string;
-	width = 100; // make it even so units are between chunks
-	height = 100;//divisible by 4 because origin is 3/4 from bottom of world
+	width = 60; // make it even so units are between chunks
+	height = 80;//divisible by 4 because origin is 3/4 from bottom of world
 	renderRadius = 20;
 	chunkSize = 32; //pixels
 	chunkRatio = 1; //doubles size of sprite
