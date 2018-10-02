@@ -69,7 +69,7 @@ void World::Draw(Physics& physics, Controls *controls, Chunk* chunk, sf::RenderW
 {
 	World::Update(physics, controls, *textures);
 
-	player->Update(physics, controls, window);
+	player->Update(physics, controls, chunks, window);
 	posX = -player->posX + playerX;
 	posY = -player->posY + playerY;
 

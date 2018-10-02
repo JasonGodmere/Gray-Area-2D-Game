@@ -37,6 +37,7 @@ private:
 
 	float lastPosX;
 	float lastPosY;
+
 public:
 	int collisionZoneX[2];//index[0] refers to bottom end of range and index[1] is to top end of range
 	int collisionZoneY[2];
@@ -74,13 +75,15 @@ public:
 	
 	void LoadFrame(Textures* textures); //the character body skeleton
 	
+	//actions
+	void Building(Controls& controls, std::vector<std::vector<Chunk>>& chunks);
 	void Running(Controls& controls, sf::RenderWindow &window);
 	void Jump(Controls *controls);
-	void PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks, int width, int height);
-
 	void Aiming(sf::RenderWindow &window);
 
-	void Update(Physics& physics, Controls *controls, sf::RenderWindow &window);
+	void PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks, int width, int height);
+
+	void Update(Physics& physics, Controls *controls, std::vector<std::vector<Chunk>>& chunks, sf::RenderWindow &window);
 
 	void Draw(Physics& physics, sf::RenderWindow &window);
 

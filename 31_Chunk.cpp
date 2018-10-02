@@ -4,12 +4,6 @@
 Chunk::Chunk()
 {
 	spriteFrame = 0;
-	player = false;
-}
-
-Chunk::~Chunk()
-{
-	//thingy
 }
 
 void Chunk::Update()
@@ -57,6 +51,5 @@ void Chunk::Draw(sf::RenderWindow &window)
 	if (front != Chunk::Front::F_NONE)
 	{
 		window.draw(frontSprite);
-		window.draw(text);
 	}
 }
