@@ -77,5 +77,5 @@ void Menu::InGame(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 		}
 	}
 
-	worlds[worldSelected].Draw(physics, controls, chunk, window, player, textures);
+	//worlds[worldSelected].Draw(physics, controls, chunk, window, player, textures);
 }

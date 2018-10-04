@@ -14,8 +14,11 @@ public:
 
 	bool typing;
 
-	int mousePosX;
-	int mousePosY;
+	float mousePosX;
+	float mousePosY;
+
+	float mouseChunkX;
+	float mouseChunkY;
 
 	char letterPressed;
 	bool keyToggle;

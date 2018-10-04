@@ -93,9 +93,7 @@ void Menu::Update(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::RenderWindow* window)
 {
 	menu->threading = true;
-	World world(player, textures, menu->UI[count].string);
-	world.windowX = window->getSize().x;
-	world.windowY = window->getSize().y;
+	World world(textures, menu->UI[count].string);
 	menu->worlds.push_back(world);
 
 	//menu->worldNum = menu->worlds.size() - 1;

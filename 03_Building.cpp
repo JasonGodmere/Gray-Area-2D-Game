@@ -1,7 +1,15 @@
 
 #include "03_Player.h"
 
-void Player::Building(Controls& controls, std::vector<std::vector<Chunk>>& chunks)
+void Player::Building(Controls& controls, World& world)
 {
-	//std::cout << (int)(-(mousePosX - playerX + posX)/chunks[0][0].chunkSize) << " : " << (int)(-(mousePosY - playerY + posY)/chunks[0][0].chunkSize) << std::endl;
+	mouseChunkX = width / 2 - (int)(-(mousePosX - playerX) / world.chunks[0][0].chunkSize);
+	mouseChunkY = height / 4 - (int)(-(mousePosY - playerY) / world.chunks[0][0].chunkSize);
+
+	std::cout << mouseChunkX << " : " << mouseChunkY << std::endl;
+
+	block.setSize(sf::Vector2f(32,32));
+	block.setPosition(sf::Vector2f(mouseChunkX * 32, mouseChunkY * 32));
+
+	block.setFillColor(sf::Color::White);
 }

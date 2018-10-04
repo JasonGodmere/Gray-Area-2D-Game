@@ -1,7 +1,7 @@
 #pragma once
 
 #include "00_Entity.h"
-#include "31_Chunk.h"
+#include "30_World.h"
 
 class Player : public Entity
 {
@@ -76,16 +76,19 @@ public:
 	void LoadFrame(Textures* textures); //the character body skeleton
 	
 	//actions
-	void Building(Controls& controls, std::vector<std::vector<Chunk>>& chunks);
+	void Building(Controls& controls, World& world);
 	void Running(Controls& controls, sf::RenderWindow &window);
 	void Jump(Controls *controls);
 	void Aiming(sf::RenderWindow &window);
 
-	void PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks, int width, int height);
+	void PlayerCollision(Physics& physics, World& world);
 
-	void Update(Physics& physics, Controls *controls, std::vector<std::vector<Chunk>>& chunks, sf::RenderWindow &window);
+	void Update(Physics& physics, Controls *controls, World& world, sf::RenderWindow &window);
 
 	void Draw(Physics& physics, sf::RenderWindow &window);
+
+	//building
+	sf::RectangleShape block;
 
 	//player
 	sf::CircleShape head;

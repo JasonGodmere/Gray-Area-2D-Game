@@ -2,6 +2,7 @@
 
 #include "Arrays.h"
 #include "30_World.h"
+#include "03_Player.h"
 
 class Menu : public Arrays
 {

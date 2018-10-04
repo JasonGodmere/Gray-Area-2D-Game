@@ -48,7 +48,7 @@ void Block::Draw(sf::RenderWindow &window)
 {
 	Block::Update();
 
-	if (front != Block::Front::F_NONE)
+	if (front != Block::Front::NONE)
 	{
 		window.draw(frontSprite);
 	}

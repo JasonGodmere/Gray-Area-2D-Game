@@ -166,4 +166,6 @@ void Player::Draw(Physics& physics, sf::RenderWindow &window)
 	window.draw(legT2);
 	window.draw(armT1);
 	window.draw(armT2);
+
+	window.draw(block);
 }

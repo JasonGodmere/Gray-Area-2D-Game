@@ -1,7 +1,7 @@
 
 #include "03_Player.h"
 
-void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& chunks, int width, int height)
+void Player::PlayerCollision(Physics& physics, World& world)
 {
 	//corners collisions
 
@@ -30,24 +30,24 @@ void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& 
 	//blocks within player movement area between frames are calculated
 	if (velocityY >= 0) //leading edge is bottom
 	{
-		collisionZoneY[0] = height / 4 - (int)(lastPosY / chunks[0][0].chunkSize/*doesn't matter which chunk, all the same size*/);
-		collisionZoneY[1] = height / 4 - (int)(posY / chunks[0][0].chunkSize) + 1;//+ 1 to include chunks partially in the high part of range
+		collisionZoneY[0] = height / 4 - (int)(lastPosY / world.chunks[0][0].chunkSize/*doesn't matter which chunk, all the same size*/);
+		collisionZoneY[1] = height / 4 - (int)(posY / world.chunks[0][0].chunkSize) + 1;//+ 1 to include chunks partially in the high part of range
 	}
 	else if (velocityY < 0)//leading edge is top (for y)
 	{
-		collisionZoneY[0] = height / 4 - (int)(posY / chunks[0][0].chunkSize);
-		collisionZoneY[1] = height / 4 - (int)(lastPosY / chunks[0][0].chunkSize) + 1;
+		collisionZoneY[0] = height / 4 - (int)(posY / world.chunks[0][0].chunkSize);
+		collisionZoneY[1] = height / 4 - (int)(lastPosY / world.chunks[0][0].chunkSize) + 1;
 	}
 
 	if (velocityX >= 0)//leading edge is right
 	{
-		collisionZoneX[0] = width / 2 - (int)((-lastPosX + playerCollisionPoints[0][2]) / chunks[0][0].chunkSize);
-		collisionZoneX[1] = width / 2 - (int)((-posX - playerCollisionPoints[0][3]) / chunks[0][0].chunkSize) + 1;
+		collisionZoneX[0] = width / 2 - (int)((-lastPosX + playerCollisionPoints[0][2]) / world.chunks[0][0].chunkSize);
+		collisionZoneX[1] = width / 2 - (int)((-posX - playerCollisionPoints[0][3]) / world.chunks[0][0].chunkSize) + 1;
 	}
 	else if (velocityX < 0)//leading edge if left
 	{
-		collisionZoneX[0] = width / 2 - (int)((-posX + playerCollisionPoints[0][2]) / chunks[0][0].chunkSize);
-		collisionZoneX[1] = width / 2 - (int)((-lastPosX - playerCollisionPoints[0][3]) / chunks[0][0].chunkSize) + 1;
+		collisionZoneX[0] = width / 2 - (int)((-posX + playerCollisionPoints[0][2]) / world.chunks[0][0].chunkSize);
+		collisionZoneX[1] = width / 2 - (int)((-lastPosX - playerCollisionPoints[0][3]) / world.chunks[0][0].chunkSize) + 1;
 	}
 
 	//std::cout << collisionZoneX[0] << " : " << collisionZoneX[1] << std::endl;
@@ -61,9 +61,9 @@ void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& 
 		{
 			for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
 			{
-				if (chunks[y][x].collision == true)
+				if (world.chunks[y][x].collision == true)
 				{
-					posY = -chunks[y][x].originY;
+					posY = -world.chunks[y][x].originY;
 				}
 			}
 		}
@@ -74,9 +74,9 @@ void Player::PlayerCollision(Physics& physics, std::vector<std::vector<Chunk>>& 
 		{
 			for (int x = collisionZoneX[0]; x < collisionZoneX[1]; x++)
 			{
-				if (chunks[y][x].collision == true)
+				if (world.chunks[y][x].collision == true)
 				{
-					posY = -chunks[y][x].originY + rect.getSize().y;
+					posY = -world.chunks[y][x].originY + rect.getSize().y;
 				}
 			}
 		}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Define.h"
-#include "40_Textures.h"
 
 /*
 Chunks are the complete contents of world and are all stored. The block class reads the chunks array
@@ -26,16 +25,8 @@ public:
 	int originX;
 	int originY;
 
-	float posX;
-	float posY;
-
 	bool collision = false;
 
-	enum Front { F_NONE, F_GRAVEL };
-	Front front = F_NONE;
-
-	Chunk();
-
-	void Update();
-	void Draw(sf::RenderWindow &window);
+	enum Front { NONE, GRAVEL };
+	Front front = NONE;
 };

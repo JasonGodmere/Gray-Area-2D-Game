@@ -1,7 +1,7 @@
 
 #include "03_Player.h"
 
-void Player::Update(Physics& physics, Controls *controls, std::vector<std::vector<Chunk>>& chunks, sf::RenderWindow &window)
+void Player::Update(Physics& physics, Controls *controls, World& world, sf::RenderWindow &window)
 {
 	mousePosX = controls->mousePosX;
 	mousePosY = controls->mousePosY;
@@ -74,5 +74,5 @@ void Player::Update(Physics& physics, Controls *controls, std::vector<std::vecto
 	posY = posY - velocityY;//sfml has y axis increase top to bottom rather than bottom to top
 
 	Player::Running(*controls, window);
-	Player::Building(*controls, chunks);
+	Player::Building(*controls, world);
 }
