@@ -2,7 +2,7 @@
 
 #include "../Physics/Physics.h"
 
-class Controls : public Physics
+class Controls
 {
 public:
 	bool w;

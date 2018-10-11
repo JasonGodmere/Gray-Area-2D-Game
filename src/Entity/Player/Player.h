@@ -3,6 +3,7 @@
 #include "../Entity.h"
 #include "../../World/World.h"
 #include "../../World/ViewChunk/ViewChunks.h"
+#include "../Item/Item.h"
 
 class Player : public Entity
 {
@@ -33,6 +34,8 @@ private:
 	float lastPosY;
 
 	ViewChunks* viewChunks;
+
+	Item inventory[3][5];//y,x
 
 public:
 	int collisionZoneX[2];//index[0] refers to bottom end of range and index[1] is to top end of range
