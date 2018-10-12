@@ -1,8 +1,8 @@
 
 #include "../Menu.h"
 
-void Menu::InGame(Physics& physics, Controls *controls, Chunk *chunk, sf::RenderWindow& window, 
-	Player *player, Textures *textures)
+void Menu::InGame(Physics& physics, Controls& controls, Chunk *chunk, sf::RenderWindow& window, 
+	Player *player, Textures& textures)
 {
 	if (chosenPage == Interface::Menu::INGAME &&
 		loadedPage != Interface::Menu::INGAME)
@@ -12,7 +12,7 @@ void Menu::InGame(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 		while (true)
 		{
 			//INTERFACE
-			Interface interface(*textures);
+			Interface interface(textures);
 
 			//after pressing escape | for settings etc. in game
 			/*if (count == 0)
@@ -40,8 +40,8 @@ void Menu::InGame(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 				interface.type = Interface::Type::TEXT;
 				interface.string = "In World - " + worlds[worldSelected].worldName;
 				interface.characterSize = 120;
-				interface.posX = 960;
-				interface.posY = 100;
+				interface.position[0] = 960;
+				interface.position[1] = 100;
 				interface.textColorR = 30;
 				interface.textColorG = 30;
 				interface.textColorB = 30;
@@ -66,8 +66,8 @@ void Menu::InGame(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 				interface.rectColorG = 0;
 				interface.rectColorB = 0;
 				interface.rectColorA = 0;
-				interface.posX = 1400;
-				interface.posY = 200;
+				interface.position[0] = 1400;
+				interface.position[1] = 200;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 				break;
@@ -76,6 +76,4 @@ void Menu::InGame(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 			count++;
 		}
 	}
-
-	//worlds[worldSelected].Draw(physics, controls, chunk, window, player, textures);
 }

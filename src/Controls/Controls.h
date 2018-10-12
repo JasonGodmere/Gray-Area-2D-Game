@@ -4,6 +4,9 @@
 
 class Controls
 {
+private:
+	const int maxChar = 10;
+
 public:
 	bool w;
 	bool a;
@@ -24,7 +27,6 @@ public:
 	bool keyToggle;
 
 	std::string playerString;
-	int maxChar;
 
 	sf::Vector2i mousePos;
 

@@ -16,8 +16,8 @@ void Menu::GenerateWorld(Textures& textures)
 			interface.type = Interface::Type::TEXT;
 			interface.string = "Generating "; //+ worlds[worldNum].worldName;
 			interface.characterSize = 120;
-			interface.posX = 960;
-			interface.posY = 100;
+			interface.position[0] = 960;
+			interface.position[1] = 100;
 			interface.textColorR = 30;
 			interface.textColorG = 30;
 			interface.textColorB = 30;

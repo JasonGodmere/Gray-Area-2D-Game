@@ -3,7 +3,7 @@
 
 void Player::Running(Controls& controls, sf::RenderWindow &window)
 {
-	if ((grounded == true || canJump == true) && speedX != 0)
+	/*if ((grounded == true || canJump == true) && speedX != 0)
 	{
 		footSpeed = speedX;
 		torsoHeight = -pow(footPos / 18, 2) + 70;
@@ -137,14 +137,14 @@ void Player::Running(Controls& controls, sf::RenderWindow &window)
 	if (mousePosX > playerX)
 	{
 		facing = RIGHT;
-	}
+	}*/
 }
 
-void Player::Jump(Controls *controls)
+void Player::Jump(Controls& controls)
 {
-	if (controls->space == true && grounded == true)
+	/*if (controls.space == true && grounded == true)
 	{
 		speedY = fallSpeed;
 		grounded = false;
-	}
+	}*/
 }

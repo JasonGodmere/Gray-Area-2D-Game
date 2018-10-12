@@ -19,8 +19,8 @@ void Menu::StartPage(Textures& textures)
 				interface.type = Interface::Type::TEXT;
 				interface.string = "Gray Area";
 				interface.characterSize = 150;
-				interface.posX = 960;
-				interface.posY = 100;
+				interface.position[0] = 960;
+				interface.position[1] = 100;
 				interface.textColorR = 30;
 				interface.textColorG = 30;
 				interface.textColorB = 30;
@@ -41,8 +41,8 @@ void Menu::StartPage(Textures& textures)
 				interface.menu = Interface::Menu::STARTGAME;
 				interface.string = "Start Game";
 				interface.characterSize = 40;
-				interface.posX = 960;
-				interface.posY = 300;
+				interface.position[0] = 960;
+				interface.position[1] = 300;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 			}
@@ -55,8 +55,8 @@ void Menu::StartPage(Textures& textures)
 				interface.menu = Interface::Menu::ACHIEVEMENTS;
 				interface.string = "Achievements";
 				interface.characterSize = 40;
-				interface.posX = 960;
-				interface.posY = 400;
+				interface.position[0] = 960;
+				interface.position[1] = 400;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 			}
@@ -69,8 +69,8 @@ void Menu::StartPage(Textures& textures)
 				interface.menu = Interface::Menu::SETTINGS;
 				interface.string = "Settings";
 				interface.characterSize = 40;
-				interface.posX = 960;
-				interface.posY = 500;
+				interface.position[0] = 960;
+				interface.position[1] = 500;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 			}
@@ -83,8 +83,8 @@ void Menu::StartPage(Textures& textures)
 				interface.menu = Interface::Menu::EXIT;
 				interface.string = "Exit";
 				interface.characterSize = 40;
-				interface.posX = 960;
-				interface.posY = 600;
+				interface.position[0] = 960;
+				interface.position[1] = 600;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 			}

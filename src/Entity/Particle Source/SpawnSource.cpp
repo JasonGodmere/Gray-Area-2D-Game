@@ -1,7 +1,7 @@
 
 #include "ParticleSource.h"
 
-void ParticleSource::FireSource()
+void ParticleSource::SpawnSource(Physics& physics)
 {
 	Particle particle;
 	
@@ -10,7 +10,7 @@ void ParticleSource::FireSource()
 		rect.setSize(sf::Vector2f(spawnWidth, 5));
 		rect.setOrigin(spawnWidth/2,0);
 		rect.setFillColor(sf::Color::White);
-		rect.setPosition(posX, posY);
+		rect.setPosition(position[0], position[1]);
 
 		vectorSize = durationHigh * spawnWidth * spawnPerSec;
 		for (int i = 0; i < vectorSize; i++)
@@ -21,7 +21,7 @@ void ParticleSource::FireSource()
 		justSpawned = false;
 	}
 
-	spawn = spawnPerSec * spawnWidth * time + unusedSpawn; //how many spawns per loop of proccess, remainder is executed
+	spawn = spawnPerSec * spawnWidth * physics.getTime() + unusedSpawn; //how many spawns per loop of proccess, remainder is executed
 	unusedSpawn = spawn - (int)spawn;
 
 	while (spawn >= 1)
@@ -29,11 +29,11 @@ void ParticleSource::FireSource()
 		particles[vectorCount].rectSize = (rand() % (sizeHigh - sizeLow + 1)) + sizeLow;
 		particles[vectorCount].colorA = 255;
 		particles[vectorCount].timeSinceSpawn = 0;
-		particles[vectorCount].posX = posX - (spawnWidth / 2) + (rand() % spawnWidth);
-		particles[vectorCount].posY = posY;
+		particles[vectorCount].position[0] = position[0] - (spawnWidth / 2) + (rand() % spawnWidth);
+		particles[vectorCount].position[1] = position[1];
 		particles[vectorCount].duration = (rand() % (durationHigh - durationLow + 1)) + durationLow;
-		particles[vectorCount].speedX = 0;
-		particles[vectorCount].speedY = -((rand() % (speedHigh - speedLow + 1)) + speedLow);
+		particles[vectorCount].rate[0] = 0;
+		particles[vectorCount].rate[1] = -((rand() % (speedHigh - speedLow + 1)) + speedLow);
 
 		++vectorCount;
 			

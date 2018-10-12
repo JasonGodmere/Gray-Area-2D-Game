@@ -10,22 +10,16 @@ Player::Player(Textures* textures, sf::RenderWindow& window)
 	torsoHeight = 72;
 	baseTorsoHeight = 72;
 	legLength = 90;
-	posX = 0;
-	posY = 0;
-
-	canJump = true;
-	grounded = true;
+	position[0] = 0;
 
 	footSpeed = 0;
 	footVelocity = 0;
-	topSpeed = 260;
-	fallSpeed = topSpeed * 4;
-	speedX = 0;
-	speedY = 0;
-	velocityX = 0;
-	velocityY = 0;
-	accelerationX = 0; //pixels per millisecond squared
-	accelerationY = 0;
+	rate[0] = 0;
+	rate[1] = 0;
+	velocity[0] = 0;
+	velocity[1] = 0;
+	acceleration[0] = 0; //pixels per millisecond squared
+	acceleration[1] = 0;
 
 	//viewchunk initialization
 	//viewChunks = new ViewChunks(window.getSize().x, window.getSize().y, world);
@@ -34,7 +28,7 @@ Player::Player(Textures* textures, sf::RenderWindow& window)
 	rect.setSize(sf::Vector2f(40, 160));
 	rect.setFillColor(sf::Color(255, 255, 255, 255));
 	rect.setOrigin(20, 160);
-	rect.setPosition(posX, posY);
+	rect.setPosition(position[0], position[1]);
 }
 
 Player::~Player()
@@ -160,7 +154,7 @@ void Player::Draw(Physics& physics, sf::RenderWindow &window)
 		legB1.getPosition().y + limbLegY);
 
 	//viewchunks have to display first so player is over it
-	viewChunks->Draw(posX, posY, window);
+	viewChunks->Draw(position[0], position[1], window);
 
 	//window.draw(rect);
 	window.draw(armB1);

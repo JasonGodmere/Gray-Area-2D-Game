@@ -12,9 +12,8 @@ Menu::Menu()
 	//PARTICLE BACKGROUND EFFECT
 	ParticleSource particleSource;
 
-	particleSource.type = ParticleSource::Type::FIRE;
-	particleSource.posX = 960;
-	particleSource.posY = 1080;
+	particleSource.position[0] = 960;
+	particleSource.position[1] = 1080;
 	particleSource.spawnWidth = 1920;
 	particleSources.push_back(particleSource);
 }
@@ -24,26 +23,26 @@ Menu::~Menu()
 	//thingy
 }
 
-void Menu::Update(Physics& physics, Controls *controls, Chunk *chunk, sf::RenderWindow &window, 
-	Player *player, Textures *textures)
+void Menu::Update(Physics& physics, Controls& controls, Chunk *chunk, sf::RenderWindow &window, 
+	Player *player, Textures& textures)
 {
-	controls->typing = false;
+	controls.typing = false;
 
 	if (chosenPage == Interface::Menu::STARTPAGE)
 	{
-		Menu::StartPage(*textures);
+		Menu::StartPage(textures);
 		loadedPage = Interface::Menu::STARTPAGE;
 	}
 
 	if (chosenPage == Interface::Menu::STARTGAME)
 	{
-		Menu::StartGame(*textures);
+		Menu::StartGame(textures);
 		loadedPage = Interface::Menu::STARTGAME;
 	}
 
 	if (chosenPage == Interface::Menu::NAMEWORLD)
 	{
-		Menu::NameWorld(*textures);
+		Menu::NameWorld(textures);
 		loadedPage = Interface::Menu::NAMEWORLD;
 	}
 
@@ -55,19 +54,19 @@ void Menu::Update(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 
 	if (chosenPage == Interface::Menu::GENERATEWORLD)
 	{
-		Menu::GenerateWorld(*textures);
+		Menu::GenerateWorld(textures);
 		loadedPage = Interface::Menu::GENERATEWORLD;
 	}
 
 	if (chosenPage == Interface::Menu::ACHIEVEMENTS)
 	{
-		Menu::Achievements(*textures);
+		Menu::Achievements(textures);
 		loadedPage = Interface::Menu::ACHIEVEMENTS;
 	}
 
 	if (chosenPage == Interface::Menu::SETTINGS)
 	{
-		Menu::Settings(*textures);
+		Menu::Settings(textures);
 		loadedPage = Interface::Menu::SETTINGS;
 	}
 
@@ -79,18 +78,18 @@ void Menu::Update(Physics& physics, Controls *controls, Chunk *chunk, sf::Render
 	// load some shit here
 	if (chosenPage == Interface::Menu::LOADGAME)
 	{
-		Menu::LoadWorld(*textures);
+		Menu::LoadWorld(textures);
 		loadedPage = Interface::Menu::LOADGAME;
 	}
 
 	if (chosenPage == Interface::Menu::GENERATEWORLD)
 	{
-		Menu::GenerateWorld(*textures);
+		Menu::GenerateWorld(textures);
 		loadedPage = Interface::Menu::GENERATEWORLD;
 	}
 }
 
-void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::RenderWindow* window)
+void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::RenderWindow& window)
 {
 	menu->threading = true;
 	World world(textures, menu->UI[count].string);
@@ -105,8 +104,8 @@ void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::Ren
 	menu->threading = false;
 }
 
-void Menu::Draw(Physics& physics, Controls* controls, Chunk* chunk, Player* player, 
-	Textures* textures, sf::RenderWindow& window)
+void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* player, 
+	Textures& textures, sf::RenderWindow& window)
 {
 	Menu::Update(physics, controls, chunk, window, player, textures);
 
@@ -137,7 +136,7 @@ void Menu::Draw(Physics& physics, Controls* controls, Chunk* chunk, Player* play
 		{
 			UI[count].recorded = true;
 
-			std::thread WorldGenerator(Generate, count, this, player, textures, &window);
+			std::thread WorldGenerator(Generate, count, this, player, textures, window);
 			Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
 			WorldGenerator.join();
 			chosenPage = Interface::Menu::STARTGAME;
@@ -154,13 +153,13 @@ void Menu::Draw(Physics& physics, Controls* controls, Chunk* chunk, Player* play
 	}
 }
 
-void Menu::ThreadDraw(Menu* menu, Physics& physics, Controls *controls, Chunk *chunk,
-	Player *player, Textures *textures, sf::RenderWindow& window)
+void Menu::ThreadDraw(Menu* menu, Physics& physics, Controls& controls, Chunk *chunk,
+	Player *player, Textures& textures, sf::RenderWindow& window)
 {
 	while (window.isOpen() && threading == true) {
 		window.clear();
 
-		physics.Update(*textures);
+		physics.UpdateClock(textures);
 		
 		//DRAW - START
 		Menu::Update(physics, controls, chunk, window, player, textures);
@@ -184,7 +183,7 @@ void Menu::ThreadDraw(Menu* menu, Physics& physics, Controls *controls, Chunk *c
 		}
 		//DRAW - END
 
-		physics.Draw(window);
+		window.draw(physics.getText());
 
 		window.display();
 	}

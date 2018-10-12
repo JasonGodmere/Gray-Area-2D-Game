@@ -24,8 +24,8 @@ void Menu::StartGame(Textures& textures)
 				interface.type = Interface::Type::TEXT;
 				interface.string = "World Select";
 				interface.characterSize = 120;
-				interface.posX = 960;
-				interface.posY = 100;
+				interface.position[0] = 960;
+				interface.position[1] = 100;
 				interface.textColorR = 30;
 				interface.textColorG = 30;
 				interface.textColorB = 30;
@@ -55,8 +55,8 @@ void Menu::StartGame(Textures& textures)
 					interface.rectColorG = 80;
 					interface.rectColorB = 80;
 					interface.rectColorA = 180;
-					interface.posX = 960;
-					interface.posY = 320 + (i * 150);
+					interface.position[0] = 960;
+					interface.position[1] = 320 + (i * 150);
 					interface.outlineThickness = 0;
 					UI.push_back(interface);
 				}
@@ -77,8 +77,8 @@ void Menu::StartGame(Textures& textures)
 				interface.rectColorG = 80;
 				interface.rectColorB = 80;
 				interface.rectColorA = 180;
-				interface.posX = 960;
-				interface.posY = 320 + (worlds.size() * 150);
+				interface.position[0] = 960;
+				interface.position[1] = 320 + (worlds.size() * 150);
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 			}
@@ -95,8 +95,8 @@ void Menu::StartGame(Textures& textures)
 				interface.rectColorG = 0;
 				interface.rectColorB = 0;
 				interface.rectColorA = 0;
-				interface.posX = 960;
-				interface.posY = 900;
+				interface.position[0] = 960;
+				interface.position[1] = 900;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 				break;

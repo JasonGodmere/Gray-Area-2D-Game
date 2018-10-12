@@ -23,9 +23,7 @@ ParticleSource::~ParticleSource()
 
 void ParticleSource::Update(Physics& physics)
 {
-	time = physics.time;
-
-	if (type == FIRE)
+	if (true)//this should be offloaded to the class using particles and put in as arguments for constructor
 	{
 		spawnPerSec = .06;
 		durationHigh = 6;
@@ -35,7 +33,7 @@ void ParticleSource::Update(Physics& physics)
 		sizeLow = 10;
 		sizeHigh = 30;
 
-		ParticleSource::FireSource();
+		ParticleSource::SpawnSource(physics);
 	}
 }
 

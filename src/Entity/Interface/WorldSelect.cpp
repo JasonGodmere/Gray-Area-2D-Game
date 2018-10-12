@@ -1,7 +1,7 @@
 
 #include "Interface.h"
 
-void Interface::WorldSelect(Controls *controls)
+void Interface::WorldSelect(Controls& controls)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 
@@ -12,16 +12,16 @@ void Interface::WorldSelect(Controls *controls)
 	rect.setFillColor(sf::Color(rectColorR, rectColorG, rectColorB, rectColorA));
 	rect.setOutlineThickness(0);
 
-	if (controls->mousePosX >= posX - rect.getSize().x / 2 &&
-		controls->mousePosX <= posX + rect.getSize().x / 2)
+	if (controls.mousePosX >= position[0] - rect.getSize().x / 2 &&
+		controls.mousePosX <= position[1] + rect.getSize().x / 2)
 	{
-		if (controls->mousePosY >= posY - rect.getSize().y / 2 &&
-			controls->mousePosY <= posY + rect.getSize().y / 2)
+		if (controls.mousePosY >= position[0] - rect.getSize().y / 2 &&
+			controls.mousePosY <= position[1] + rect.getSize().y / 2)
 		{
 			rect.setFillColor(sf::Color(rectColorR, rectColorG, rectColorB, 255));
 			rect.setOutlineThickness(2);
 
-			if (pressed == false && controls->leftClick == true)
+			if (pressed == false && controls.leftClick == true)
 			{
 				pressed = true;
 			}
@@ -29,7 +29,7 @@ void Interface::WorldSelect(Controls *controls)
 	}
 
 	text.setOrigin(sf::Vector2f(size.width / 2 + textOriginX, size.height / 2 + 15 + textOriginY));
-	text.setPosition(sf::Vector2f(posX, posY));
+	text.setPosition(sf::Vector2f(position[0], position[1]));
 
-	rect.setPosition(posX, posY);
+	rect.setPosition(position[0], position[1]);
 }

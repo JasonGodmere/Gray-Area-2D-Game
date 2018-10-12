@@ -75,12 +75,12 @@ public:
 	//actions
 	void Building(Controls& controls, World& world);
 	void Running(Controls& controls, sf::RenderWindow &window);
-	void Jump(Controls *controls);
-	void Aiming(sf::RenderWindow &window);
+	void Jump(Controls& controls);
+	void Aiming(Controls& controls, sf::RenderWindow &window);
 
 	void PlayerCollision(Physics& physics, World& world);
 
-	void Update(Physics& physics, Controls *controls, World& world, sf::RenderWindow &window);
+	void Update(Physics& physics, Controls& controls, World& world, sf::RenderWindow &window);
 
 	void Draw(Physics& physics, sf::RenderWindow &window);
 

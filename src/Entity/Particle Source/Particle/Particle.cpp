@@ -6,6 +6,10 @@ Particle::Particle()
 	justSpawned == true;
 	timeSinceSpawn = 0;
 
+	//particle might not use acceleration so needs to be initialized here
+	acceleration[0] = 0;
+	acceleration[1] = 0;
+
 	rect.setFillColor(sf::Color::White);
 }
 
@@ -16,30 +20,26 @@ Particle::~Particle()
 
 void Particle::Update(Physics& physics)
 {
-	time = physics.time;
-
 	if (type = FIRE)
 	{
 		Particle::Menu();
 	}
 
-	timeSinceSpawn = timeSinceSpawn + time;
+	timeSinceSpawn = timeSinceSpawn + physics.getTime();
 
 	if (timeSinceSpawn >= duration)
 	{
 		colorA = 0;
-		speedX = 0;
-		speedY = 0;
+		rate[0] = 0;
+		rate[1] = 0;
 	}
 
 	rect.setSize(sf::Vector2f(rectSize, rectSize));
 	circle.setOrigin(rectSize / 2, rectSize / 2);
 
-	velocityX = speedX * time;
-	velocityY = speedY * time;
-	posX = posX + velocityX;
-	posY = posY + velocityY;
-	rect.setPosition(posX, posY);
+	Particle::UpdatePhysics(physics);
+
+	rect.setPosition(position[0], position[1]);
 }
 
 void Particle::Draw(Physics& physics, sf::RenderWindow& window)

@@ -1,12 +1,12 @@
 
 #include "Player.h"
 
-void Player::Aiming(sf::RenderWindow &window)
+void Player::Aiming(Controls& controls, sf::RenderWindow &window)
 {
 	//Executing where to face and where to aim
 
-	legX = mousePosX - armT1.getPosition().x;
-	legY = mousePosY - armT1.getPosition().y;
+	legX = controls.mousePosX - armT1.getPosition().x;
+	legY = controls.mousePosY - armT1.getPosition().y;
 	hyp = sqrt(legX*legX + legY * legY);
 	angle = (asin(legY / hyp) * 180) / 3.1415;
 
@@ -34,7 +34,7 @@ void Player::Aiming(sf::RenderWindow &window)
 	armT2.setRotation(angle);
 	armB2.setRotation(angle);
 
-	if (facing == LEFT)
+	/*if (facing == LEFT)
 	{
 		armT1.setRotation(angle - 20);
 		armB1.setRotation(angle - 20);
@@ -43,5 +43,5 @@ void Player::Aiming(sf::RenderWindow &window)
 	{
 		armT1.setRotation(angle + 20);
 		armB1.setRotation(angle + 20);
-	}
+	}*/
 }

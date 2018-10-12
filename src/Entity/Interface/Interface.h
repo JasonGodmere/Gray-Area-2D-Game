@@ -53,11 +53,11 @@ public:
 	~Interface();
 
 	void Text();
-	void TextInput(Controls *controls);
-	void ColorButton(Controls *controls);
-	void SizeButton(Controls *controls);
-	void WorldSelect(Controls *controls);
+	void TextInput(Controls& controls);
+	void ColorButton(Controls& controls);
+	void SizeButton(Controls& controls);
+	void WorldSelect(Controls& controls);
 
-	void Update(Controls *controls);
-	void Draw(Controls *controls, sf::RenderWindow& window);
+	void Update(Controls& controls);
+	void Draw(Controls& controls, sf::RenderWindow& window);
 };

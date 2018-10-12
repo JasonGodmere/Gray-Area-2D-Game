@@ -5,10 +5,11 @@
 
 class World : public Chunk
 {
-public:
-	int worldNum;
+private:
 	int width;
 	int height;
+public:
+	int worldNum;
 
 	std::string worldName;
 
@@ -20,4 +21,7 @@ public:
 
 	World(Textures* textures, std::string string);
 	~World();
+
+	int getSizeX() { return width; };
+	int getSizeY() { return height; };
 };

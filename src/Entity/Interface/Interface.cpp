@@ -11,7 +11,7 @@ Interface::Interface(Textures& textures)
 	rect.setOutlineColor(sf::Color::White);
 	rect.setFillColor(sf::Color(0,0,0,0));
 	text.setFont(textures.font->sansation);
-	text1.setFont(textures.font->sansation);
+	//text1.setFont(textures.font->sansation);
 	textColorR = 255;
 	textColorG = 255;
 	textColorB = 255;
@@ -33,7 +33,7 @@ Interface::~Interface()
 	//thingy
 }
 
-void Interface::Update(Controls *controls)
+void Interface::Update(Controls& controls)
 {
 	if (type == Type::TEXT)
 	{
@@ -52,7 +52,7 @@ void Interface::Update(Controls *controls)
 
 	if (type == Type::TEXTINPUT)
 	{
-		string = controls->playerString;
+		string = controls.playerString;
 		Interface::TextInput(controls);
 	}
 
@@ -62,11 +62,11 @@ void Interface::Update(Controls *controls)
 	}
 }
 
-void Interface::Draw(Controls *controls, sf::RenderWindow& window)
+void Interface::Draw(Controls& controls, sf::RenderWindow& window)
 {
 	Interface::Update(controls);
 
 	window.draw(rect);
 	window.draw(text);
-	window.draw(text1);
+	//window.draw(text1);
 }

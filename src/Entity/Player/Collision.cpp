@@ -16,26 +16,26 @@ void Player::PlayerCollision(Physics& physics, World& world)
 	playerCollisionPoints[1][3] = rect.getOrigin().y + rect.getSize().y;//bottom left
 
 	//blocks within player movement area between frames are calculated
-	if (velocityY >= 0) //leading edge is bottom
+	if (velocity[1] >= 0) //leading edge is bottom
 	{
-		collisionZoneY[0] = height / 4 - (int)(lastPosY / 32/*world.chunks[0][0].chunkSize/*doesn't matter which chunk, all the same size*/);
-		collisionZoneY[1] = height / 4 - (int)(posY / 32 + 1);//+ 1 to include chunks partially in the high part of range
+		collisionZoneY[0] = world.getSizeY() / 4 - (int)(lastPosY / 32/*world.chunks[0][0].chunkSize/*doesn't matter which chunk, all the same size*/);
+		collisionZoneY[1] = world.getSizeY() / 4 - (int)(position[1] / 32 + 1);//+ 1 to include chunks partially in the high part of range
 	}
-	else if (velocityY < 0)//leading edge is top (for y)
+	else if (velocity[1] < 0)//leading edge is top (for y)
 	{
-		collisionZoneY[0] = height / 4 - (int)(posY / 32);
-		collisionZoneY[1] = height / 4 - (int)(lastPosY / 32) + 1;
+		collisionZoneY[0] = world.getSizeY() / 4 - (int)(position[1] / 32);
+		collisionZoneY[1] = world.getSizeY() / 4 - (int)(lastPosY / 32) + 1;
 	}
 
-	if (velocityX >= 0)//leading edge is right
+	if (velocity[0] >= 0)//leading edge is right
 	{
-		collisionZoneX[0] = width / 2 - (int)((-lastPosX + playerCollisionPoints[0][2]) / 32);
-		collisionZoneX[1] = width / 2 - (int)((-posX - playerCollisionPoints[0][3]) / 32) + 1;
+		collisionZoneX[0] = world.getSizeX() / 2 - (int)((-lastPosX + playerCollisionPoints[0][2]) / 32);
+		collisionZoneX[1] = world.getSizeX() / 2 - (int)((-position[0] - playerCollisionPoints[0][3]) / 32) + 1;
 	}
-	else if (velocityX < 0)//leading edge if left
+	else if (velocity[0] < 0)//leading edge if left
 	{
-		collisionZoneX[0] = width / 2 - (int)((-posX + playerCollisionPoints[0][2]) / 32);
-		collisionZoneX[1] = width / 2 - (int)((-lastPosX - playerCollisionPoints[0][3]) / 32) + 1;
+		collisionZoneX[0] = world.getSizeX() / 2 - (int)((-position[0] + playerCollisionPoints[0][2]) / 32);
+		collisionZoneX[1] = world.getSizeX() / 2 - (int)((-lastPosX - playerCollisionPoints[0][3]) / 32) + 1;
 	}
 
 	//std::cout << collisionZoneX[0] << " : " << collisionZoneX[1] << std::endl;
@@ -43,7 +43,7 @@ void Player::PlayerCollision(Physics& physics, World& world)
 	//std::cout << "------------------------------------------------------" << std::endl;
 
 	//vertical collisions
-	if (speedY <= 0)//leading edge is bottom
+	if (rate[1] <= 0)//leading edge is bottom
 	{
 		for (int y = collisionZoneY[0]; y < collisionZoneY[1]; y++)
 		{
@@ -51,12 +51,12 @@ void Player::PlayerCollision(Physics& physics, World& world)
 			{
 				if (world.chunks[y][x].collision == true)
 				{
-					posY = -world.chunks[y][x].originY;
+					position[1] = -world.chunks[y][x].originY;
 				}
 			}
 		}
 	}
-	else if (speedY > 0)//leading edge is top
+	else if (rate[1] > 0)//leading edge is top
 	{
 		for (int y = collisionZoneY[1]; y > collisionZoneY[0]; y--)
 		{
@@ -64,7 +64,7 @@ void Player::PlayerCollision(Physics& physics, World& world)
 			{
 				if (world.chunks[y][x].collision == true)
 				{
-					posY = -world.chunks[y][x].originY + rect.getSize().y;
+					position[1] = -world.chunks[y][x].originY + rect.getSize().y;
 				}
 			}
 		}
@@ -99,6 +99,6 @@ void Player::PlayerCollision(Physics& physics, World& world)
 	}*/
 
 	//after collisions
-	lastPosX = posX;
-	lastPosY = posY;
+	lastPosX = position[0];
+	lastPosY = position[1];
 }

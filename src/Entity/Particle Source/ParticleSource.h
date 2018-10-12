@@ -26,9 +26,6 @@ public:
 	double spawnPerSec;
 	double spawnRemainder;
 
-	enum Type { CUSTOM, FIRE };
-	Type type;
-
 	std::vector<Particle> particles;
 	std::vector<Particle>::iterator particlesIter;
 
@@ -36,7 +33,7 @@ public:
 	~ParticleSource();
 
 	//types
-	void FireSource();
+	void SpawnSource(Physics& physics);
 
 	void Update(Physics& physics);
 	void Draw(Physics& physics, sf::RenderWindow& window);

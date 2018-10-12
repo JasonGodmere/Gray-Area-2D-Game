@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	while (window.isOpen()) {
 		window.clear();
 
-		physics.Update(textures);
+		physics.UpdateClock(textures);
 
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 		controls.mousePosX = mousePos.x;
@@ -77,12 +77,12 @@ int main(int argc, char *argv[])
 		switch (gameState)
 		{
 		case MENU:
-			menu.Draw(physics, &controls, &chunk, &player, &textures, window);
+			menu.Draw(physics, controls, &chunk, &player, textures, window);
 			break;
 		}
 
 		//FPS COUNTER
-		physics.Draw(window);
+		window.draw(physics.getText());
 		
 		window.display();
 

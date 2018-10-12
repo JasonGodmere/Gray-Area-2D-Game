@@ -19,8 +19,8 @@ void Menu::Achievements(Textures& textures)
 				interface.type = Interface::Type::TEXT;
 				interface.string = "ACHIEVEMENTS";
 				interface.characterSize = 120;
-				interface.posX = 960;
-				interface.posY = 100;
+				interface.position[0] = 960;
+				interface.position[1] = 100;
 				interface.textColorR = 30;
 				interface.textColorG = 30;
 				interface.textColorB = 30;
@@ -41,8 +41,8 @@ void Menu::Achievements(Textures& textures)
 				interface.menu = Interface::Menu::STARTPAGE;
 				interface.string = "Back";
 				interface.characterSize = 50;
-				interface.posX = 960;
-				interface.posY = 900;
+				interface.position[0] = 960;
+				interface.position[1] = 900;
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
 			}
