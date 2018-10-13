@@ -1,14 +1,14 @@
-#include "Interface.h"
+ #include "Component.h"
 
-void Interface::ColorButton(Controls& controls)
+void Component::ColorButton(Controls& controls)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 
 	text.setString(string);
 	text.setCharacterSize(characterSize);
-	text.setFillColor(sf::Color(textColor[0], textColor[1], textColor[2], textColor[3]));
+	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
 
-	rect.setFillColor(sf::Color(rectColor[0], rectColor[1], rectColor[2], rectColor[3]));
+	rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], rectColorRef[3]));
 	rect.setOutlineThickness(0);
 
 	if (controls.mousePosX >= position[0] - rect.getSize().x / 2 &&
@@ -17,7 +17,7 @@ void Interface::ColorButton(Controls& controls)
 		if (controls.mousePosY >= position[0] - rect.getSize().y / 2 &&
 			controls.mousePosY <= position[1] + rect.getSize().y / 2)
 		{
-			rect.setFillColor(sf::Color(rectColor[0], rectColor[1], rectColor[2], 255));
+			rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], 255));
 
 			if (pressed == false && controls.leftClick == true)
 			{
@@ -28,7 +28,7 @@ void Interface::ColorButton(Controls& controls)
 
 	if (pressed == true)
 	{
-		rectColor[3] = 255;
+		rectColorRef[3] = 255;
 		rect.setOutlineThickness(2);
 	}
 

@@ -10,8 +10,8 @@ Interface::Interface(Textures& textures)
 	rect.setFillColor(sf::Color(0,0,0,0));
 	text.setFont(textures.font->sansation);
 
-	rectColor = { 255,255,255,255 };
-	textColor = { 255,255,255,255 };
+	rectColorRef = { 255,255,255,255 };
+	textColorRef = { 255,255,255,255 };
 
 	textOriginX = 0;
 	textOriginY = 0;
