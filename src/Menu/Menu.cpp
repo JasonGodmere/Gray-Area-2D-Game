@@ -91,7 +91,7 @@ void Menu::Update(Physics& physics, Controls& controls, Chunk *chunk, sf::Render
 
 void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::RenderWindow& window)
 {
-	menu->threading = true;
+	/*menu->threading = true;
 	World world(textures, menu->UI[count].string);
 	menu->worlds.push_back(world);
 
@@ -101,7 +101,7 @@ void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::Ren
 
 	menu->chosenPage = Interface::Menu::STARTGAME;
 
-	menu->threading = false;
+	menu->threading = false;*/
 }
 
 void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* player, 
@@ -136,9 +136,9 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 		{
 			UI[count].recorded = true;
 
-			std::thread WorldGenerator(Generate, count, this, player, textures, window);
-			Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
-			WorldGenerator.join();
+			//std::thread WorldGenerator(Generate, count, this, player, textures, window);
+			//Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
+			//WorldGenerator.join();
 			chosenPage = Interface::Menu::STARTGAME;
 			break;
 		}
@@ -156,7 +156,7 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 void Menu::ThreadDraw(Menu* menu, Physics& physics, Controls& controls, Chunk *chunk,
 	Player *player, Textures& textures, sf::RenderWindow& window)
 {
-	while (window.isOpen() && threading == true) {
+	/*while (window.isOpen() && threading == true) {
 		window.clear();
 
 		physics.UpdateClock(textures);
@@ -186,5 +186,5 @@ void Menu::ThreadDraw(Menu* menu, Physics& physics, Controls& controls, Chunk *c
 		window.draw(physics.getText());
 
 		window.display();
-	}
+	}*/
 }

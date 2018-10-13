@@ -5,25 +5,36 @@
 class Interface : public Entity
 {
 public:
-	int worldNum;
 	bool recorded;
 
-	int maxChar;
+	int worldNum;
+
 	bool pressed; //button
 	bool rectCustom;
 
 	int textOriginX;
 	int textOriginY;
 
-	int textColorR;
-	int textColorG;
-	int textColorB;
-	int textColorA;
+	std::array<unsigned char, 4> textColor = { 255,255,255,255 };
+	std::array<unsigned char, 4> rectColor = { 255,255,255,255 };
 
-	int rectColorR;
-	int rectColorG;
-	int rectColorB;
-	int rectColorA;
+	void setRectColor(Interface& interface, unsigned char r, unsigned char g, unsigned char b)
+	{
+		interface.rectColor = { r,g,b };
+	}
+	void setRectColor(Interface& interface, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+	{
+		interface.rectColor = { r,g,b,a };
+	}
+
+	void setTextColor(Interface& interface, unsigned char r, unsigned char g, unsigned char b)
+	{
+		interface.textColor = { r,g,b };
+	}
+	void setTextColor(Interface& interface, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+	{
+		interface.textColor = { r,g,b,a };
+	}
 
 	bool typing;
 

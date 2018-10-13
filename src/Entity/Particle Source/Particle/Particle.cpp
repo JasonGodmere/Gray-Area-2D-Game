@@ -37,7 +37,7 @@ void Particle::Update(Physics& physics)
 	rect.setSize(sf::Vector2f(rectSize, rectSize));
 	circle.setOrigin(rectSize / 2, rectSize / 2);
 
-	Particle::UpdatePhysics(physics);
+	Particle::UpdatePhysics(physics, false);
 
 	rect.setPosition(position[0], position[1]);
 }

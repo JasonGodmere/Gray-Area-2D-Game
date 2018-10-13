@@ -22,6 +22,11 @@ private:
 	sf::Text text;
 
 public:
+	//time related functions
+	virtual sf::Text getText() { return text; };
+	virtual double getTime() { return time; };
+	virtual void UpdateClock(Textures& textures);
+
 	const int gravity;
 
 	float lastPosition[2];
@@ -38,13 +43,21 @@ public:
 	Physics();
 
 	//for entity movement
-	virtual void UpdatePhysics(Physics& physics)//this assumes gravity is true
+	virtual void UpdatePhysics(Physics& physics, bool gforce)//this assumes gravity is true
 	{
 		//refresh the entity's accelerations FIRST then speed and position changes based on collisions AFTER
 		//reset lastPosition after collisions
 
 		acceleration[0] = acceleration[0] * physics.time;
-		acceleration[1] = (acceleration[1] - gravity) * physics.time;
+
+		if (gforce == true)
+		{
+			acceleration[1] = (acceleration[1] + gravity) * physics.time;
+		}
+		else
+		{
+			acceleration[1] = acceleration[1] * physics.time;
+		}
 
 		rate[0] += acceleration[0];
 		rate[1] += acceleration[1];
@@ -54,7 +67,7 @@ public:
 		{
 			rate[0] = topSpeed;
 		}
-		else if (rate[0] < topSpeed)
+		else if (rate[0] < -topSpeed)
 		{
 			rate[0] = -topSpeed;
 		}
@@ -63,7 +76,7 @@ public:
 		{
 			rate[1] = fallSpeed;
 		}
-		else if (rate[1] < fallSpeed)
+		else if (rate[1] < -fallSpeed)
 		{
 			rate[1] = -fallSpeed;
 		}
@@ -74,10 +87,4 @@ public:
 		position[0] += velocity[0];
 		position[1] -= velocity[1];//-= because in sfml, the y axis increases downwards
 	};
-
-
-	virtual sf::Text getText() { return text; };
-	virtual double getTime() { return time;  };
-
-	virtual void UpdateClock(Textures& textures);
 };

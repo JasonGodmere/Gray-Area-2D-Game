@@ -11,13 +11,13 @@ void Interface::TextInput(Controls& controls)
 
 	text.setString(string);
 	text.setCharacterSize(characterSize);
-	text.setFillColor(sf::Color(textColorR, textColorG, textColorB, textColorA));
+	text.setFillColor(sf::Color(textColor[0], textColor[1], textColor[2], textColor[3]));
 
 	//text1.setString(string1);
 	//text1.setCharacterSize(characterSize);
 	//text1.setFillColor(sf::Color(textColorR, textColorG, textColorB, textColorA));
 
-	rect.setFillColor(sf::Color(rectColorR, rectColorG, rectColorB, rectColorA));
+	rect.setFillColor(sf::Color(rectColor[0], rectColor[1], rectColor[2], rectColor[3]));
 
 	//accept button
 	/*if (controls.mousePosX >= posX1 - rect1.getSize().x / 2 &&

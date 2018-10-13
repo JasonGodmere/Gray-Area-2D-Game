@@ -21,14 +21,10 @@ void Menu::NameWorld(Textures& textures)
 				interface.characterSize = 120;
 				interface.position[0] = 960;
 				interface.position[1] = 100;
-				interface.textColorR = 30;
-				interface.textColorG = 30;
-				interface.textColorB = 30;
+				interface.setTextColor(interface, 30, 30, 30,255);
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
-				interface.textColorR = 255;
-				interface.textColorG = 255;
-				interface.textColorB = 255;
+				interface.setTextColor(interface,255,255,255,255);
 				interface.characterSize = 80;
 				UI.push_back(interface);
 			}
@@ -49,10 +45,7 @@ void Menu::NameWorld(Textures& textures)
 				interface.position[1] = 400;
 				//interface.posX1 = 960;
 				//interface.posY1 = 550;
-				interface.rectColorR = 80;
-				interface.rectColorG = 80;
-				interface.rectColorB = 80;
-				interface.rectColorA = 220;
+				interface.setRectColor(interface, 80, 80, 80, 220);
 				interface.rect.setOutlineThickness(3);
 				interface.rect.setOutlineColor(sf::Color::White);
 				UI.push_back(interface);

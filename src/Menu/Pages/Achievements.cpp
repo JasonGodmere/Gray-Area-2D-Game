@@ -19,16 +19,11 @@ void Menu::Achievements(Textures& textures)
 				interface.type = Interface::Type::TEXT;
 				interface.string = "ACHIEVEMENTS";
 				interface.characterSize = 120;
-				interface.position[0] = 960;
-				interface.position[1] = 100;
-				interface.textColorR = 30;
-				interface.textColorG = 30;
-				interface.textColorB = 30;
+				interface.setPosition(960,100);
+				interface.setTextColor(interface,30,30,30,255);
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
-				interface.textColorR = 255;
-				interface.textColorG = 255;
-				interface.textColorB = 255;
+				interface.setRectColor(interface,255,255,255,255);
 				interface.characterSize = 80;
 				UI.push_back(interface);
 			}

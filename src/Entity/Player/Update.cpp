@@ -22,7 +22,7 @@ void Player::Update(Physics& physics, Controls& controls, World& world, sf::Rend
 
 	Player::Jump(controls);
 	
-	Player::UpdatePhysics(physics);//located in physics
+	Player::UpdatePhysics(physics, true);//located in physics
 
 	Player::Running(controls, window);
 	Player::Building(controls, world);

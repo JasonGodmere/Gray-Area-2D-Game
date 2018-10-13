@@ -33,4 +33,10 @@ public:
 	sf::Sprite sprite;
 	sf::RectangleShape rect;
 	sf::CircleShape circle;
+
+	virtual void setPosition(float x, float y)
+	{
+		position[0] = x;
+		position[1] = y;
+	}
 };

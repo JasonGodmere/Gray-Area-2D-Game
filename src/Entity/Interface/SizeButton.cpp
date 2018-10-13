@@ -4,11 +4,13 @@ void Interface::SizeButton(Controls& controls)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 
+	rectColor = {0,0,0,0};
+
 	text.setString(string);
 	text.setCharacterSize(characterSize);
-	text.setFillColor(sf::Color(textColorR, textColorG, textColorB, textColorA));
+	text.setFillColor(sf::Color(textColor[0], textColor[1], textColor[2], textColor[3]));
 
-	rect.setFillColor(sf::Color(rectColorR, rectColorG, rectColorB, rectColorA));
+	rect.setFillColor(sf::Color(rectColor[0], rectColor[1], rectColor[2], rectColor[3]));
 
 	if (controls.mousePosX >= position[0] - rect.getSize().x / 2 &&
 		controls.mousePosX <= position[0] + rect.getSize().x / 2)

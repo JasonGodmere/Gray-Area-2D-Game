@@ -26,14 +26,10 @@ void Menu::StartGame(Textures& textures)
 				interface.characterSize = 120;
 				interface.position[0] = 960;
 				interface.position[1] = 100;
-				interface.textColorR = 30;
-				interface.textColorG = 30;
-				interface.textColorB = 30;
+				interface.setTextColor(interface,30,30,30,255);
 				interface.outlineThickness = 0;
 				UI.push_back(interface);
-				interface.textColorR = 255;
-				interface.textColorG = 255;
-				interface.textColorB = 255;
+				interface.setTextColor(interface,255,255,255,255);
 				interface.characterSize = 80;
 				UI.push_back(interface);
 			}
@@ -51,10 +47,7 @@ void Menu::StartGame(Textures& textures)
 					interface.characterSize = 50;
 					interface.rect.setSize(sf::Vector2f(600, 100));
 					interface.rect.setOrigin(300, 50);
-					interface.rectColorR = 80;
-					interface.rectColorG = 80;
-					interface.rectColorB = 80;
-					interface.rectColorA = 180;
+					interface.setRectColor(interface,80,80,80,180);
 					interface.position[0] = 960;
 					interface.position[1] = 320 + (i * 150);
 					interface.outlineThickness = 0;
@@ -73,10 +66,7 @@ void Menu::StartGame(Textures& textures)
 				interface.characterSize = 50;
 				interface.rect.setSize(sf::Vector2f(450, 60));
 				interface.rect.setOrigin(225, 30);
-				interface.rectColorR = 80;
-				interface.rectColorG = 80;
-				interface.rectColorB = 80;
-				interface.rectColorA = 180;
+				interface.setRectColor(interface,80,80,80,180);
 				interface.position[0] = 960;
 				interface.position[1] = 320 + (worlds.size() * 150);
 				interface.outlineThickness = 0;
@@ -91,10 +81,7 @@ void Menu::StartGame(Textures& textures)
 				interface.menu = Interface::Menu::STARTPAGE;
 				interface.string = "Back";
 				interface.characterSize = 50;
-				interface.rectColorR = 0;
-				interface.rectColorG = 0;
-				interface.rectColorB = 0;
-				interface.rectColorA = 0;
+				interface.setRectColor(interface,0,0,0,0);
 				interface.position[0] = 960;
 				interface.position[1] = 900;
 				interface.outlineThickness = 0;

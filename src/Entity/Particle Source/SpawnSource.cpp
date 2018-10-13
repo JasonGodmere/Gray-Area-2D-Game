@@ -33,7 +33,7 @@ void ParticleSource::SpawnSource(Physics& physics)
 		particles[vectorCount].position[1] = position[1];
 		particles[vectorCount].duration = (rand() % (durationHigh - durationLow + 1)) + durationLow;
 		particles[vectorCount].rate[0] = 0;
-		particles[vectorCount].rate[1] = -((rand() % (speedHigh - speedLow + 1)) + speedLow);
+		particles[vectorCount].rate[1] = ((rand() % (speedHigh - speedLow + 1)) + speedLow);
 
 		++vectorCount;
 			
