@@ -8,14 +8,14 @@ class Entity : public Physics
 public:
 	int spriteFrame;
 
-	float sizeRatio;
-
-	int rectSize;//the base pixel size of the sprite/shape before ratio
-
 	bool justSpawned;
 
 	//text
-	int characterSize;
+	int textSize;
+	int rectSize;//the base pixel size of the sprite/shape before ratio
+
+	float sizeRatio;//for in game objects, based on resolution
+
 	int outlineThickness;
 
 	//Trig Variables

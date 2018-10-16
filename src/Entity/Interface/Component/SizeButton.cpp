@@ -5,10 +5,6 @@ void Component::SizeButton(Controls& controls)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 
-	rectColorRef = {0,0,0,0};
-
-	text.setString(string);
-	text.setCharacterSize(characterSize);
 	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
 
 	rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], rectColorRef[3]));

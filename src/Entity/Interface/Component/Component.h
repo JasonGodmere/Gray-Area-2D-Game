@@ -11,6 +11,11 @@ private:
 	std::array<unsigned char, 4> rectColorRef = { 255,255,255,255 };//the color reference
 
 public:
+	enum Type { NONE, TEXT, COLOR_BUTTON, SIZE_BUTTON };
+private://the enum reference values are known but the stored value stays private
+	Type type;
+
+public:
 	virtual void setRectColor(Component& component, unsigned char r, unsigned char g, unsigned char b)
 	{
 		component.rectColorRef = { r,g,b };
@@ -29,7 +34,7 @@ public:
 		component.textColorRef = { r,g,b,a };
 	}
 
-	Component();//each type of component should have its own constructor
+	Component(enum Type& type, std::string& string, int& textSize);//each type of component should have its own constructor
 
 	void Text();
 	void ColorButton(Controls& controls);
