@@ -1,7 +1,7 @@
 
 #include "Component.h"
 
-void Component::SizeButton(Controls& controls)
+void Component::SizeButton(Controls& controls, sf::RenderWindow& window)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 

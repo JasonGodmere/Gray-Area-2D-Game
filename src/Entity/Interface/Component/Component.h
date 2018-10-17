@@ -34,9 +34,14 @@ public:
 		component.textColorRef = { r,g,b,a };
 	}
 
+	Component() {};
+
 	Component(enum Type& type, std::string& string, int& textSize);//each type of component should have its own constructor
 
+	void Update(Controls& controls, sf::RenderWindow& window);
+
+	//compenents are drawn in their respected function based on update
 	void Text();
-	void ColorButton(Controls& controls);
-	void SizeButton(Controls& controls);
+	void ColorButton(Controls& controls, sf::RenderWindow& window);
+	void SizeButton(Controls& controls, sf::RenderWindow& window);
 };

@@ -1,6 +1,6 @@
  #include "Component.h"
 
-void Component::ColorButton(Controls& controls)
+void Component::ColorButton(Controls& controls, sf::RenderWindow& window)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 

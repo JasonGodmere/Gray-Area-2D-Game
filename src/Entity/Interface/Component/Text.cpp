@@ -1,7 +1,7 @@
 
 #include "Component.h"
 
-void Component::Text()
+void Component::Text(sf::RenderWindow& window)
 {
 	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
 	sf::Rect<float> size = text.getGlobalBounds();
