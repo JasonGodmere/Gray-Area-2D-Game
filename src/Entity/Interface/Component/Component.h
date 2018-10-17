@@ -16,32 +16,43 @@ private://the enum reference values are known but the stored value stays private
 	Type type;
 
 public:
-	virtual void setRectColor(Component& component, unsigned char r, unsigned char g, unsigned char b)
+	virtual void setRectColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b)
 	{
 		component.rectColorRef = { r,g,b };
 	}
-	virtual void setRectColor(Component& component, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+	virtual void setRectColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 	{
 		component.rectColorRef = { r,g,b,a };
 	}
+	virtual std::array<unsigned char, 4> getRectColorRef()
+	{
+		return rectColorRef;
+	}
 
-	virtual void setTextColor(Component& component, unsigned char r, unsigned char g, unsigned char b)
+	virtual void setTextColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b)
 	{
 		component.textColorRef = { r,g,b };
 	}
-	virtual void setTextColor(Component& component, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+	virtual void setTextColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 	{
 		component.textColorRef = { r,g,b,a };
 	}
+	virtual std::array<unsigned char, 4> getTextColorRef()
+	{
+		return textColorRef;
+	}
 
-	Component() {};
+	Component() 
+	{
+		text.setCharacterSize(textSize);
+	}
 
 	Component(enum Type& type, std::string& string, int& textSize);//each type of component should have its own constructor
 
 	void Update(Controls& controls, sf::RenderWindow& window);
 
 	//compenents are drawn in their respected function based on update
-	void Text();
+	void Text(sf::RenderWindow& window);
 	void ColorButton(Controls& controls, sf::RenderWindow& window);
 	void SizeButton(Controls& controls, sf::RenderWindow& window);
 };

@@ -11,7 +11,7 @@ public:
 	bool justSpawned;
 
 	//text
-	int textSize;
+	static const int textSize = 50;
 	int rectSize;//the base pixel size of the sprite/shape before ratio
 
 	float sizeRatio;//for in game objects, based on resolution

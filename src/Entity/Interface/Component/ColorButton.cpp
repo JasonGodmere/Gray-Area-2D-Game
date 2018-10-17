@@ -33,4 +33,7 @@ void Component::ColorButton(Controls& controls, sf::RenderWindow& window)
 	text.setPosition(sf::Vector2f(position[0], position[1]));
 
 	rect.setPosition(position[0], position[1]);
+
+	window.draw(rect);
+	window.draw(text);
 }

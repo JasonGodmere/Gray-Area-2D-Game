@@ -10,17 +10,39 @@ Component::Component(enum Type& type, std::string& string, int& textSize)
 
 	if (type == Type::COLOR_BUTTON)
 	{
-		
+		this->type = Type::COLOR_BUTTON;
 	}
+
 	else if (type == Type::SIZE_BUTTON)
 	{
+		this->type = Type::SIZE_BUTTON;
 		rectColorRef = { 0,0,0,0 };
 	}
+
 	else if (type == Type::TEXT)
 	{
+		this->type = Type::TEXT;
 		rectColorRef = { 0,0,0,0 };
 	}
 
 	rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], rectColorRef[3]));
 	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
+}
+
+void Component::Update(Controls& controls, sf::RenderWindow& window)
+{
+	if (type == Type::TEXT)
+	{
+		Component::Text(window);
+	}
+
+	else if (type == Type::COLOR_BUTTON)
+	{
+		Component::ColorButton(controls, window);
+	}
+
+	else if (type == Type::SIZE_BUTTON)
+	{
+		Component::SizeButton(controls, window);
+	}
 }

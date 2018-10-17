@@ -1,7 +1,7 @@
 
 #include "System.h"
 
-void System::TextInput(Controls& controls)
+void System::TextInput(Controls& controls, sf::RenderWindow& window)
 {
 	sf::Rect<float> size = text.getGlobalBounds();
 	//sf::Rect<float> size1 = text1.getGlobalBounds();
