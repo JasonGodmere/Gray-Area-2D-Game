@@ -14,7 +14,7 @@ void Menu::Achievements(Textures& textures)
 			if (count == 0)
 			{
 				//title - shadow
-				Component component("Gray Area", 3);
+				Component component(textures, "Gray Area", 4);
 				component.type = Component::Type::TEXT;
 				component.setPosition(960, 100);
 				component.setTextColorRef(component, 30, 30, 30, 255);
@@ -22,16 +22,16 @@ void Menu::Achievements(Textures& textures)
 				interface.components.push_back(component);
 				//title
 				component.setTextColorRef(component, 255, 255, 255, 255);
-				component.sizeRatio = 2;
+				component.sizeRatio = 2.6;
 				interface.components.push_back(component);
 			}
 
 			if (count == 1)
 			{
 				//BACK
-				Component component("Back", 1);
+				Component component(textures, "Back", 1);
 				component.type = Component::Type::SIZE_BUTTON;
-				component.buttonIndex = Page::STARTGAME;
+				component.buttonIndex = Page::STARTPAGE;
 				component.setPosition(960, 900);
 				interface.components.push_back(component);
 			}

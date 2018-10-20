@@ -122,7 +122,7 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 	for (int i = 0; i < interface.components.size(); i++)
 	{
 		interface.components[i].Update(controls, window);
-		std::cout << interface.components.size() << std::endl;
+		
 		if (interface.components[i].getPressed() == true)
 		{//is that button pressed? If so do this
 			chosenPage = interface.components[i].buttonIndex;

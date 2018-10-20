@@ -13,17 +13,17 @@ System::System(std::vector<Component> buttons, int columns)
 	}
 }
 
-System::System(std::string buttonName, int maxChar)
+System::System(Textures& textures, std::string buttonName, int maxChar)
 	:maxChar(maxChar)
 {
 	type = Type::TEXT_INPUT;
 	//for TextInput
 
-	Component textBox;
+	Component textBox(textures);
 	textBox.type = Component::Type::TEXT;
 	components.push_back(textBox);
 
-	Component acceptButton;
+	Component acceptButton(textures);
 	acceptButton.type = Component::Type::SIZE_BUTTON;
 	acceptButton.string = buttonName;
 }

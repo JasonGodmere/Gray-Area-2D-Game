@@ -19,7 +19,7 @@ public:
 
 	System(std::vector<Component> buttons, int columns);
 
-	System(std::string buttonName, int maxChar);
+	System(Textures& textures, std::string buttonName, int maxChar);
 
 	void TextInput(Controls& controls, sf::RenderWindow& window);
 	void ButtonArray(Controls& controls, sf::RenderWindow& window);

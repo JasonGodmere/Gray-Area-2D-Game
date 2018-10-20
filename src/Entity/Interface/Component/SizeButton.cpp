@@ -8,6 +8,7 @@ void Component::SizeButton(Controls& controls, sf::RenderWindow& window)
 	sf::Rect<float> size = text.getGlobalBounds();
 
 	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
+	text.setCharacterSize(textSize);
 
 	if (controls.mousePosX >= position[0] - rect.getSize().x / 2 &&
 		controls.mousePosX <= position[0] + rect.getSize().x / 2)

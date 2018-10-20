@@ -14,7 +14,7 @@ void Menu::StartPage(Textures& textures)
 			if (count == 0)
 			{
 				//title - shadow
-				Component component("Gray Area", 3);
+				Component component(textures, "Gray Area", 4);
 				component.type = Component::Type::TEXT;
 				component.setPosition(960, 100);
 				component.setTextColorRef(component, 30, 30, 30, 255);
@@ -22,14 +22,14 @@ void Menu::StartPage(Textures& textures)
 				interface.components.push_back(component);
 				//title
 				component.setTextColorRef(component, 255, 255, 255, 255);
-				component.sizeRatio = 2;
+				component.sizeRatio = 2.6;
 				interface.components.push_back(component);
 			}
 
 			if (count == 1)
 			{
 				//START GAME
-				Component component("Start Game", 1);
+				Component component(textures, "Start Game", 1);
 				component.type = Component::Type::SIZE_BUTTON;
 				component.buttonIndex = Page::STARTGAME;
 				component.setPosition(960, 300);
@@ -39,7 +39,7 @@ void Menu::StartPage(Textures& textures)
 			if (count == 2)
 			{
 				//ACHIEVEMENTS
-				Component component("Achievements", 1);
+				Component component(textures, "Achievements", 1);
 				component.type = Component::Type::SIZE_BUTTON;
 				component.buttonIndex = Page::ACHIEVEMENTS;
 				component.setPosition(960, 400);
@@ -49,7 +49,7 @@ void Menu::StartPage(Textures& textures)
 			if (count == 3)
 			{
 				//SETTINGS
-				Component component("Settings", 1);
+				Component component(textures, "Settings", 1);
 				component.type = Component::Type::SIZE_BUTTON;
 				component.buttonIndex = Page::SETTINGS;
 				component.setPosition(960, 500);
@@ -59,7 +59,7 @@ void Menu::StartPage(Textures& textures)
 			if (count == 4)
 			{
 				//EXIT
-				Component component("Exit", 1);
+				Component component(textures, "Exit", 1);
 				component.type = Component::Type::SIZE_BUTTON;
 				component.buttonIndex = Page::EXIT;
 				component.setPosition(960, 600);

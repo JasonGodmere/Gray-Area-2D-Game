@@ -45,9 +45,11 @@ public:
 
 	virtual bool getPressed() { return pressed; };
 
-	Component();
+	Component() {};
 
-	Component(std::string string, int sizeRatio);//each type of component should have its own constructor
+	Component(Textures& textures);
+
+	Component(Textures& textures, std::string string, int sizeRatio);//each type of component should have its own constructor
 
 	void Update(Controls& controls, sf::RenderWindow& window);
 
