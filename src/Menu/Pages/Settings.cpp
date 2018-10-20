@@ -3,45 +3,41 @@
 
 void Menu::Settings(Textures& textures)
 {
-	if (chosenPage == Interface::Menu::SETTINGS &&
-		loadedPage != Interface::Menu::SETTINGS)
+	if (chosenPage == Page::SETTINGS &&
+		loadedPage != Page::SETTINGS)
 	{
-		UI.clear();
-		elements = 2;
-		for (int i = 0; i < elements; i++)
-		{
-			//INTERFACE
-			Interface interface(textures);
+		interface.components.clear();
 
-			if (i == 0)
+		int count = 0;
+		do
+		{
+			if (count == 0)
 			{
+				//title - shadow
+				Component component("Settings", 3);
+				component.type = Component::Type::TEXT;
+				component.setPosition(960, 100);
+				component.setTextColorRef(component, 30, 30, 30, 255);
+				component.outlineThickness = 0;
+				interface.components.push_back(component);
 				//title
-				interface.type = Interface::Type::TEXT;
-				interface.string = "Settings";
-				interface.characterSize = 120;
-				interface.position[0] = 960;
-				interface.position[1] = 100;
-				interface.setTextColor(interface, 30, 30, 30,255);
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-				interface.setTextColor(interface,255,255,255,255);
-				interface.characterSize = 80;
-				UI.push_back(interface);
+				component.setTextColorRef(component, 255, 255, 255, 255);
+				component.sizeRatio = 2;
+				interface.components.push_back(component);
 			}
 
-			if (i == 1)
+			if (count == 1)
 			{
 				//BACK
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::STARTPAGE;
-				interface.string = "Back";
-				interface.characterSize = 50;
-				interface.position[0] = 960;
-				interface.position[1] = 900;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
+				Component component("Back", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::STARTGAME;
+				component.setPosition(960, 900);
+				interface.components.push_back(component);
 			}
-		}
+
+			count++;
+
+		} while (count <= interface.components.size());
 	}
 }

@@ -6,8 +6,8 @@ Menu::Menu()
 	maxWorlds = 4;
 	count = 0;
 
-	chosenPage = Interface::Menu::STARTPAGE;
-	loadedPage = Interface::Menu::NONE;
+	chosenPage = Page::STARTPAGE;
+	loadedPage = Page::NONE;
 
 	//PARTICLE BACKGROUND EFFECT
 	ParticleSource particleSource;
@@ -28,64 +28,64 @@ void Menu::Update(Physics& physics, Controls& controls, Chunk *chunk, sf::Render
 {
 	controls.typing = false;
 
-	if (chosenPage == Interface::Menu::STARTPAGE)
+	if (chosenPage == Page::STARTPAGE)
 	{
 		Menu::StartPage(textures);
-		loadedPage = Interface::Menu::STARTPAGE;
+		loadedPage = Page::STARTPAGE;
 	}
 
-	if (chosenPage == Interface::Menu::STARTGAME)
+	if (chosenPage == Page::STARTGAME)
 	{
 		Menu::StartGame(textures);
-		loadedPage = Interface::Menu::STARTGAME;
+		loadedPage = Page::STARTGAME;
 	}
 
-	if (chosenPage == Interface::Menu::NAMEWORLD)
+	if (chosenPage == Page::NAMEWORLD)
 	{
 		Menu::NameWorld(textures);
-		loadedPage = Interface::Menu::NAMEWORLD;
+		loadedPage = Page::NAMEWORLD;
 	}
 
-	if (chosenPage == Interface::Menu::INGAME)
+	if (chosenPage == Page::INGAME)
 	{
 		Menu::InGame(physics, controls, chunk, window, player, textures);
-		loadedPage = Interface::Menu::INGAME;
+		loadedPage = Page::INGAME;
 	}
 
-	if (chosenPage == Interface::Menu::GENERATEWORLD)
+	if (chosenPage == Page::GENERATEWORLD)
 	{
 		Menu::GenerateWorld(textures);
-		loadedPage = Interface::Menu::GENERATEWORLD;
+		loadedPage = Page::GENERATEWORLD;
 	}
 
-	if (chosenPage == Interface::Menu::ACHIEVEMENTS)
+	if (chosenPage == Page::ACHIEVEMENTS)
 	{
 		Menu::Achievements(textures);
-		loadedPage = Interface::Menu::ACHIEVEMENTS;
+		loadedPage = Page::ACHIEVEMENTS;
 	}
 
-	if (chosenPage == Interface::Menu::SETTINGS)
+	if (chosenPage == Page::SETTINGS)
 	{
 		Menu::Settings(textures);
-		loadedPage = Interface::Menu::SETTINGS;
+		loadedPage = Page::SETTINGS;
 	}
 
-	if (chosenPage == Interface::Menu::EXIT)
+	if (chosenPage == Page::EXIT)
 	{
 		window.close();
 	}
 
 	// load some shit here
-	if (chosenPage == Interface::Menu::LOADGAME)
+	if (chosenPage == Page::LOADGAME)
 	{
 		Menu::LoadWorld(textures);
-		loadedPage = Interface::Menu::LOADGAME;
+		loadedPage = Page::LOADGAME;
 	}
 
-	if (chosenPage == Interface::Menu::GENERATEWORLD)
+	if (chosenPage == Page::GENERATEWORLD)
 	{
 		Menu::GenerateWorld(textures);
-		loadedPage = Interface::Menu::GENERATEWORLD;
+		loadedPage = Page::GENERATEWORLD;
 	}
 }
 
@@ -110,46 +110,42 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 	Menu::Update(physics, controls, chunk, window, player, textures);
 
 	//particle sources array
-	count = 0;
-	if (chosenPage != Interface::Menu::INGAME)
+	if (chosenPage != Page::INGAME)
 	{
-		for (particleSourcesIter = particleSources.begin(); particleSourcesIter != particleSources.end(); particleSourcesIter++)
+		for (int i = 0; i < particleSources.size(); i++)
 		{
-			particleSources[count].Draw(physics, window);
-			++count;
+			particleSources[i].Draw(physics, window);
 		}
 	}
 
 	//user interface object array
-	count = 0;
-	for (UIIter = UI.begin(); UIIter != UI.end(); UIIter++)
+	for (int i = 0; i < interface.components.size(); i++)
 	{
-		UI[count].Draw(controls, window);
-
-		if (UI[count].pressed == true)
-		{
-			chosenPage = UI[count].menu;
+		interface.components[i].Update(controls, window);
+		std::cout << interface.components.size() << std::endl;
+		if (interface.components[i].getPressed() == true)
+		{//is that button pressed? If so do this
+			chosenPage = interface.components[i].buttonIndex;
 		}
 
-		if (UI[count].type == Interface::Type::TEXTINPUT && UI[count].pressed == true &&
-			UI[count].menu == Interface::Menu::GENERATEWORLD && UI[count].recorded == false)
+		if (interface.components[i].type == System::Type::TEXT_INPUT && 
+			interface.components[i].getPressed() == true &&
+			interface.components[i].buttonIndex == Page::GENERATEWORLD)
 		{
-			UI[count].recorded = true;
-
 			//std::thread WorldGenerator(Generate, count, this, player, textures, window);
 			//Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
 			//WorldGenerator.join();
-			chosenPage = Interface::Menu::STARTGAME;
-			break;
-		}
 
-		if (UI[count].type == Interface::Type::WORLDSELECT && UI[count].pressed == true &&
-			UI[count].menu == Interface::Menu::LOADGAME)
-		{
-			worldSelected = UI[count].worldNum;
-			chosenPage = Interface::Menu::LOADGAME;
+			chosenPage = Page::STARTGAME;
 		}
-		++count;
+		//this needs to be finished for world selection
+		/*if (interface.components[i].type == System::Type::BUTTON_ARRAY && 
+			interface.components[i].getPressed() == true &&
+			interface.components[i].buttonIndex == Page::LOADGAME)
+		{
+			worldSelected = interface.components[i].worldNum;
+			chosenPage = Interface::Menu::LOADGAME;
+		}*/
 	}
 }
 

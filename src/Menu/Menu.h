@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Entity/Interface/Interface.h"
 #include "../Arrays.h"
 #include "../World/World.h"
 #include "../Entity/Player/Player.h"
@@ -14,10 +15,16 @@ public:
 	int worldSelected;
 	int count;
 	int count2;
-	int elements;
 
-	Interface::Menu chosenPage;
-	Interface::Menu loadedPage;
+	Interface interface;
+
+	enum Page { NONE, STARTPAGE, STARTGAME, 
+		NAMEWORLD, INGAME, 
+		GENERATEWORLD, ACHIEVEMENTS,
+		SETTINGS, EXIT, LOADGAME };
+
+	int chosenPage;
+	int loadedPage;
 
 	std::vector<World> worlds;
 	std::vector<World>::iterator worldsIter;

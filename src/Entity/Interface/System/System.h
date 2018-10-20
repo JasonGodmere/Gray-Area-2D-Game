@@ -17,24 +17,9 @@ private://value is private but data type is public
 public:
 	System() {};
 
-	System(std::vector<Component> buttons, int columns)
-		:columns(columns), components(buttons)
-	{
-		type = Type::BUTTON_ARRAY;
-		//for ButtonArray
+	System(std::vector<Component> buttons, int columns);
 
-		for (int i = 0; i < components.size(); i++)
-		{
-			
-		}
-	}
-
-	System(std::string buttonName, int maxChar)
-		:maxChar(maxChar)
-	{
-		type = Type::TEXT_INPUT;
-		//for TextInput
-	}
+	System(std::string buttonName, int maxChar);
 
 	void TextInput(Controls& controls, sf::RenderWindow& window);
 	void ButtonArray(Controls& controls, sf::RenderWindow& window);

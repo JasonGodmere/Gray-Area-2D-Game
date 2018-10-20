@@ -12,8 +12,9 @@ private:
 
 public:
 	enum Type { NONE, TEXT, COLOR_BUTTON, SIZE_BUTTON };
-private://the enum reference values are known but the stored value stays private
 	Type type;
+
+	int buttonIndex;
 
 public:
 	virtual void setRectColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b)
@@ -42,12 +43,11 @@ public:
 		return textColorRef;
 	}
 
-	Component() 
-	{
-		text.setCharacterSize(textSize);
-	}
+	virtual bool getPressed() { return pressed; };
 
-	Component(enum Type& type, std::string& string, int& textSize);//each type of component should have its own constructor
+	Component();
+
+	Component(std::string string, int sizeRatio);//each type of component should have its own constructor
 
 	void Update(Controls& controls, sf::RenderWindow& window);
 

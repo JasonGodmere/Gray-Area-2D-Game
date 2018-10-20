@@ -3,67 +3,62 @@
 
 void Menu::NameWorld(Textures& textures)
 {
-	if (chosenPage == Interface::Menu::NAMEWORLD &&
-		loadedPage != Interface::Menu::NAMEWORLD)
+	if (chosenPage == Page::NAMEWORLD &&
+		loadedPage != Page::NAMEWORLD)
 	{
-		UI.clear();
-		elements = 3;
-		for (int i = 0; i < elements; i++)
+		interface.components.clear();
+
+		int count = 0;
+		do
 		{
-			//INTERFACE
-			Interface interface(textures);
-
-			if (i == 0)
+			if (count == 0)
 			{
+				//title - shadow
+				Component component("Gray Area", 3);
+				component.type = Component::Type::TEXT;
+				component.setPosition(960, 100);
+				component.setTextColorRef(component, 30, 30, 30, 255);
+				component.outlineThickness = 0;
+				interface.components.push_back(component);
 				//title
-				interface.type = Interface::Type::TEXT;
-				interface.string = "Name World";
-				interface.characterSize = 120;
-				interface.position[0] = 960;
-				interface.position[1] = 100;
-				interface.setTextColor(interface, 30, 30, 30,255);
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-				interface.setTextColor(interface,255,255,255,255);
-				interface.characterSize = 80;
-				UI.push_back(interface);
+				component.setTextColorRef(component, 255, 255, 255, 255);
+				component.sizeRatio = 2;
+				interface.components.push_back(component);
 			}
 
-			if (i == 1)
+			/* dont forget to put this in an if statement
+			//Input world name
+			interface.type = Interface::Type::TEXTINPUT;
+			interface.menu = Interface::Menu::GENERATEWORLD;
+			interface.string = "";
+			//interface.string1 = "Generate World";
+			interface.characterSize = 50;
+			interface.rect.setSize(sf::Vector2f(600, 100));
+			interface.rect.setOrigin(300, 50);
+			//interface.rect1.setSize(sf::Vector2f(300, 60));
+			//interface.rect1.setOrigin(sf::Vector2f(150, 30));
+			interface.position[0] = 960;
+			interface.position[1] = 400;
+			//interface.posX1 = 960;
+			//interface.posY1 = 550;
+			interface.setRectColor(interface, 80, 80, 80, 220);
+			interface.rect.setOutlineThickness(3);
+			interface.rect.setOutlineColor(sf::Color::White);
+			UI.push_back(interface);
+			*/
+
+			if (count == 1)
 			{
-				//Input world name
-				interface.type = Interface::Type::TEXTINPUT;
-				interface.menu = Interface::Menu::GENERATEWORLD;
-				interface.string = "";
-				//interface.string1 = "Generate World";
-				interface.characterSize = 50;
-				interface.rect.setSize(sf::Vector2f(600, 100));
-				interface.rect.setOrigin(300, 50);
-				//interface.rect1.setSize(sf::Vector2f(300, 60));
-				//interface.rect1.setOrigin(sf::Vector2f(150, 30));
-				interface.position[0] = 960;
-				interface.position[1] = 400;
-				//interface.posX1 = 960;
-				//interface.posY1 = 550;
-				interface.setRectColor(interface, 80, 80, 80, 220);
-				interface.rect.setOutlineThickness(3);
-				interface.rect.setOutlineColor(sf::Color::White);
-				UI.push_back(interface);
+				//BACK
+				Component component("Cancel", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::STARTPAGE;
+				component.setPosition(960, 900);
+				interface.components.push_back(component);
 			}
 
-			if (i == 2)
-			{
-				//Cancel
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::STARTPAGE;
-				interface.string = "Cancel";
-				interface.characterSize = 50;
-				interface.position[0] = 960;
-				interface.position[1] = 900;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-			}
-		}
+			count++;
+
+		} while (count <= interface.components.size());
 	}
 }

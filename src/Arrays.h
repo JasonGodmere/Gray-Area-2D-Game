@@ -8,8 +8,6 @@
 class Arrays
 {
 public:
-	std::vector<Interface> UI;
-	std::vector<Interface>::iterator UIIter;
 
 	std::vector<ParticleSource> particleSources;
 	std::vector<ParticleSource>::iterator particleSourcesIter;

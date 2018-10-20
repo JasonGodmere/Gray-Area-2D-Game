@@ -4,69 +4,41 @@
 void Menu::InGame(Physics& physics, Controls& controls, Chunk *chunk, sf::RenderWindow& window, 
 	Player *player, Textures& textures)
 {
-	if (chosenPage == Interface::Menu::INGAME &&
-		loadedPage != Interface::Menu::INGAME)
+	if (chosenPage == Page::INGAME &&
+		loadedPage != Page::INGAME)
 	{
-		UI.clear();
-		count = 0;
-		while (true)
+		interface.components.clear();
+
+		int count = 0;
+		do
 		{
-			//INTERFACE
-			Interface interface(textures);
-
-			//after pressing escape | for settings etc. in game
-			/*if (count == 0)
-			{
-				interface.type = Interface::Type::BUTTON;
-				interface.string = "In Game - " + worlds[worldSelected].worldName;
-				interface.characterSize = 120;
-				interface.posX = 960;
-				interface.posY = 100;
-				interface.textColorR = 30;
-				interface.textColorG = 30;
-				interface.textColorB = 30;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-				interface.textColorR = 255;
-				interface.textColorG = 255;
-				interface.textColorB = 255;
-				interface.characterSize = 80;
-				UI.push_back(interface);
-			}*/
-
 			if (count == 0)
 			{
+				//title - shadow
+				Component component("In World - " /*+ worldName*/, 3);
+				component.type = Component::Type::TEXT;
+				component.setPosition(960, 100);
+				component.setTextColorRef(component, 30, 30, 30, 255);
+				component.outlineThickness = 0;
+				interface.components.push_back(component);
 				//title
-				interface.type = Interface::Type::TEXT;
-				interface.string = "In World - " + worlds[worldSelected].worldName;
-				interface.characterSize = 120;
-				interface.position[0] = 960;
-				interface.position[1] = 100;
-				interface.setTextColor(interface,30,30,30,255);
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-				interface.setTextColor(interface,255,255,255);
-				interface.characterSize = 80;
-				UI.push_back(interface);
+				component.setTextColorRef(component, 255, 255, 255, 255);
+				component.sizeRatio = 2;
+				interface.components.push_back(component);
 			}
 
 			if (count == 1)
 			{
 				//BACK
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::STARTPAGE;
-				interface.string = "Back";
-				interface.characterSize = 50;
-				interface.setRectColor(interface,0,0,0,0);
-				interface.position[0] = 1400;
-				interface.position[1] = 200;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-				break;
+				Component component("Back", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::STARTPAGE;
+				component.setPosition(1400, 200);
+				interface.components.push_back(component);
 			}
 
 			count++;
-		}
+
+		} while (count <= interface.components.size());
 	}
 }

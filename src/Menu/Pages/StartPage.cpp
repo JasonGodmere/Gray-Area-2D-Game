@@ -3,89 +3,71 @@
 
 void Menu::StartPage(Textures& textures)
 {
-	if (chosenPage == Interface::Menu::STARTPAGE && 
-		loadedPage != Interface::Menu::STARTPAGE)
+	if (chosenPage == Page::STARTPAGE && 
+		loadedPage != Page::STARTPAGE)
 	{
-		UI.clear();
-		elements = 5;
-		for (int i = 0; i < elements; i++)
+		//INTERFACE - component array reset
+		interface.components.clear();
+		int count = 0;
+		do
 		{
-			//INTERFACE
-			Interface interface(textures);
-
-			if (i == 0)
+			if (count == 0)
 			{
+				//title - shadow
+				Component component("Gray Area", 3);
+				component.type = Component::Type::TEXT;
+				component.setPosition(960, 100);
+				component.setTextColorRef(component, 30, 30, 30, 255);
+				component.outlineThickness = 0;
+				interface.components.push_back(component);
 				//title
-				interface.type = Interface::Type::TEXT;
-				interface.string = "Gray Area";
-				interface.characterSize = 150;
-				interface.position[0] = 960;
-				interface.position[1] = 100;
-				interface.setTextColor(interface,30,30,30,255);
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-				interface.setTextColor(interface,255,255,255,255);
-				interface.characterSize = 100;
-				UI.push_back(interface);
+				component.setTextColorRef(component, 255, 255, 255, 255);
+				component.sizeRatio = 2;
+				interface.components.push_back(component);
 			}
 
-			if (i == 1)
+			if (count == 1)
 			{
 				//START GAME
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::STARTGAME;
-				interface.string = "Start Game";
-				interface.characterSize = 40;
-				interface.position[0] = 960;
-				interface.position[1] = 300;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
+				Component component("Start Game", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::STARTGAME;
+				component.setPosition(960, 300);
+				interface.components.push_back(component);
 			}
 
-			if (i == 2)
+			if (count == 2)
 			{
 				//ACHIEVEMENTS
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::ACHIEVEMENTS;
-				interface.string = "Achievements";
-				interface.characterSize = 40;
-				interface.position[0] = 960;
-				interface.position[1] = 400;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
+				Component component("Achievements", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::ACHIEVEMENTS;
+				component.setPosition(960, 400);
+				interface.components.push_back(component);
 			}
 
-			if (i == 3)
+			if (count == 3)
 			{
 				//SETTINGS
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::SETTINGS;
-				interface.string = "Settings";
-				interface.characterSize = 40;
-				interface.position[0] = 960;
-				interface.position[1] = 500;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
+				Component component("Settings", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::SETTINGS;
+				component.setPosition(960, 500);
+				interface.components.push_back(component);
 			}
 
-			if (i == 4)
+			if (count == 4)
 			{
 				//EXIT
-				interface.type = Interface::Type::BUTTON;
-				interface.buttonType = Interface::ButtonType::SIZE;
-				interface.menu = Interface::Menu::EXIT;
-				interface.string = "Exit";
-				interface.characterSize = 40;
-				interface.position[0] = 960;
-				interface.position[1] = 600;
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
+				Component component("Exit", 1);
+				component.type = Component::Type::SIZE_BUTTON;
+				component.buttonIndex = Page::EXIT;
+				component.setPosition(960, 600);
+				interface.components.push_back(component);
 			}
-		}
-	}
 
-	//Update
+			count++;
+
+		} while (count <= interface.components.size());
+	}
 }
