@@ -7,7 +7,7 @@ void Menu::StartPage(Textures& textures)
 		loadedPage != Page::STARTPAGE)
 	{
 		//INTERFACE - component array reset
-		interface.components.clear();
+		interface.ClearItems();
 		int count = 0;
 		do
 		{

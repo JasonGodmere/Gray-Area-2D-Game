@@ -4,7 +4,6 @@
 Menu::Menu()
 {
 	maxWorlds = 4;
-	count = 0;
 
 	chosenPage = Page::STARTPAGE;
 	loadedPage = Page::NONE;
@@ -121,7 +120,7 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 	//user interface object array
 	for (int i = 0; i < interface.components.size(); i++)
 	{
-		interface.components[i].Update(controls, window);
+		interface.Update(controls, window);
 		
 		if (interface.components[i].getPressed() == true)
 		{//is that button pressed? If so do this
@@ -138,6 +137,7 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 
 			chosenPage = Page::STARTGAME;
 		}
+
 		//this needs to be finished for world selection
 		/*if (interface.components[i].type == System::Type::BUTTON_ARRAY && 
 			interface.components[i].getPressed() == true &&

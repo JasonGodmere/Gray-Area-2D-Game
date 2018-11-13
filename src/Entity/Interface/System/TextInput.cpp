@@ -6,9 +6,17 @@ void System::TextInput(Controls& controls, sf::RenderWindow& window)
 	controls.typing = true;
 	string = controls.playerString;
 
-	components[0].Update(controls, window);
-	components[1].Update(controls, window);
+	components[TEXT_BOX].Update(controls, window);
+	components[ACCEPT_BUTTON].Update(controls, window);
+	
+	components[TEXT_BOX].text.setString(controls.playerString);
 
-	components[0].setPosition(position[0], position[1] - 100);//textBox
-	components[1].setPosition(position[0], position[1] + 10);//acceptButton
+	if (components[ACCEPT_BUTTON].getPressed() == true)
+	{
+		controls.typing = false;
+		controls.playerString = "";
+	}
+
+	components[TEXT_BOX].setPosition(position[0], position[1] - 100);
+	components[ACCEPT_BUTTON].setPosition(position[0], position[1] + 100);
 }

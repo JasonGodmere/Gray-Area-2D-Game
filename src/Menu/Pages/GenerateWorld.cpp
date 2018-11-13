@@ -3,7 +3,7 @@
 
 void Menu::GenerateWorld(Textures& textures)
 {
-	interface.components.clear();
+	interface.ClearItems();
 
 	int count = 0;
 	do

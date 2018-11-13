@@ -6,7 +6,7 @@ void Menu::LoadWorld(Textures& textures)
 	if (chosenPage == Page::LOADGAME &&
 		loadedPage != Page::LOADGAME)
 	{
-		interface.components.clear();
+		interface.ClearItems();
 
 		int count = 0;
 		do

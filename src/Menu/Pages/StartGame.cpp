@@ -11,7 +11,7 @@ void Menu::StartGame(Textures& textures)
 	if (chosenPage == Page::STARTGAME &&
 		loadedPage != Page::STARTGAME)
 	{
-		interface.components.clear();
+		interface.ClearItems();
 
 		int count = 0;
 		do

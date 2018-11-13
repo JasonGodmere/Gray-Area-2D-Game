@@ -6,7 +6,7 @@ void Menu::Achievements(Textures& textures)
 	if (chosenPage == Page::ACHIEVEMENTS &&
 		loadedPage != Page::ACHIEVEMENTS)
 	{
-		interface.components.clear();
+		interface.ClearItems();
 
 		int count = 0;
 		do
@@ -14,7 +14,7 @@ void Menu::Achievements(Textures& textures)
 			if (count == 0)
 			{
 				//title - shadow
-				Component component(textures, "Gray Area", 4);
+				Component component(textures, "Achievements", 4);
 				component.type = Component::Type::TEXT;
 				component.setPosition(960, 100);
 				component.setTextColorRef(component, 30, 30, 30, 255);

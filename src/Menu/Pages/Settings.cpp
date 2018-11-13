@@ -6,7 +6,7 @@ void Menu::Settings(Textures& textures)
 	if (chosenPage == Page::SETTINGS &&
 		loadedPage != Page::SETTINGS)
 	{
-		interface.components.clear();
+		interface.ClearItems();
 
 		int count = 0;
 		do

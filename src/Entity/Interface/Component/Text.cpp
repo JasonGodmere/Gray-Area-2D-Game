@@ -10,5 +10,16 @@ void Component::Text(sf::RenderWindow& window)
 
 	text.setCharacterSize(textSize * sizeRatio);
 
+	rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], rectColorRef[3]));
+	rect.setSize(sf::Vector2f(borderSize[0], borderSize[1]));
+	rect.setOrigin(sf::Vector2f(borderSize[0] / 2, borderSize[1] / 2));
+	rect.setPosition(sf::Vector2f(position[0], position[1]));
+
+
+	if (border == true)
+	{
+		std::cout << "Border" << std::endl;
+		window.draw(rect);
+	}
 	window.draw(text);
 }

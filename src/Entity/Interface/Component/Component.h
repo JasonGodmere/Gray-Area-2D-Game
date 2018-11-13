@@ -10,11 +10,14 @@ private:
 	std::array<unsigned char, 4> textColorRef = { 255,255,255,255 };//the color reference
 	std::array<unsigned char, 4> rectColorRef = { 255,255,255,255 };//the color reference
 
-public:
+public: 
 	enum Type { NONE, TEXT, COLOR_BUTTON, SIZE_BUTTON };
 	Type type;
 
 	int buttonIndex;
+	bool border;
+
+	int borderSize[2] = {0,0};
 
 public:
 	virtual void setRectColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b)
@@ -47,11 +50,9 @@ public:
 
 	Component() {};
 
-	Component(Textures& textures);
-
 	Component(Textures& textures, std::string string, int sizeRatio);//each type of component should have its own constructor
 
-	void Update(Controls& controls, sf::RenderWindow& window);
+	virtual void Update(Controls& controls, sf::RenderWindow& window);
 
 	//compenents are drawn in their respected function based on update
 	void Text(sf::RenderWindow& window);

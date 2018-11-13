@@ -7,7 +7,7 @@ void Menu::InGame(Physics& physics, Controls& controls, Chunk *chunk, sf::Render
 	if (chosenPage == Page::INGAME &&
 		loadedPage != Page::INGAME)
 	{
-		interface.components.clear();
+		interface.ClearItems();
 
 		int count = 0;
 		do
