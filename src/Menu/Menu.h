@@ -7,6 +7,8 @@
 
 class Menu : public Arrays
 {
+private:
+	int chosenPage, loadedPage;
 public:
 	bool threading;
 
@@ -22,9 +24,6 @@ public:
 		NAMEWORLD, INGAME, 
 		GENERATEWORLD, ACHIEVEMENTS,
 		SETTINGS, EXIT, LOADGAME };
-
-	int chosenPage;
-	int loadedPage;
 
 	std::vector<World> worlds;
 	std::vector<World>::iterator worldsIter;

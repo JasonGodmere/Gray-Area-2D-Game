@@ -12,17 +12,20 @@ private:
 
 public: 
 	enum Type { NONE, TEXT, COLOR_BUTTON, SIZE_BUTTON };
-	Type type;
 
 	int buttonIndex;
 	bool border;
 
 	int borderSize[2] = {0,0};
 
+private:
+	Type type;
+
 public:
+
 	virtual void setRectColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b)
 	{
-		component.rectColorRef = { r,g,b };
+		component.rectColorRef = { r,g,b,255 };
 	}
 	virtual void setRectColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 	{
@@ -35,7 +38,7 @@ public:
 
 	virtual void setTextColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b)
 	{
-		component.textColorRef = { r,g,b };
+		component.textColorRef = { r,g,b,255 };
 	}
 	virtual void setTextColorRef(Component& component, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 	{
@@ -45,6 +48,13 @@ public:
 	{
 		return textColorRef;
 	}
+
+	virtual void setType(int i)
+	{ 
+		Type type = static_cast<Type>(i);
+		this->type = type; 
+	};
+	virtual Type getType() { return type; };
 
 	virtual bool getPressed() { return pressed; };
 

@@ -5,7 +5,7 @@ void Menu::StartGame(Textures& textures)
 {
 	if (worlds.size() == NULL)
 	{
-		chosenPage = Page::NAMEWORLD;
+		chosenPage = Page::STARTPAGE;
 	}
 
 	if (chosenPage == Page::STARTGAME &&
@@ -20,7 +20,7 @@ void Menu::StartGame(Textures& textures)
 			{
 				//title - shadow
 				Component component(textures, "Gray Area", 4);
-				component.type = Component::Type::TEXT;
+				component.setType(Component::Type::TEXT);
 				component.setPosition(960, 100);
 				component.setTextColorRef(component, 30, 30, 30, 255);
 				component.outlineThickness = 0;
@@ -54,7 +54,7 @@ void Menu::StartGame(Textures& textures)
 			{
 				//New World
 				Component component(textures, "Create New World", 1.5);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::NAMEWORLD;
 				component.setPosition(960, 320 + (worlds.size() * 150));
 				interface.components.push_back(component);
@@ -64,7 +64,7 @@ void Menu::StartGame(Textures& textures)
 			{
 				//BACK
 				Component component(textures, "Back", 1);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::STARTPAGE;
 				component.setPosition(960, 900);
 				interface.components.push_back(component);

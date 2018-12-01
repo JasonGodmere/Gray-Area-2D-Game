@@ -15,7 +15,7 @@ void Menu::StartPage(Textures& textures)
 			{
 				//title - shadow
 				Component component(textures, "Gray Area", 4);
-				component.type = Component::Type::TEXT;
+				component.setType(Component::Type::TEXT);
 				component.setPosition(960, 100);
 				component.setTextColorRef(component, 30, 30, 30, 255);
 				component.outlineThickness = 0;
@@ -30,7 +30,7 @@ void Menu::StartPage(Textures& textures)
 			{
 				//START GAME
 				Component component(textures, "Start Game", 1);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::STARTGAME;
 				component.setPosition(960, 300);
 				interface.components.push_back(component);
@@ -40,7 +40,7 @@ void Menu::StartPage(Textures& textures)
 			{
 				//ACHIEVEMENTS
 				Component component(textures, "Achievements", 1);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::ACHIEVEMENTS;
 				component.setPosition(960, 400);
 				interface.components.push_back(component);
@@ -50,7 +50,7 @@ void Menu::StartPage(Textures& textures)
 			{
 				//SETTINGS
 				Component component(textures, "Settings", 1);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::SETTINGS;
 				component.setPosition(960, 500);
 				interface.components.push_back(component);
@@ -60,7 +60,7 @@ void Menu::StartPage(Textures& textures)
 			{
 				//EXIT
 				Component component(textures, "Exit", 1);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::EXIT;
 				component.setPosition(960, 600);
 				interface.components.push_back(component);

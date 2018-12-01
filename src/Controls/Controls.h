@@ -5,7 +5,7 @@
 class Controls
 {
 private:
-	const int maxChar = 10;
+	const int maxChar = 14;
 
 public:
 	bool w;

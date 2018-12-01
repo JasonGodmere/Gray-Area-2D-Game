@@ -12,7 +12,7 @@ void Menu::GenerateWorld(Textures& textures)
 		{
 			//title - shadow
 			Component component(textures, "Generating World", 4);
-			component.type = Component::Type::TEXT;
+			component.setType(Component::Type::TEXT);
 			component.setPosition(960, 100);
 			component.setTextColorRef(component, 30, 30, 30, 255);
 			component.outlineThickness = 0;

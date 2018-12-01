@@ -18,7 +18,6 @@ void Component::Text(sf::RenderWindow& window)
 
 	if (border == true)
 	{
-		std::cout << "Border" << std::endl;
 		window.draw(rect);
 	}
 	window.draw(text);

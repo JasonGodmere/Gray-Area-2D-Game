@@ -21,7 +21,6 @@ void Component::Update(Controls& controls, sf::RenderWindow& window)
 	if (type == Type::TEXT)
 	{
 		type = Type::TEXT;
-		rectColorRef = { 0,0,0,0 };
 		Component::Text(window);
 	}
 

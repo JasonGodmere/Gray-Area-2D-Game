@@ -88,19 +88,17 @@ void Menu::Update(Physics& physics, Controls& controls, Chunk *chunk, sf::Render
 	}
 }
 
-void Generate(int count, Menu* menu, Player* player, Textures* textures, sf::RenderWindow& window)
+void Generate(int count, std::string& string, Menu* menu, Player* player, Textures& textures, sf::RenderWindow& window)
 {
-	/*menu->threading = true;
-	World world(textures, menu->UI[count].string);
+	//menu->threading = true;
+	World world(textures, string);
 	menu->worlds.push_back(world);
 
-	//menu->worldNum = menu->worlds.size() - 1;
+	menu->worldNum = menu->worlds.size() - 1;
 	
-	//menu->worlds[menu->worldNum].worldNum = menu->worldNum;
+	menu->worlds[menu->worldNum].worldNum = menu->worldNum;
 
-	menu->chosenPage = Interface::Menu::STARTGAME;
-
-	menu->threading = false;*/
+	//menu->threading = false;
 }
 
 void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* player, 
@@ -126,14 +124,19 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 		{//is that button pressed? If so do this
 			chosenPage = interface.components[i].buttonIndex;
 		}
+	}
 
-		if (interface.components[i].type == System::Type::TEXT_INPUT && 
-			interface.components[i].getPressed() == true &&
-			interface.components[i].buttonIndex == Page::GENERATEWORLD)
+	for (int i = 0; i < interface.systems.size(); i++)
+	{
+		if (interface.systems[i].type == System::Type::TEXT_INPUT && chosenPage == Page::NAMEWORLD &&
+		interface.systems[i].components[System::TextInput::ACCEPT_BUTTON].getPressed() == true)
 		{
-			//std::thread WorldGenerator(Generate, count, this, player, textures, window);
+			//std::thread WorldGenerator(Generate, i, interface.systems[i].components[System::TextInput::TEXT_BOX].string, this, player, textures, window);
 			//Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
 			//WorldGenerator.join();
+
+			Generate(i, interface.systems[i].string, this, player, textures, window);
+			std::cout << "Working" << std::endl;
 
 			chosenPage = Page::STARTGAME;
 		}

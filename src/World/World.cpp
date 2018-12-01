@@ -1,7 +1,7 @@
 
 #include "World.h"
 
-World::World(Textures* textures, std::string string)
+World::World(Textures& textures, std::string string)
 {
 	worldName = string;
 	width = 600; // make it even so units are between chunks

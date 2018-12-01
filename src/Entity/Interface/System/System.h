@@ -13,7 +13,7 @@ public:
 	enum TextInput { TEXT_BOX = 0, ACCEPT_BUTTON = 1 };//use as indexes for text input component list, starts at zero
 
 	enum Type { BUTTON_ARRAY, TEXT_INPUT };
-private://value is private but data type is public
+//private://value is private but data type is public
 	Type type;
 
 public:

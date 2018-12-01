@@ -15,7 +15,7 @@ void Menu::NameWorld(Textures& textures)
 			{
 				//title - shadow
 				Component component(textures, "Name World", 4);
-				component.type = Component::Type::TEXT;
+				component.setType(Component::Type::TEXT);
 				component.setPosition(960, 100);
 				component.setTextColorRef(component, 30, 30, 30, 255);
 				component.outlineThickness = 0;
@@ -28,7 +28,8 @@ void Menu::NameWorld(Textures& textures)
 			
 			if (count == 1)
 			{
-				System system(textures, "Generate World", 15, 200, 100);
+				System system(textures, "Generate World", 15, 500, 80);
+				system.components[System::TextInput::TEXT_BOX].setRectColorRef(system.components[System::TextInput::TEXT_BOX],50,50,50);
 				system.setPosition(960, 400); 
 				interface.systems.push_back(system);
 			}
@@ -37,7 +38,7 @@ void Menu::NameWorld(Textures& textures)
 			{
 				//CANCEL
 				Component component(textures, "Cancel", 1);
-				component.type = Component::Type::SIZE_BUTTON;
+				component.setType(Component::Type::SIZE_BUTTON);
 				component.buttonIndex = Page::STARTPAGE;
 				component.setPosition(960, 900);
 				interface.components.push_back(component);

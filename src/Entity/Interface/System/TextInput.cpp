@@ -17,6 +17,6 @@ void System::TextInput(Controls& controls, sf::RenderWindow& window)
 		controls.playerString = "";
 	}
 
-	components[TEXT_BOX].setPosition(position[0], position[1] - 100);
-	components[ACCEPT_BUTTON].setPosition(position[0], position[1] + 100);
+	components[TEXT_BOX].setPosition(position[0], position[1]);
+	components[ACCEPT_BUTTON].setPosition(position[0], position[1] + 150);
 }
