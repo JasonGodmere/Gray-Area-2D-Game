@@ -4,7 +4,11 @@
 void System::TextInput(Controls& controls, sf::RenderWindow& window)
 {
 	controls.typing = true;
-	string = controls.playerString;
+	if (controls.playerString != "")
+		//in case the controls string is erased yet the system continues to update making string ""
+	{
+		string = controls.playerString;
+	}
 
 	components[TEXT_BOX].Update(controls, window);
 	components[ACCEPT_BUTTON].Update(controls, window);

@@ -1,7 +1,7 @@
 
 #include "System.h"
 
-System::System(std::vector<Component> buttons, int columns)
+System::System(std::vector<Component> buttons)
 	:columns(columns), components(buttons)
 {
 	type = Type::BUTTON_ARRAY;

@@ -3,9 +3,9 @@
 
 void Menu::StartGame(Textures& textures)
 {
-	if (worlds.size() == NULL)
+	if (worlds.size() == NULL && loadedPage != Page::NAMEWORLD)
 	{
-		chosenPage = Page::STARTPAGE;
+		chosenPage = Page::NAMEWORLD;
 	}
 
 	if (chosenPage == Page::STARTGAME &&
@@ -31,26 +31,20 @@ void Menu::StartGame(Textures& textures)
 				interface.components.push_back(component);
 			}
 
-			//dont forget the if statement
-			/*for (int i = 0; i < worlds.size(); i++)
+			if (count == 1)
 			{
-				//world buttons
-				interface.type = Interface::Type::WORLDSELECT;
-				interface.menu = Interface::Menu::LOADGAME;
-				interface.worldSelect = Interface::WorldSelect::STARTWORLD;
-				interface.string = worlds[i].worldName;
-				interface.worldNum = worlds[i].worldNum;
-				interface.characterSize = 50;
-				interface.rect.setSize(sf::Vector2f(600, 100));
-				interface.rect.setOrigin(300, 50);
-				interface.setRectColor(interface,80,80,80,180);
-				interface.position[0] = 960;
-				interface.position[1] = 320 + (i * 150);
-				interface.outlineThickness = 0;
-				UI.push_back(interface);
-			}*/
+				for (int i = 0; i < worlds.size(); i++)
+				{
+					//world buttons
+					Component component(textures, worlds[i].worldName, 1.5);
+					component.setType(Component::Type::SIZE_BUTTON);
+					component.buttonIndex = Page::LOADGAME;
+					component.setPosition(960, 320 + (i * 150));
+					interface.components.push_back(component);
+				}
+			}
 
-			if (count == 1 && worlds.size() < maxWorlds)
+			if (count == 2 && worlds.size() < maxWorlds)
 			{
 				//New World
 				Component component(textures, "Create New World", 1.5);
@@ -60,7 +54,7 @@ void Menu::StartGame(Textures& textures)
 				interface.components.push_back(component);
 			}
 
-			if (count == 2)
+			if (count == 3)
 			{
 				//BACK
 				Component component(textures, "Back", 1);

@@ -135,8 +135,8 @@ void Menu::Draw(Physics& physics, Controls& controls, Chunk* chunk, Player* play
 			//Menu::ThreadDraw(this, physics, controls, chunk, player, textures, window);
 			//WorldGenerator.join();
 
+			std::cout << interface.systems[i].string << std::endl;
 			Generate(i, interface.systems[i].string, this, player, textures, window);
-			std::cout << "Working" << std::endl;
 
 			chosenPage = Page::STARTGAME;
 		}

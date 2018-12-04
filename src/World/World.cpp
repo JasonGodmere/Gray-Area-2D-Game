@@ -4,8 +4,9 @@
 World::World(Textures& textures, std::string string)
 {
 	worldName = string;
-	width = 600; // make it even so units are between chunks
-	height = 200;//divisible by 4 because origin is 3/4 from bottom of world
+
+	width = 200; // make it even so units are between chunks
+	height = 100;//divisible by 4 because origin is 3/4 from bottom of world
 
 	/*
 	player->playerX = playerX;
@@ -19,7 +20,7 @@ World::World(Textures& textures, std::string string)
 		for (int x = 0; x < width; x++)
 		{
 			Chunk chunk;
-			std::cout << sizeof(chunk) << std::endl;
+			//std::cout << sizeof(chunk) << std::endl;
 			chunk.originX = -(x - width / 2);
 			chunk.originY = -(y - height / 4);
 			chunksI.push_back(chunk);

@@ -19,7 +19,7 @@ public:
 public:
 	System() {};
 
-	System(std::vector<Component> buttons, int columns);
+	System(std::vector<Component> buttons);
 
 	System(Textures& textures, std::string buttonName, int maxChar, int borderX, int borderY);
 
