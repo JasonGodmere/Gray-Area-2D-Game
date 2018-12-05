@@ -16,7 +16,7 @@ public:
 	int buttonIndex;
 	bool border;
 
-	int borderSize[2] = {0,0};
+	std::array<int, 2> borderSize = {0,0};
 
 private:
 	Type type;
@@ -60,7 +60,9 @@ public:
 
 	Component() {};
 
-	Component(Textures& textures, std::string string, int sizeRatio);//each type of component should have its own constructor
+	Component(Textures& textures, std::string string, int sizeRatio);//Size Button constructor
+
+	Component(Textures& textures, std::string string, int sizeRatio, std::array<int, 2> borderSize);//Color Button constructor
 
 	virtual void Update(Controls& controls, sf::RenderWindow& window);
 

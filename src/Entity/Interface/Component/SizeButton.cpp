@@ -11,17 +11,15 @@ void Component::SizeButton(Controls& controls, sf::RenderWindow& window)
 	text.setCharacterSize(textSize);
 
 	if (controls.mousePosX >= position[0] - rect.getSize().x / 2 &&
-		controls.mousePosX <= position[0] + rect.getSize().x / 2)
+		controls.mousePosX <= position[0] + rect.getSize().x / 2 && 
+		controls.mousePosY >= position[1] - rect.getSize().y / 2 &&
+		controls.mousePosY <= position[1] + rect.getSize().y / 2)
 	{
-		if (controls.mousePosY >= position[1] - rect.getSize().y / 2 &&
-			controls.mousePosY <= position[1] + rect.getSize().y / 2)
-		{
-			text.setCharacterSize(textSize + 5);
+		text.setCharacterSize(textSize + 5);
 
-			if (controls.leftClick == true)
-			{
-				pressed = true;
-			}
+		if (controls.leftClick == true)
+		{
+			pressed = true;
 		}
 	}
 

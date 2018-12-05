@@ -2,7 +2,7 @@
 #include "Component.h"
 
 Component::Component(Textures& textures, std::string string, int sizeRatio)
-	: rectColorRef({ 100,100,100,255 }), textColorRef({ 255,255,255,255 }),
+	: rectColorRef({ 60,60,60,255 }), textColorRef({ 255,255,255,255 }),
 	pressed(false), type(Type::NONE), border(false)
 {
 	this->sizeRatio = sizeRatio;
@@ -13,6 +13,23 @@ Component::Component(Textures& textures, std::string string, int sizeRatio)
 
 	rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], rectColorRef[3]));
 	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
+}
+
+Component::Component(Textures& textures, std::string string, int sizeRatio, std::array<int, 2> borderSize)
+	: rectColorRef({ 60,60,60,255 }), textColorRef({ 255,255,255,255 }),
+	pressed(false), type(Type::NONE), border(true), borderSize({borderSize[0], borderSize[1]})
+{
+	this->sizeRatio = sizeRatio;
+
+	text.setString(string);
+	text.setCharacterSize(textSize * sizeRatio);
+	text.setFont(textures.font->sansation);
+
+	rect.setFillColor(sf::Color(rectColorRef[0], rectColorRef[1], rectColorRef[2], rectColorRef[3]));
+	text.setFillColor(sf::Color(textColorRef[0], textColorRef[1], textColorRef[2], textColorRef[3]));
+
+	rect.setSize(sf::Vector2f(borderSize[0], borderSize[1]));
+	rect.setOrigin(rect.getSize().x / 2, rect.getSize().y / 2);
 }
 
 void Component::Update(Controls& controls, sf::RenderWindow& window)

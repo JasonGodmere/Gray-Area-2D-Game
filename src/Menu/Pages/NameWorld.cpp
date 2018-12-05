@@ -29,7 +29,7 @@ void Menu::NameWorld(Textures& textures)
 			if (count == 1)
 			{
 				System system(textures, "Generate World", 15, 500, 80);
-				system.components[System::TextInput::TEXT_BOX].setRectColorRef(system.components[System::TextInput::TEXT_BOX],50,50,50);
+				system.components[System::TextInput::TEXT_BOX].setRectColorRef(system.components[System::TextInput::TEXT_BOX],60,60,60);
 				system.setPosition(960, 400); 
 				interface.systems.push_back(system);
 			}

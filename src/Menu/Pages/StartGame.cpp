@@ -36,8 +36,8 @@ void Menu::StartGame(Textures& textures)
 				for (int i = 0; i < worlds.size(); i++)
 				{
 					//world buttons
-					Component component(textures, worlds[i].worldName, 1.5);
-					component.setType(Component::Type::SIZE_BUTTON);
+					Component component(textures, worlds[i].worldName, 1.5, {500, 80});
+					component.setType(Component::Type::COLOR_BUTTON);
 					component.buttonIndex = Page::LOADGAME;
 					component.setPosition(960, 320 + (i * 150));
 					interface.components.push_back(component);
