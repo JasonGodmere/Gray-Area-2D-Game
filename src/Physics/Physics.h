@@ -42,8 +42,18 @@ public:
 
 	Physics();
 
+	virtual void InitPhysics()
+	{
+		rate[0] = 0;
+		rate[1] = 0;
+		velocity[0] = 0;
+		velocity[1] = 0;
+		acceleration[0] = 0;
+		acceleration[1] = 0;
+	}
+
 	//for entity movement
-	virtual void UpdatePhysics(Physics& physics, bool gforce)//this assumes gravity is true
+	virtual void UpdatePhysics(Physics& physics, bool gforce)//this determines if gravity on obj is true
 	{
 		//refresh the entity's accelerations FIRST then speed and position changes based on collisions AFTER
 		//reset lastPosition after collisions

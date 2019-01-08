@@ -14,12 +14,8 @@ Player::Player(Textures* textures, sf::RenderWindow& window)
 
 	footSpeed = 0;
 	footVelocity = 0;
-	rate[0] = 0;
-	rate[1] = 0;
-	velocity[0] = 0;
-	velocity[1] = 0;
-	acceleration[0] = 0; //pixels per millisecond squared
-	acceleration[1] = 0;
+
+	Physics::InitPhysics();
 
 	//viewchunk initialization
 	//viewChunks = new ViewChunks(window.getSize().x, window.getSize().y, world);
@@ -33,7 +29,7 @@ Player::Player(Textures* textures, sf::RenderWindow& window)
 
 Player::~Player()
 {
-	delete viewChunks;
+	//delete viewChunks;
 }
 
 void Player::LoadFrame(Textures* textures)

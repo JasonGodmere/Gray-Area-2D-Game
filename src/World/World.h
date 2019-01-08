@@ -1,13 +1,18 @@
 #pragma once
 
-#include "Chunk/Chunk.h"
+#include "StorageChunk/StorageChunk.h"
 #include "../Entity/Entity.h"
+#include "../Entity/Player/Player.h"
 
-class World : public Chunk
+class World : public StorageChunk
 {
 private:
 	int width;
 	int height;
+
+	int playerX, playerY;//temporary
+	int position[2] = {};//temporary
+	int botX, botY, topX, topY;//temporary
 public:
 	int worldNum;
 
@@ -21,6 +26,9 @@ public:
 
 	World(Textures& textures, std::string string);
 	~World();
+
+	void World::Collision(Physics& physics, Player& player);
+	void World::Draw(Physics& physics, Controls& controls, Player& player, Chunk& chunk, Textures& textures, sf::RenderWindow& window);
 
 	int getSizeX() { return width; };
 	int getSizeY() { return height; };

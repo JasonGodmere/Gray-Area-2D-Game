@@ -1,7 +1,7 @@
 
 #include "Player.h"
 
-void Player::Building(Controls& controls, World& world)
+void Player::Building(Controls& controls, World* world)
 {
 	/*mouseChunkX = width / 2 - (int)(-(mousePosX - playerX) / 32);//chunk size not 32
 	mouseChunkY = height / 4 - (int)(-(mousePosY - playerY) / 32);

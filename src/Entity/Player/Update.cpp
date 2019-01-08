@@ -1,7 +1,7 @@
 
 #include "Player.h"
 
-void Player::Update(Physics& physics, Controls& controls, World& world, sf::RenderWindow &window)
+void Player::Update(Physics& physics, Controls& controls, World* world, sf::RenderWindow &window)
 {
 	Player::Aiming(controls, window);
 
@@ -22,7 +22,7 @@ void Player::Update(Physics& physics, Controls& controls, World& world, sf::Rend
 
 	Player::Jump(controls);
 	
-	Player::UpdatePhysics(physics, true);//located in physics
+	Player::UpdatePhysics(physics, false);//located in physics
 
 	Player::Running(controls, window);
 	Player::Building(controls, world);

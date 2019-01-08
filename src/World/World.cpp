@@ -6,7 +6,7 @@ World::World(Textures& textures, std::string string)
 	worldName = string;
 
 	width = 200; // make it even so units are between chunks
-	height = 100;//divisible by 4 because origin is 3/4 from bottom of world
+	height = 100; //divisible by 4 because origin is 3/4 from bottom of world
 
 	/*
 	player->playerX = playerX;
@@ -48,21 +48,19 @@ World::~World()
 	//thingy
 }
 
-/*void World::Draw(Chunk* chunk, Textures* textures)
+void World::Draw(Physics& physics, Controls& controls, Player& player, Chunk& chunk, Textures& textures, sf::RenderWindow& window)
 {
-	World::Update(*textures);
+	player.Update(physics, controls, this, window);
+	position[0] = -player.position[0] + playerX;
+	position[1] = -player.position[1] + playerY;
 
-	player->Update(physics, controls, width, height, chunks, window);
-	posX = -player->posX + playerX;
-	posY = -player->posY + playerY;
-
-	//values used to determine the region of world needed for entitiesso it doesn't load entire world. 
+	//values used to determine the region of world needed for entities so it doesn't load entire world. 
 	//Only what we need for collisions with object
 
-	botX = (player->posX - windowX / 2) / chunkSize - spawnWidth + width / 2;
-	topX = (player->posX + windowX / 2) / chunkSize + spawnWidth + width / 2;
-	botY = (player->posY - windowY / 2) / chunkSize - spawnWidth + height / 2;
-	topY = (player->posY + windowY / 2) / chunkSize + spawnWidth + height / 2;
+	botX = (player.position[0] - 1080/*windowX*/ / 2) / 32/*CHANGE 32*/ - /*spawnWidth*/ + width / 2;
+	topX = (player.position[0] + 1080/*windowX*/ / 2) / 32/*CHANGE 32*/ + /*spawnWidth*/ + width / 2;
+	botY = (player.position[1] - 1920/*windowY*/ / 2) / 32/*CHANGE 32*/ - /*spawnWidth*/ + height / 2;
+	topY = (player.position[1] + 1920/*windowY*/ / 2) / 32/*CHANGE 32*/ + /*spawnWidth*/ + height / 2;
 
 	if (botY < 0)
 	{
@@ -83,14 +81,14 @@ World::~World()
 	
 
 	World::Collision(physics, player);
-	posX = -player->posX + playerX;
-	posY = -player->posY + playerY;
+	position[0] = -player.position[0] + playerX;
+	position[1] = -player.position[1] + playerY;
 	
 	for (int y = botY; y < topY; y++)
 	{
 		for (int x = botX; x < topX; x++)
 		{
-			chunks[y][x].posX = posX;
+			chunks[y][x].position[0] = posX;
 			chunks[y][x].posY = posY;
 			if (player->posX + chunks[y][x].originX >= -windowX + playerX &&
 				player->posX + chunks[y][x].originX <= 32 + windowX - (windowX - playerX)
@@ -103,4 +101,4 @@ World::~World()
 	//window.draw(rect);
 	player->Draw(physics, window);
 	
-}*/
+}

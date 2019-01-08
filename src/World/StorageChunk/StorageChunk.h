@@ -7,7 +7,7 @@ Since the entire world needs to be stored with the Chunk data type
 it is as minimalistic as possible to reduce data size
 */
 
-struct Chunk
+struct StorageChunk
 {
 public:
 	int originX;
